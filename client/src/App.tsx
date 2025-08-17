@@ -51,10 +51,10 @@ export default function App() {
       <AppContainer>
         <MenuBar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/films" element={<FilmMenu />} />
-          <Route path="/film/:id" element={<FilmPage />} />
+          <Route path="/NuArtFilmSociety/" element={<Home />} />
+          <Route path="/NuArtFilmSociety/calendar" element={<Calendar />} />
+          <Route path="/NuArtFilmSociety/films" element={<FilmMenu />} />
+          <Route path="/NuArtFilmSociety/film/:id" element={<FilmPage />} />
         </Routes>
       </AppContainer>
     </Router>
