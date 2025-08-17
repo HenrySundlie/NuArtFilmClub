@@ -2,12 +2,14 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { theme } from '../theme';
 
-export const Nav = styled.nav`
-  background: ${theme.colors.surface};
+export const Nav = styled.nav<{ isHome?: boolean }>`
+  background: ${({ isHome }) => (isHome ? 'transparent' : theme.colors.surface)};
   padding: ${theme.spacing.md};
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  box-shadow: ${({ isHome }) => (isHome ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)')};
+  position: ${({ isHome }) => (isHome ? 'absolute' : 'sticky')};
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
 
   ${theme.breakpoints.mobile} {
@@ -35,7 +37,7 @@ export const NavLink = styled(Link)`
   transition: ${theme.transitions.default};
 
   &:hover {
-    background: ${theme.colors.background};
+    background: ${theme.colors.background + '33'}; // Add some transparency
     color: ${theme.colors.secondary};
   }
 

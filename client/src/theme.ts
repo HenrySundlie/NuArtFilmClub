@@ -1,15 +1,16 @@
 export const theme = {
   colors: {
-    primary: '#1a1a1a',
-    secondary: '#404040',
-    background: '#f5f5f5',
+    primary: '#282828',
+    secondary: '#666666',
+    background: '#F7F7F7',
     surface: '#ffffff',
+    highlight: '#E5E5E5',
     text: {
-      primary: '#1a1a1a',
-      secondary: '#404040',
-      light: '#757575',
+      primary: '#333333',
+      secondary: '#555555',
+      light: '#999999',
     },
-    border: '#e0e0e0',
+    border: '#DDDDDD',
   },
   breakpoints: {
     mobile: '@media (max-width: 768px)',
@@ -23,7 +24,7 @@ export const theme = {
     xl: '2rem',
   },
   typography: {
-    fontFamily: "'Inter', 'system-ui', sans-serif",
+    fontFamily: "'Cormorant Garamond', serif",
     h1: {
       fontSize: '2.5rem',
       fontWeight: 600,
