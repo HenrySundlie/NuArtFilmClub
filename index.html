@@ -1,89 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for proper rendering and mobile optimization -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nu Art Film Society - Celebrating independent cinema and film culture">
+    
+    <!-- Page title -->
     <title>Nu Art Film Society</title>
-    <style>
-        :root {
-            /* Easily adjustable zoom target coordinates (in percentage) */
-            --zoom-target-x: 5%; /* Left side, adjust as needed */
-            --zoom-target-y: 70%; /* Halfway up, adjust as needed */
-            --zoom-level: 5;    /* Final zoom level */
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 200vh; /* Allows for scrolling */
-            background-color: #000;
-        }
-
-        .hero-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .hero-image {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform-origin: var(--zoom-target-x) var(--zoom-target-y);
-            transition: transform 0.1s ease-out;
-        }
-
-        .site-title {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 4rem;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            opacity: 1;
-            transition: opacity 0.5s ease-out;
-        }
-    </style>
+    
+    <!-- Link to our custom stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="hero-container">
-        <img src="An aerial view of Msocow.jpg" alt="Aerial view of Moscow" class="hero-image">
+    <!-- Main container that holds the entire layout -->
+    <div class="container">
+        
+        <!-- Hero section with background image and overlaid title -->
+        <section class="hero-section">
+            <!-- Main title/logo overlaid on the background image -->
+            <h1 class="title">Nu Art Film Society</h1>
+        </section>
+        
+        <!-- Main content area -->
+        <main class="main-content">
+            <!-- Text content section below the hero -->
+            <section class="text-section">
+                <!-- First line of text with short underline -->
+                <p class="text-line">
+                    <span class="text-content">Independent cinema showcase</span>
+                    <span class="underline short"></span>
+                </p>
+                
+                <!-- Second line of text with medium underline -->
+                <p class="text-line">
+                    <span class="text-content">Monthly film screenings and discussions</span>
+                    <span class="underline medium"></span>
+                </p>
+                
+                <!-- Third line of text with long underline -->
+                <p class="text-line">
+                    <span class="text-content">Join our community of film enthusiasts</span>
+                    <span class="underline long"></span>
+                </p>
+            </section>
+        </main>
+        
+        <!-- Footer for additional information -->
+        <footer class="footer">
+            <p class="footer-text">© 2024 Nu Art Film Society. All rights reserved.</p>
+        </footer>
     </div>
-    <h1 class="site-title">Nu Art Film Society</h1>
-
-    <script>
-        // Helper to get CSS variable value as number
-        function getCSSVarNumber(name) {
-            return parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name));
-        }
-
-        window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY;
-            const windowHeight = window.innerHeight;
-            // Calculate zoom progress (0 to 1)
-            const zoomProgress = Math.min(scrolled / windowHeight, 1);
-
-            // Get zoom level from CSS variable
-            const zoomLevel = getCSSVarNumber('--zoom-level');
-            const currentZoom = 1 + (zoomLevel - 1) * zoomProgress;
-
-            // Apply the zoom transform
-            document.querySelector('.hero-image').style.transform = `scale(${currentZoom})`;
-
-            // Fade out the title as we zoom
-            document.querySelector('.site-title').style.opacity = 1 - zoomProgress;
-        });
-    </script>
 </body>
 </html>

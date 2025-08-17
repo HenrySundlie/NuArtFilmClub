@@ -1,0 +1,281 @@
+/* ========================================
+   NU ART FILM SOCIETY WEBSITE STYLES
+   Based on hand-drawn sketch design
+   ======================================== */
+
+/* CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Root Variables for consistent color scheme */
+:root {
+    /* Dark grey color palette - avoiding pure black */
+    --color-darkest: #1a1a1a;      /* Very dark grey for main backgrounds */
+    --color-darker: #2d2d2d;       /* Dark grey for secondary elements */
+    --color-dark: #404040;         /* Medium dark grey for borders */
+    --color-medium: #666666;       /* Medium grey for subtle accents */
+    --color-light: #cccccc;        /* Light grey for text */
+    --color-lighter: #e6e6e6;      /* Very light grey for highlights */
+    --color-white: #ffffff;        /* Pure white for contrast */
+    
+    /* Typography */
+    --font-family: 'Garamond', serif;
+    --font-size-small: 14px;
+    --font-size-base: 16px;
+    --font-size-large: 20px;
+    --font-size-xlarge: 24px;
+    --font-size-title: 28px;
+    
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    
+    /* Border radius */
+    --border-radius: 8px;
+    --border-radius-large: 16px;
+}
+
+/* Body and base typography */
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--color-light);
+    background-color: var(--color-darkest);
+    min-height: 100vh;
+}
+
+/* Main container - centers content and provides max-width */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   HERO SECTION STYLES
+   ======================================== */
+
+/* Hero section with background image and overlaid title */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-image: url('images/Main Street east side.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: var(--spacing-lg);
+    margin-bottom: 0;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+/* Dark overlay for better text readability */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 26, 26, 0.3);
+    z-index: 1;
+}
+
+/* Main title styling - positioned over the background image */
+.title {
+    font-family: 'Nata Sans', sans-serif;
+    font-size: var(--font-size-title);
+    font-weight: 300;
+    color: var(--color-darkest);
+    letter-spacing: 2px;
+    word-spacing: -2px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* ========================================
+   MAIN CONTENT STYLES
+   ======================================== */
+
+/* Main content area */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* ========================================
+   TEXT SECTION STYLES
+   ======================================== */
+
+/* Text section container */
+.text-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: var(--color-darker);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-dark);
+}
+
+/* Individual text line container */
+.text-line {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    min-height: 24px;
+}
+
+/* Text content styling */
+.text-content {
+    color: var(--color-white);
+    font-size: var(--font-size-large);
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+/* Underline styling - different lengths as shown in sketch */
+.underline {
+    height: 2px;
+    background-color: var(--color-medium);
+    border-radius: 1px;
+    flex-grow: 1;
+    max-width: 200px;
+}
+
+/* Short underline */
+.underline.short {
+    max-width: 80px;
+}
+
+/* Medium underline */
+.underline.medium {
+    max-width: 120px;
+}
+
+/* Long underline */
+.underline.long {
+    max-width: 160px;
+}
+
+/* ========================================
+   FOOTER STYLES
+   ======================================== */
+
+/* Footer container */
+.footer {
+    margin-top: auto;
+    padding: var(--spacing-md) 0;
+    text-align: center;
+    border-top: 1px solid var(--color-dark);
+}
+
+/* Footer text styling */
+.footer-text {
+    color: var(--color-medium);
+    font-size: var(--font-size-small);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet breakpoint */
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .title {
+        font-size: 36px;
+    }
+    
+    .text-content {
+        font-size: var(--font-size-xlarge);
+    }
+    
+    .underline {
+        max-width: 300px;
+    }
+    
+    .underline.short {
+        max-width: 120px;
+    }
+    
+    .underline.medium {
+        max-width: 180px;
+    }
+    
+    .underline.long {
+        max-width: 240px;
+    }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 var(--spacing-lg);
+    }
+    
+    .title {
+        font-size: 40px;
+    }
+    
+    .main-content {
+        gap: var(--spacing-xl);
+    }
+}
+
+/* Large desktop breakpoint */
+@media (min-width: 1200px) {
+    .title {
+        font-size: 44px;
+    }
+    
+    .text-content {
+        font-size: 28px;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY IMPROVEMENTS
+   ======================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --color-darkest: #000000;
+        --color-darker: #1a1a1a;
+        --color-dark: #333333;
+        --color-medium: #666666;
+        --color-light: #ffffff;
+        --color-lighter: #ffffff;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
