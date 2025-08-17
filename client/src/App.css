@@ -12,10 +12,10 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #666666aa);
+  filter: drop-shadow(0 0 2em #E0E0E0aa);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #666666aa);
+  filter: drop-shadow(0 0 2em #E0E0E0aa);
 }
 
 .card {
@@ -23,5 +23,5 @@
 }
 
 .read-the-docs {
-  color: #555555;
+  color: #BDBDBD;
 }

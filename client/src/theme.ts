@@ -1,16 +1,16 @@
 export const theme = {
   colors: {
-    primary: '#282828',
-    secondary: '#666666',
-    background: '#F7F7F7',
-    surface: '#ffffff',
-    highlight: '#E5E5E5',
+    primary: '#E0E0E0',
+    secondary: '#BDBDBD',
+    background: '#1A1A1A',
+    surface: '#282828',
+    highlight: '#3C3C3C',
     text: {
-      primary: '#333333',
-      secondary: '#555555',
-      light: '#999999',
+      primary: '#F5F5F5',
+      secondary: '#C0C0C0',
+      light: '#888888',
     },
-    border: '#DDDDDD',
+    border: '#444444',
   },
   breakpoints: {
     mobile: '@media (max-width: 768px)',

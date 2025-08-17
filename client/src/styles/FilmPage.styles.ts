@@ -41,7 +41,7 @@ export const Image = styled.img`
   width: 100%;
   height: auto;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
 `;
 
 export const InfoSection = styled.div`

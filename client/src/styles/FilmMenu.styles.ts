@@ -42,14 +42,14 @@ export const FilmCard = styled(Link)`
   background: ${theme.colors.surface};
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
   transition: ${theme.transitions.default};
   display: flex;
   flex-direction: column;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15);
   }
 `;
 

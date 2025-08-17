@@ -5,7 +5,7 @@ import { theme } from '../theme';
 export const Nav = styled.nav<{ isHome?: boolean }>`
   background: ${({ isHome }) => (isHome ? 'transparent' : theme.colors.surface)};
   padding: ${theme.spacing.md};
-  box-shadow: ${({ isHome }) => (isHome ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)')};
+  box-shadow: ${({ isHome }) => (isHome ? 'none' : '0 1px 3px rgba(255, 255, 255, 0.1)')};
   position: ${({ isHome }) => (isHome ? 'absolute' : 'sticky')};
   top: 0;
   left: 0;
@@ -37,7 +37,7 @@ export const NavLink = styled(Link)`
   transition: ${theme.transitions.default};
 
   &:hover {
-    background: ${theme.colors.background + '33'}; // Add some transparency
+    background: ${theme.colors.highlight};
     color: ${theme.colors.secondary};
   }
 
