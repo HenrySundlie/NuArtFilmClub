@@ -16,7 +16,9 @@ export default function Home() {
       </HeaderImageContainer>
       <PageContainer>
         <Content>
-          <PageTitle>NuArt Film Society</PageTitle>
+          <PageTitle fontWeight={400} letterSpacing="0.5rem">
+            NU ART FILM SOCIETY
+          </PageTitle>
           <Text>
             Discover the world of cinema through our carefully curated film
             screenings. Join us for an unforgettable journey through classic and

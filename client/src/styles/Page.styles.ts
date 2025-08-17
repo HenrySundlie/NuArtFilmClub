@@ -49,9 +49,11 @@ export const Content = styled.div`
   }
 `;
 
-export const PageTitle = styled.h1`
+export const PageTitle = styled.h1<{ fontWeight?: number; letterSpacing?: string }>`
   color: ${theme.colors.text.primary};
   font-size: ${theme.typography.h1.fontSize};
+  font-weight: ${({ fontWeight }) => fontWeight || theme.typography.h1.fontWeight};
+  letter-spacing: ${({ letterSpacing }) => letterSpacing || 'normal'};
   margin-bottom: ${theme.spacing.xl};
   text-align: center;
 
