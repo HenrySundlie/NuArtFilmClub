@@ -10,6 +10,7 @@ export interface Film {
   actors: string[];
   duration: number;
   img: string;
+  background: string;
   runDate: string;
   runTime: string;
 }

@@ -1,53 +1,63 @@
 import styled from '@emotion/styled';
 import { theme } from '../theme';
 
-export const Container = styled.div`
+export const PageWrapper = styled.div`
   background: ${theme.colors.background};
   color: ${theme.colors.text.primary};
   min-height: 100vh;
-  padding: ${theme.spacing.xl};
-
-  ${theme.breakpoints.mobile} {
-    padding: ${theme.spacing.md};
-  }
+  overflow-x: hidden;
 `;
 
-export const Content = styled.div`
-  max-width: 900px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: ${theme.spacing.xl};
+export const Background = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* parallax effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-  ${theme.breakpoints.mobile} {
-    grid-template-columns: 1fr;
-    gap: ${theme.spacing.lg};
-  }
+export const Overlay = styled.div`
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const InfoCard = styled.div`
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: ${theme.spacing.lg};
+  border-radius: 16px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+`;
+
+export const Thumbnail = styled.img`
+  width: 160px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: ${theme.spacing.md};
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 `;
 
 export const Title = styled.h1`
-  color: ${theme.colors.text.primary};
   font-size: ${theme.typography.h1.fontSize};
-  margin-bottom: ${theme.spacing.lg};
-  grid-column: 1 / -1;
-
-  ${theme.breakpoints.mobile} {
-    font-size: ${theme.typography.h1.mobile.fontSize};
-    margin-bottom: ${theme.spacing.md};
-  }
-`;
-
-export const Image = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: ${theme.spacing.md};
+  color: ${theme.colors.text.primary};
 `;
 
 export const InfoSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${theme.spacing.md};
+  gap: ${theme.spacing.sm};
+  text-align: left;
 `;
 
 export const InfoItem = styled.p`
@@ -62,13 +72,10 @@ export const Label = styled.strong`
 `;
 
 export const Description = styled.p`
-  grid-column: 1 / -1;
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 0 ${theme.spacing.lg};
   line-height: 1.8;
-  margin: ${theme.spacing.lg} 0;
   color: ${theme.colors.text.secondary};
   font-size: 1.1rem;
-
-  ${theme.breakpoints.mobile} {
-    font-size: 1rem;
-  }
 `;
