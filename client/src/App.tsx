@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import Calendar from './pages/Calendar';
 import FilmMenu from './pages/FilmMenu';
 import FilmPage from './pages/FilmPage';
-import MenuBar from './components/MenuBar';
+import Menu from './components/Menu';
 import styled from '@emotion/styled';
 import { theme } from './theme';
 import { Global } from '@emotion/react';
@@ -49,7 +49,7 @@ export default function App() {
     <Router>
       <Global styles={globalStyles} />
       <AppContainer>
-        <MenuBar />
+        <Menu />
         <Routes>
           <Route path="/NuArtFilmSociety/" element={<Home />} />
           <Route path="/NuArtFilmSociety/calendar" element={<Calendar />} />
