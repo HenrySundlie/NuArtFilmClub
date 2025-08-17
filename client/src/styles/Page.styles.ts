@@ -5,6 +5,11 @@ export const PageContainer = styled.div`
   background: ${theme.colors.background};
   color: ${theme.colors.text.primary};
   min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
 
   ${theme.breakpoints.mobile} {
     padding: ${theme.spacing.md};
@@ -41,10 +46,13 @@ export const HeaderImage = styled.img`
 
 export const Content = styled.div`
   max-width: 800px;
-  margin: 0 auto;
+  margin: 60px auto 0; /* Added top margin to account for fixed navbar */
   padding: ${theme.spacing.xl};
+  position: relative;
+  z-index: 2;
 
   ${theme.breakpoints.mobile} {
+    margin-top: 50px;
     padding: ${theme.spacing.md};
   }
 `;

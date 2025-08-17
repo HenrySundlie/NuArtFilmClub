@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import { theme } from '../theme';
 
 export const Nav = styled.nav<{ isHome?: boolean }>`
-  background: ${({ isHome }) => (isHome ? 'transparent' : theme.colors.surface)};
+  background: ${({ isHome }) =>
+    isHome ? 'transparent' : theme.colors.surface};
   padding: ${theme.spacing.md};
-  box-shadow: ${({ isHome }) => (isHome ? 'none' : '0 1px 3px rgba(255, 255, 255, 0.1)')};
-  position: ${({ isHome }) => (isHome ? 'absolute' : 'sticky')};
+  box-shadow: ${({ isHome }) =>
+    isHome ? 'none' : '0 1px 3px rgba(255, 255, 255, 0.1)'};
+  position: ${({ isHome }) => (isHome ? 'absolute' : 'fixed')};
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
   z-index: 1000;
   transition: ${theme.transitions.default};
 

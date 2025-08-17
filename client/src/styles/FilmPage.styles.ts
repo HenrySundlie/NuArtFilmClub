@@ -5,31 +5,43 @@ export const PageWrapper = styled.div`
   background: ${theme.colors.background};
   color: ${theme.colors.text.primary};
   min-height: 100vh;
+  width: 100%;
   overflow-x: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex: 1; /* <— allow flex container to fill available space */
 `;
 
-export const Background = styled.div`
+export const PageInner = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* parallax effect */
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const Background = styled.div`
+  position: absolute;
+  inset: 0; /* same as top/left/right/bottom:0 */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 1;
 `;
 
 export const Overlay = styled.div`
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 2;
 `;
 
 export const InfoCard = styled.div`
+  position: relative;
+  z-index: 3;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(12px);
   padding: ${theme.spacing.lg};

@@ -12,6 +12,7 @@ import {
   InfoItem,
   Label,
   Description,
+  PageInner,
   PageWrapper,
 } from '../styles/FilmPage.styles';
 
@@ -31,33 +32,32 @@ const FilmPage = observer(() => {
 
   return (
     <PageWrapper>
-      <Background style={{ backgroundImage: `url(${film.background})` }}>
-        <Overlay>
-          <InfoCard>
-            <Thumbnail src={film.img} alt={film.title} />
-            <Title>{film.title}</Title>
-            <InfoSection>
-              <InfoItem>
-                <Label>Year:</Label> {film.year}
-              </InfoItem>
-              <InfoItem>
-                <Label>Director:</Label> {film.director}
-              </InfoItem>
-              <InfoItem>
-                <Label>Actors:</Label> {film.actors.join(', ')}
-              </InfoItem>
-              <InfoItem>
-                <Label>Duration:</Label> {film.duration} minutes
-              </InfoItem>
-              <InfoItem>
-                <Label>Showing:</Label>{' '}
-                {new Date(film.runDate).toLocaleDateString()}
-              </InfoItem>
-            </InfoSection>
-          </InfoCard>
-        </Overlay>
-      </Background>
-
+      <Background style={{ backgroundImage: `url(${film.background})` }} />
+      <Overlay />
+      <PageInner>
+        <InfoCard>
+          <Thumbnail src={film.img} alt={film.title} />
+          <Title>{film.title}</Title>
+          <InfoSection>
+            <InfoItem>
+              <Label>Year:</Label> {film.year}
+            </InfoItem>
+            <InfoItem>
+              <Label>Director:</Label> {film.director}
+            </InfoItem>
+            <InfoItem>
+              <Label>Actors:</Label> {film.actors.join(', ')}
+            </InfoItem>
+            <InfoItem>
+              <Label>Duration:</Label> {film.duration} minutes
+            </InfoItem>
+            <InfoItem>
+              <Label>Showing:</Label>{' '}
+              {new Date(film.runDate).toLocaleDateString()}
+            </InfoItem>
+          </InfoSection>
+        </InfoCard>
+      </PageInner>
       <Description>{film.description}</Description>
     </PageWrapper>
   );
