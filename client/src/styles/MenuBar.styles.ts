@@ -1,0 +1,46 @@
+import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
+import { theme } from '../theme';
+
+export const Nav = styled.nav`
+  background: ${theme.colors.surface};
+  padding: ${theme.spacing.md};
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  ${theme.breakpoints.mobile} {
+    padding: ${theme.spacing.sm};
+  }
+`;
+
+export const NavContent = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: ${theme.spacing.md};
+
+  ${theme.breakpoints.mobile} {
+    gap: ${theme.spacing.sm};
+  }
+`;
+
+export const NavLink = styled(Link)`
+  color: ${theme.colors.text.primary};
+  text-decoration: none;
+  padding: ${theme.spacing.xs} ${theme.spacing.sm};
+  border-radius: 4px;
+  transition: ${theme.transitions.default};
+
+  &:hover {
+    background: ${theme.colors.background};
+    color: ${theme.colors.secondary};
+  }
+
+  ${theme.breakpoints.mobile} {
+    padding: ${theme.spacing.xs};
+    font-size: 0.9rem;
+  }
+`;

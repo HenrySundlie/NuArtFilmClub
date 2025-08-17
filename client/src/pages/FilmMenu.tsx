@@ -1,39 +1,17 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { filmStore } from '../stores/FilmStore';
 import { observer } from 'mobx-react-lite';
-import styled from '@emotion/styled';
-
-const Container = styled.div`
-  background: #e0e0e0;
-  color: #222;
-  min-height: 100vh;
-  padding: 1rem;
-`;
-
-const Title = styled.h1`
-  color: #000;
-`;
-
-const FilmGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-`;
-
-const FilmCard = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 8px;
-`;
-
-const FilmImage = styled.img`
-  width: 200px;
-  height: 300px;
-  object-fit: cover;
-`;
+import {
+  Container,
+  Title,
+  FilmGrid,
+  FilmCard,
+  FilmImage,
+  FilmInfo,
+  FilmTitle,
+  FilmDate,
+  FilmTime,
+} from '../styles/FilmMenu.styles';
 
 const FilmMenu = observer(() => {
   useEffect(() => {
@@ -46,12 +24,12 @@ const FilmMenu = observer(() => {
       <FilmGrid>
         {filmStore.films.map((film) => (
           <FilmCard to={`/film/${film.id}`} key={film.id}>
-            <div>
-              <FilmImage src={film.img} alt={film.title} />
-              <h2>{film.title}</h2>
-              <p>{new Date(film.runDate).toLocaleDateString()}</p>
-              <p>{film.runTime}</p>
-            </div>
+            <FilmImage src={film.img} alt={film.title} />
+            <FilmInfo>
+              <FilmTitle>{film.title}</FilmTitle>
+              <FilmDate>{new Date(film.runDate).toLocaleDateString()}</FilmDate>
+              <FilmTime>{film.runTime}</FilmTime>
+            </FilmInfo>
           </FilmCard>
         ))}
       </FilmGrid>

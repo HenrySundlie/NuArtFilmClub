@@ -5,16 +5,49 @@ import FilmMenu from './pages/FilmMenu';
 import FilmPage from './pages/FilmPage';
 import MenuBar from './components/MenuBar';
 import styled from '@emotion/styled';
+import { theme } from './theme';
+import { Global } from '@emotion/react';
+
+const globalStyles = `
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: ${theme.typography.fontFamily};
+    background-color: ${theme.colors.background};
+    color: ${theme.colors.text.primary};
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  a {
+    color: ${theme.colors.text.primary};
+    text-decoration: none;
+    transition: ${theme.transitions.default};
+  }
+  
+  a:hover {
+    color: ${theme.colors.secondary};
+  }
+`;
 
 const AppContainer = styled.div`
-  font-family: 'Arial', sans-serif;
-  background: #fafafa;
-  color: #222;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  ${theme.breakpoints.mobile} {
+    padding: ${theme.spacing.sm};
+  }
 `;
 
 export default function App() {
   return (
     <Router>
+      <Global styles={globalStyles} />
       <AppContainer>
         <MenuBar />
         <Routes>
