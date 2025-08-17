@@ -49,8 +49,20 @@ export const Thumbnail = styled.img`
 
 export const Title = styled.h1`
   font-size: ${theme.typography.h1.fontSize};
-  margin-bottom: ${theme.spacing.md};
-  color: ${theme.colors.text.primary};
+  margin-bottom: ${theme.spacing.lg};
+  grid-column: 1 / -1;
+
+  ${theme.breakpoints.mobile} {
+    font-size: ${theme.typography.h1.mobile.fontSize};
+    margin-bottom: ${theme.spacing.md};
+  }
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
 `;
 
 export const InfoSection = styled.div`
