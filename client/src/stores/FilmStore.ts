@@ -1,10 +1,29 @@
-// Basic placeholder store
-// Later you could replace with Zustand, Redux, or Context API.
+import { makeAutoObservable } from 'mobx';
+import filmsData from '../films/films.json';
 
 export interface Film {
   id: number;
   title: string;
   year: number;
+  description: string;
+  director: string;
+  actors: string[];
+  duration: number;
+  img: string;
+  runDate: string;
+  runTime: string;
 }
 
-export const films: Film[] = [{ id: 1, title: 'Example Film', year: 2025 }];
+class FilmStore {
+  films: Film[] = filmsData as Film[];
+
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  fetchFilms() {
+    this.films = filmsData as Film[];
+  }
+}
+
+export const filmStore = new FilmStore();

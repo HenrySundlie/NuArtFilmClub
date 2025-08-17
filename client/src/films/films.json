@@ -7,6 +7,20 @@
     "director": "John Doe",
     "actors": ["Jane Smith", "Bob Johnson"],
     "duration": 120,
-    "img": "./placeholder.jpg"
+    "img": "/images/Nuart on Main Street.jpg",
+    "runDate": "2025-01-01",
+    "runTime": "19:00"
+  },
+  {
+    "id": 2,
+    "title": "Another Film",
+    "year": 2024,
+    "description": "A second placeholder film entry.",
+    "director": "Jane Doe",
+    "actors": ["Alice Johnson", "Bob Smith"],
+    "duration": 90,
+    "img": "/images/Main Street east side.jpg",
+    "runDate": "2024-05-01",
+    "runTime": "21:00"
   }
 ]
