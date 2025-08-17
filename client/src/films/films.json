@@ -1,14 +1,15 @@
 [
   {
     "id": 1,
-    "title": "Sample Film",
-    "year": 2025,
-    "description": "A placeholder film entry.",
-    "director": "John Doe",
-    "actors": ["Jane Smith", "Bob Johnson"],
-    "duration": 120,
-    "img": "/images/Nuart on Main Street.jpg",
-    "runDate": "2025-01-01",
+    "title": "Master and Commander",
+    "year": 2003,
+    "description": "During the Napoleonic Wars, Captain Jack Aubrey and his crew pursue a formidable French warship across the high seas, facing battles, hardship, and the vast power of nature.",
+    "director": "Peter Weir",
+    "actors": ["Russell Crowe", "Paul Bettany", "James D'Arcy", "Billy Boyd"],
+    "duration": 138,
+    "img": "/NuArtFilmSociety/images/Master_and_Commander-The_Far_Side_of_the_World_poster.png",
+    "background": "/NuArtFilmSociety/images/master-and-commander-backdrop.png",
+    "runDate": "2025-08-17",
     "runTime": "19:00"
   },
   {
@@ -19,7 +20,7 @@
     "director": "Jane Doe",
     "actors": ["Alice Johnson", "Bob Smith"],
     "duration": 90,
-    "img": "/images/Main Street east side.jpg",
+    "img": "/NuArtFilmSociety/images/Main Street east side.jpg",
     "runDate": "2024-05-01",
     "runTime": "21:00"
   }

@@ -40,16 +40,14 @@ const FilmPage = observer(() => {
             <Label>Director:</Label> {film.director}
           </InfoItem>
           <InfoItem>
-            <Label>Actors:</Label> {film.actors.join(', ')}
+            <Label>Notable Actors:</Label> {film.actors.join(', ')}
           </InfoItem>
           <InfoItem>
             <Label>Duration:</Label> {film.duration} minutes
           </InfoItem>
           <InfoItem>
-            <Label>Date:</Label> {new Date(film.runDate).toLocaleDateString()}
-          </InfoItem>
-          <InfoItem>
-            <Label>Time:</Label> {film.runTime}
+            <Label>Showing:</Label>{' '}
+            {new Date(film.runDate).toLocaleDateString()}
           </InfoItem>
         </InfoSection>
         <Description>{film.description}</Description>

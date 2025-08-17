@@ -20,10 +20,10 @@ const FilmMenu = observer(() => {
 
   return (
     <Container>
-      <Title>Film Menu</Title>
+      <Title>Upcoming Films</Title>
       <FilmGrid>
         {filmStore.films.map((film) => (
-          <FilmCard to={`/film/${film.id}`} key={film.id}>
+          <FilmCard to={`/NuArtFilmSociety/film/${film.id}`} key={film.id}>
             <FilmImage src={film.img} alt={film.title} />
             <FilmInfo>
               <FilmTitle>{film.title}</FilmTitle>
