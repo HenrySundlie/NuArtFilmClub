@@ -11,6 +11,7 @@ export const Nav = styled.nav<{ isHome?: boolean }>`
   left: 0;
   right: 0;
   z-index: 1000;
+  transition: ${theme.transitions.default};
 
   ${theme.breakpoints.mobile} {
     padding: ${theme.spacing.sm};
