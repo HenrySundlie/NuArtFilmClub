@@ -6,39 +6,60 @@ export const MenuIcon = styled.div`
   position: fixed;
   top: ${theme.spacing.md};
   right: ${theme.spacing.md};
-  width: 30px;
-  height: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: black;
+  border: 1px solid ${theme.colors.text.light};
   cursor: pointer;
   z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   div {
-    width: 100%;
-    height: 3px;
-    background-color: ${theme.colors.text.primary};
-    margin: 5px 0;
+    width: 20px;
+    height: 2px;
+    background-color: ${theme.colors.text.light};
+    margin: 2.5px 0;
     transition: 0.4s;
   }
 `;
 
 export const MenuCard = styled.div<{ isOpen: boolean }>`
   position: fixed;
-  top: 0;
-  right: 0;
-  width: 250px;
-  height: 100%;
-  background-color: ${theme.colors.surface};
+  top: ${theme.spacing.md};
+  right: ${theme.spacing.md};
+  /*
+    Hardcoded size to make MenuCard square and fit 3 items.
+    Ideally, height would be based on content and width would match height automatically,
+    but CSS cannot set width = height when height is dynamic. JS workaround needed for auto.
+  */
+  width: ${({ isOpen }) => (isOpen ? '160px' : '44px')};
+  height: ${({ isOpen }) => (isOpen ? '160px' : '44px')};
+  background-color: black;
+  border: 1px solid ${theme.colors.text.light};
+  border-radius: ${({ isOpen }) => (isOpen ? '20px' : '50%')};
   box-shadow: -2px 0 5px rgba(0,0,0,0.5);
-  transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(100%)')};
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out;
   z-index: 1001;
-  padding: 60px ${theme.spacing.md} ${theme.spacing.md};
+  padding: ${({ isOpen }) => (isOpen ? `${theme.spacing.md}` : '0')};
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: ${theme.spacing.md};
+  overflow: hidden;
+  transform-origin: top right;
+
+  > * {
+    opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+    transition: opacity 0.2s ease-in-out;
+  }
 `;
 
 export const NavLink = styled(Link)`
-  color: ${theme.colors.text.primary};
+  color: ${theme.colors.text.light};
   text-decoration: none;
   padding: ${theme.spacing.xs} ${theme.spacing.sm};
   border-radius: 4px;
