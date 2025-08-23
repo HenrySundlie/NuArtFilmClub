@@ -38,10 +38,6 @@ const AppContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
-  ${theme.breakpoints.mobile} {
-    padding: ${theme.spacing.sm};
-  }
 `;
 
 export default function App() {

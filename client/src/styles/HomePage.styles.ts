@@ -3,52 +3,27 @@ import styled from '@emotion/styled';
 import { theme } from '../theme';
 
 // ============================================================================
-// Layout Components
+// CSS Custom Properties
 // ============================================================================
 
-export const PageContainer = styled.div`
-  --radius: 18px;
-  --border: 1px solid ${theme.colors.border ?? 'rgba(255,255,255,0.12)'};
-  --ring: 2px solid ${theme.colors.accent ?? 'rgba(99,102,241,0.9)'};
-  --shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
-
-  min-height: 100dvh;
-  color: ${theme.colors.text.primary};
-  background: radial-gradient(
-      1200px 500px at 50% -10%,
-      rgba(255, 255, 255, 0.06),
-      transparent
-    ),
-    ${theme.colors.background};
-  margin-top: 0;
-
-  ${theme.breakpoints.mobile} {
-    padding: ${theme.spacing.md};
-  }
-`;
-
-export const Content = styled.div`
-  max-width: min(1100px, 92vw);
-  margin: 0 auto;
-  padding: clamp(${theme.spacing.lg}, 3vw, ${theme.spacing.xl});
-
-  ${theme.breakpoints.mobile} {
-    padding: ${theme.spacing.md};
-  }
-`;
+export const HEADER_IMAGE_HEIGHT = '40vh';
 
 // ============================================================================
 // Header Image Section
 // ============================================================================
 
+/**
+ * Container for the header image section that spans full viewport width
+ * and positions the MobileActionCard at its bottom edge
+ */
 export const HeaderImageContainer = styled.div`
+  --header-image-height: ${HEADER_IMAGE_HEIGHT};
   position: relative;
   width: 100vw;
-  height: 40vh;
-  overflow: hidden;
+  height: var(--header-image-height);
   z-index: 0;
   
-  /* Full-width positioning */
+  /* Full-width positioning to break out of container constraints */
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   margin-top: calc(-1 * ${theme.spacing.sm});
@@ -58,7 +33,7 @@ export const HeaderImageContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  /* Top fade for title legibility - extended further down */
+  /* Top fade overlay for title legibility */
   &::before {
     content: '';
     position: absolute;
@@ -71,29 +46,18 @@ export const HeaderImageContainer = styled.div`
     pointer-events: none;
   }
 
-  /* Bottom fade into page background */
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 70% 0 0;
-    background: linear-gradient(
-      to top,
-      ${theme.colors.background},
-      transparent 55%
-    );
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* Soft vignette without banding */
+  /* Soft vignette effect for better image integration */
   &:has(img) {
     box-shadow:
       inset 0 -80px 120px -60px ${theme.colors.background},
       inset 0 60px 120px -60px rgba(0, 0, 0, 0.6);
   }
 
+  /* Mobile-specific adjustments */
   ${theme.breakpoints.mobile} {
-    height: 40vh;
+    height: var(--header-image-height);
+    /* Ensure proper positioning context for MobileActionCard */
+    position: relative;
   }
 `;
 
@@ -150,20 +114,5 @@ export const PageTitle = styled.h1<{
 
   ${theme.breakpoints.mobile} {
     margin-bottom: ${theme.spacing.lg};
-  }
-`;
-
-export const Text = styled.p`
-  color: ${theme.colors.text.secondary};
-  line-height: 1.85;
-  font-size: clamp(1rem, 1.1vw, 1.125rem);
-  margin: ${theme.spacing.md} 0;
-  max-width: 70ch;
-  text-wrap: pretty;
-  hanging-punctuation: first allow-end;
-  hyphens: auto;
-
-  ${theme.breakpoints.mobile} {
-    font-size: 1rem;
   }
 `;

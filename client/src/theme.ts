@@ -6,6 +6,7 @@ export const theme = {
     secondary: '#BDBDBD',
     accent: '#6366F1', // focus rings, CTAs
     link: '#C7D2FE', // link text
+    nuartBlue: '#3069B3', // NuArt brand blue color
     background: '#1A1A1A',
     surface: '#282828',
     highlight: '#3C3C3C',
