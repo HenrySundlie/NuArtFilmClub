@@ -9,6 +9,7 @@ import {
 import { Section } from '../styles/Page.styles';
 import SafeImg from '../components/SafeImg';
 import { LinkButton } from '../components/LinkButton';
+import { Button } from '../styles/Page.styles';
 import MainStreetImage from '/images/Main Street east side_0001.jpg';
 
 const Home = () => {
@@ -41,9 +42,14 @@ const Home = () => {
                 marginTop: '0.5rem',
               }}
             >
-              <LinkButton to="/NuArtFilmClub/films" aria-label="View schedule">
-                View schedule
-              </LinkButton>
+              <Button>
+                <LinkButton
+                  to="/NuArtFilmClub/films"
+                  aria-label="View schedule"
+                >
+                  View schedule
+                </LinkButton>
+              </Button>
             </div>
           </Section>
         </Content>

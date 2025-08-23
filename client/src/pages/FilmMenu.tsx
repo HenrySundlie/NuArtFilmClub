@@ -12,6 +12,7 @@ import {
   FilmDate,
   FilmTime,
 } from '../styles/FilmMenu.styles';
+import { Button } from '../styles/Page.styles';
 
 const FilmMenu = observer(() => {
   useEffect(() => {
@@ -29,6 +30,14 @@ const FilmMenu = observer(() => {
               <FilmTitle>{film.title}</FilmTitle>
               <FilmDate>{new Date(film.runDate).toLocaleDateString()}</FilmDate>
               <FilmTime>{film.runTime}</FilmTime>
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(film.ticketLink, '_blank', 'noopener,noreferrer');
+                }}
+              >
+                Buy Tickets
+              </Button>
             </FilmInfo>
           </FilmCard>
         ))}

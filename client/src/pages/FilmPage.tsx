@@ -12,6 +12,7 @@ import {
   Label,
   Description,
 } from '../styles/FilmPage.styles';
+import { Button } from '../styles/Page.styles';
 import SafeImg from '../components/SafeImg';
 
 const fmtDate = (iso?: string) => {
@@ -68,6 +69,14 @@ const FilmPage = observer(() => {
               <Label>Time:</Label> {film.runTime}
             </InfoItem>
           )}
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              window.open(film.ticketLink, '_blank', 'noopener,noreferrer');
+            }}
+          >
+            Buy Tickets
+          </Button>
         </InfoSection>
 
         <Description>{film.description}</Description>

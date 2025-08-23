@@ -1,13 +1,12 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { theme } from '../theme';
 
 const linkButtonStyles = `
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
-  color: ${theme.colors.link ?? theme.colors.text.primary};
+  color: black;  
   font-weight: 600;
   padding: 0.5rem 0.25rem;
   border-radius: 10px;

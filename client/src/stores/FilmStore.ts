@@ -12,6 +12,7 @@ export interface Film {
   img: string;
   runDate: string;
   runTime: string;
+  ticketLink?: string;
 }
 
 class FilmStore {

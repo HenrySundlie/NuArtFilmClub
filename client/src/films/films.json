@@ -10,7 +10,8 @@
     "img": "/NuArtFilmClub/images/Master_and_Commander-The_Far_Side_of_the_World_poster.png",
     "background": "/NuArtFilmClub/images/master-and-commander-backdrop.png",
     "runDate": "2025-08-17",
-    "runTime": "19:00"
+    "runTime": "19:00",
+    "ticketLink": "https://example.com/tickets/1"
   },
   {
     "id": 2,
@@ -22,6 +23,7 @@
     "duration": 90,
     "img": "/NuArtFilmClub/images/Main Street east side.jpg",
     "runDate": "2024-05-01",
-    "runTime": "21:00"
+    "runTime": "21:00",
+    "ticketLink": "https://example.com/tickets/2"
   }
 ]
