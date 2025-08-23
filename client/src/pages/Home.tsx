@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react';
+import { observer } from 'mobx-react-lite';
 import { filmStore } from '../stores/FilmStore';
 import {
   PageContainer,
@@ -23,17 +24,23 @@ function fmtDate(iso?: string) {
   });
 }
 
-export default function Home() {
+const Home = () => {
   useEffect(() => {
     if (filmStore.films.length === 0) filmStore.fetchFilms();
   }, []);
 
   const nextFilm = useMemo(() => {
     const now = new Date().toISOString().slice(0, 10);
-    return [...filmStore.films]
+    console.log(now, filmStore.films);
+    const next = [...filmStore.films]
       .filter((f) => typeof f.runDate === 'string' && f.runDate >= now)
       .sort((a, b) => a.runDate!.localeCompare(b.runDate!))[0];
-  }, []);
+    console.log('next', next);
+    return next;
+  }, [filmStore.films]);
+
+  console.log('filmStore.films', filmStore.films);
+  console.log('nextFilm', nextFilm);
 
   return (
     <>
@@ -103,4 +110,7 @@ export default function Home() {
       </PageContainer>
     </>
   );
-}
+};
+
+const ObservedHome = observer(Home);
+export default ObservedHome;
