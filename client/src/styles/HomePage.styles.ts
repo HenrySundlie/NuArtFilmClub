@@ -24,22 +24,37 @@ export const PageContainer = styled.div`
 
 export const HeaderImageContainer = styled.div`
   position: relative;
+<<<<<<< HEAD
   width: 100%;
   height: clamp(280px, 42vh, 560px);
   overflow: clip;
   isolation: isolate;
   box-shadow: var(--shadow);
+=======
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+>>>>>>> 44659789763166a43dc58aabd197322f8a649be5
 
   /* top fade for title legibility */
   &::before {
     content: '';
     position: absolute;
+<<<<<<< HEAD
     inset: 0 0 50%;
     background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.88),
       transparent 70%
     );
+=======
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.88), transparent);
+>>>>>>> 44659789763166a43dc58aabd197322f8a649be5
     z-index: 1;
     pointer-events: none;
   }

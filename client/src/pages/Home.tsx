@@ -39,7 +39,7 @@ export default function Home() {
     <>
       <HeaderImageContainer>
         <PageTitle fontWeight={400} letterSpacing="0.5rem" as="h1" overlay>
-          NU ART FILM SOCIETY
+          NU ART FILM CLUB
         </PageTitle>
         <SafeImg
           src={MainStreetImage}
@@ -64,10 +64,7 @@ export default function Home() {
                 marginTop: '0.5rem',
               }}
             >
-              <LinkButton
-                to="/NuArtFilmSociety/films"
-                aria-label="View schedule"
-              >
+              <LinkButton to="/NuArtFilmClub/films" aria-label="View schedule">
                 View schedule
               </LinkButton>
             </div>
@@ -88,7 +85,7 @@ export default function Home() {
                       {nextFilm.runTime ? `· ${nextFilm.runTime}` : ''}
                     </p>
                     <LinkButton
-                      to={`/NuArtFilmSociety/films/${nextFilm.id}`}
+                      to={`/NuArtFilmClub/films/${nextFilm.id}`}
                       aria-label="See details"
                     >
                       Details
