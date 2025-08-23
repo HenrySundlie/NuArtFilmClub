@@ -14,6 +14,7 @@ import {
   EventList,
   EventChip,
 } from '../styles/Calendar.styles';
+import AddAllToCalendarButton from '../components/AddAllToCalendarButton';
 
 type Film = {
   id: number;
@@ -112,6 +113,40 @@ export default function Calendar() {
             })}
           </MonthTitle>
           <div />
+          <NavGroup>
+            <NavBtn
+              onClick={() => setMonth((m) => addMonths(m, -1))}
+              aria-label="Previous month"
+            >
+              ←
+            </NavBtn>
+            <NavBtn
+              onClick={() => setMonth(() => strip(new Date()))}
+              aria-label="Jump to today"
+            >
+              Today
+            </NavBtn>
+            <NavBtn
+              onClick={() => setMonth((m) => addMonths(m, 1))}
+              aria-label="Next month"
+            >
+              →
+            </NavBtn>
+          </NavGroup>
+
+          <MonthTitle>
+            {month.toLocaleDateString(undefined, {
+              month: 'long',
+              year: 'numeric',
+            })}
+          </MonthTitle>
+
+          <div>
+            {/* all events */}
+            <AddAllToCalendarButton />
+            {/* or upcoming only */}
+            {/* <AddAllToCalendarButton includePast={false} fileName="nuart_upcoming.ics" /> */}
+          </div>
         </CalendarHeader>
 
         <Grid role="table" aria-label="Monthly calendar">
