@@ -1,7 +1,11 @@
 export const theme = {
   colors: {
     primary: '#E0E0E0',
+    primaryDark: '#9E9E9E', // for gradients and pressed states
+    onPrimary: '#0E0E0E', // text/icon on primary surfaces
     secondary: '#BDBDBD',
+    accent: '#6366F1', // focus rings, CTAs
+    link: '#C7D2FE', // link text
     background: '#1A1A1A',
     surface: '#282828',
     highlight: '#3C3C3C',
@@ -29,17 +33,13 @@ export const theme = {
       fontSize: '2.5rem',
       fontWeight: 600,
       lineHeight: 1.2,
-      mobile: {
-        fontSize: '2rem',
-      },
+      mobile: { fontSize: '2rem' },
     },
     h2: {
       fontSize: '2rem',
       fontWeight: 600,
       lineHeight: 1.3,
-      mobile: {
-        fontSize: '1.75rem',
-      },
+      mobile: { fontSize: '1.75rem' },
     },
     body: {
       fontSize: '1rem',
@@ -49,4 +49,4 @@ export const theme = {
   transitions: {
     default: '0.2s ease-in-out',
   },
-};
+} as const;

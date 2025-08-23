@@ -1,0 +1,29 @@
+// src/components/SafeImg.tsx
+import styled from '@emotion/styled';
+import isPropValid from '@emotion/is-prop-valid';
+import React from 'react';
+
+const StyledImg = styled('img', {
+  shouldForwardProp: (p) => isPropValid(p), // drops non-DOM props
+})`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: saturate(1.05) contrast(1.02);
+  transform: translateZ(0);
+  transition: transform 700ms cubic-bezier(0.2, 0.7, 0, 1);
+`;
+
+type Props = React.ComponentProps<'img'> & { fallbackSrc?: string };
+
+export default function SafeImg({ src, fallbackSrc, ...rest }: Props) {
+  const [err, setErr] = React.useState(false);
+  const finalSrc =
+    !err && typeof src === 'string' && src.length > 0
+      ? src
+      : (fallbackSrc ?? '');
+
+  if (!finalSrc) return null; // nothing valid to render
+  return <StyledImg src={finalSrc} onError={() => setErr(true)} {...rest} />;
+}
