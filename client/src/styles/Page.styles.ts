@@ -1,7 +1,10 @@
-// src/styles/General.styexport { LinkButton } from '../components/LinkButton';d from '@emotion/styled';
-// src/styles/General.styles.ts
+// src/styles/Page.styles.ts
 import styled from '@emotion/styled';
 import { theme } from '../theme';
+
+// ============================================================================
+// Layout Components
+// ============================================================================
 
 export const PageContainer = styled.div`
   --radius: 18px;
@@ -28,7 +31,9 @@ export const PageContainer = styled.div`
   }
 `;
 
-/* ---------- Hero / header image ---------- */
+// ============================================================================
+// Hero / Header Image Components
+// ============================================================================
 
 export const HeaderImageContainer = styled.figure`
   position: relative;
@@ -40,7 +45,7 @@ export const HeaderImageContainer = styled.figure`
   isolation: isolate;
   box-shadow: var(--shadow-lg);
 
-  /* top fade for legible titles */
+  /* Top fade for legible titles */
   &::before {
     content: '';
     position: absolute;
@@ -54,7 +59,7 @@ export const HeaderImageContainer = styled.figure`
     pointer-events: none;
   }
 
-  /* bottom fade into page */
+  /* Bottom fade into page */
   &::after {
     content: '';
     position: absolute;
@@ -73,7 +78,9 @@ export const HeaderImageContainer = styled.figure`
   }
 `;
 
-/* ---------- Content area ---------- */
+// ============================================================================
+// Content Area Components
+// ============================================================================
 
 export const Content = styled.main`
   width: 100%;
@@ -89,7 +96,9 @@ export const Content = styled.main`
   }
 `;
 
-/* ---------- Typography ---------- */
+// ============================================================================
+// Typography Components
+// ============================================================================
 
 export const PageTitle = styled.h1<{
   fontWeight?: number;
@@ -130,7 +139,9 @@ export const Text = styled.p`
   hyphens: auto;
 `;
 
-/* ---------- Reusable UI ---------- */
+// ============================================================================
+// Reusable UI Components
+// ============================================================================
 
 export const Section = styled.section`
   position: relative;
@@ -220,7 +231,9 @@ export const Divider = styled.hr`
   margin: ${theme.spacing.lg} 0;
 `;
 
-/* ---------- A11y ---------- */
+// ============================================================================
+// A11y Components
+// ============================================================================
 
 export const SkipLink = styled.a`
   position: absolute;
@@ -238,7 +251,9 @@ export const SkipLink = styled.a`
   }
 `;
 
-/* ---------- Motion preferences ---------- */
+// ============================================================================
+// Motion Preferences
+// ============================================================================
 
 export const ReduceMotion = styled.div`
   @media (prefers-reduced-motion: reduce) {

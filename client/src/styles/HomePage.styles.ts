@@ -1,6 +1,10 @@
-// src/styles/HeroPage.styles.ts
+// src/styles/HomePage.styles.ts
 import styled from '@emotion/styled';
 import { theme } from '../theme';
+
+// ============================================================================
+// Layout Components
+// ============================================================================
 
 export const PageContainer = styled.div`
   --radius: 18px;
@@ -16,11 +20,26 @@ export const PageContainer = styled.div`
       transparent
     ),
     ${theme.colors.background};
+  margin-top: 0;
 
   ${theme.breakpoints.mobile} {
     padding: ${theme.spacing.md};
   }
 `;
+
+export const Content = styled.div`
+  max-width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: clamp(${theme.spacing.lg}, 3vw, ${theme.spacing.xl});
+
+  ${theme.breakpoints.mobile} {
+    padding: ${theme.spacing.md};
+  }
+`;
+
+// ============================================================================
+// Header Image Section
+// ============================================================================
 
 export const HeaderImageContainer = styled.div`
   position: relative;
@@ -28,23 +47,31 @@ export const HeaderImageContainer = styled.div`
   height: 40vh;
   overflow: hidden;
   z-index: 0;
+  
+  /* Full-width positioning */
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
+  margin-top: calc(-1 * ${theme.spacing.sm});
+  
+  /* Center image content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  /* top fade for title legibility */
+  /* Top fade for title legibility - extended further down */
   &::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 200px;
+    height: 300px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.88), transparent);
     z-index: 1;
     pointer-events: none;
   }
 
-  /* bottom fade into page background */
+  /* Bottom fade into page background */
   &::after {
     content: '';
     position: absolute;
@@ -58,7 +85,7 @@ export const HeaderImageContainer = styled.div`
     pointer-events: none;
   }
 
-  /* soft vignette without banding */
+  /* Soft vignette without banding */
   &:has(img) {
     box-shadow:
       inset 0 -80px 120px -60px ${theme.colors.background},
@@ -70,15 +97,9 @@ export const HeaderImageContainer = styled.div`
   }
 `;
 
-export const Content = styled.div`
-  max-width: min(1100px, 92vw);
-  margin: 0 auto;
-  padding: clamp(${theme.spacing.lg}, 3vw, ${theme.spacing.xl});
-
-  ${theme.breakpoints.mobile} {
-    padding: ${theme.spacing.md};
-  }
-`;
+// ============================================================================
+// Typography Components
+// ============================================================================
 
 export const PageTitle = styled.h1<{
   fontWeight?: number;
