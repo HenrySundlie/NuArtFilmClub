@@ -14,6 +14,7 @@ import {
 } from '../styles/FilmPage.styles';
 import { Button } from '../styles/Page.styles';
 import SafeImg from '../components/SafeImg';
+import AddToGoogleCalendar from '../components/AddToGoogleCalendar';
 
 const fmtDate = (iso?: string) => {
   if (!iso) return '';
@@ -77,6 +78,14 @@ const FilmPage = observer(() => {
           >
             Buy Tickets
           </Button>
+          <AddToGoogleCalendar
+            title={film.title}
+            startDate={film.runDate}
+            startTime={film.runTime}
+            durationMinutes={film.duration}
+            location="Moscow, ID"
+            details={film.description}
+          />
         </InfoSection>
 
         <Description>{film.description}</Description>
