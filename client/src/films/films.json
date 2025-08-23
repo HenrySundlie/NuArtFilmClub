@@ -7,8 +7,8 @@
     "director": "Peter Weir",
     "actors": ["Russell Crowe", "Paul Bettany", "James D'Arcy", "Billy Boyd"],
     "duration": 138,
-    "img": "/NuArtFilmSociety/images/Master_and_Commander-The_Far_Side_of_the_World_poster.png",
-    "background": "/NuArtFilmSociety/images/master-and-commander-backdrop.png",
+    "img": "/NuArtFilmClub/images/Master_and_Commander-The_Far_Side_of_the_World_poster.png",
+    "background": "/NuArtFilmClub/images/master-and-commander-backdrop.png",
     "runDate": "2025-08-17",
     "runTime": "19:00"
   },
@@ -20,7 +20,7 @@
     "director": "Jane Doe",
     "actors": ["Alice Johnson", "Bob Smith"],
     "duration": 90,
-    "img": "/NuArtFilmSociety/images/Main Street east side.jpg",
+    "img": "/NuArtFilmClub/images/Main Street east side.jpg",
     "runDate": "2024-05-01",
     "runTime": "21:00"
   }

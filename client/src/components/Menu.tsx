@@ -46,9 +46,9 @@ export default function Menu() {
         </MenuIcon>
       )}
       <MenuCard isOpen={isOpen} ref={menuCardRef}>
-        <NavLink to="/NuArtFilmSociety/" onClick={closeMenu}>Home</NavLink>
-        <NavLink to="/NuArtFilmSociety/calendar" onClick={closeMenu}>Calendar</NavLink>
-        <NavLink to="/NuArtFilmSociety/films" onClick={closeMenu}>Films</NavLink>
+        <NavLink to="/NuArtFilmClub/" onClick={closeMenu}>Home</NavLink>
+        <NavLink to="/NuArtFilmClub/calendar" onClick={closeMenu}>Calendar</NavLink>
+        <NavLink to="/NuArtFilmClub/films" onClick={closeMenu}>Films</NavLink>
       </MenuCard>
     </>
   );

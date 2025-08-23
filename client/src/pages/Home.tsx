@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <HeaderImageContainer>
         <PageTitle fontWeight={400} letterSpacing="0.5rem" as="h1" overlay>
-          NU ART FILM SOCIETY
+          NU ART FILM CLUB
         </PageTitle>
         <HeaderImage src={MainStreetImage} alt="Main Street" />
       </HeaderImageContainer>
