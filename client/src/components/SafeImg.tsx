@@ -9,7 +9,7 @@ const StyledImg = styled('img', {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center;
   filter: saturate(1.05) contrast(1.02);
   transform: translateZ(0);
   transition: transform 700ms cubic-bezier(0.2, 0.7, 0, 1);
