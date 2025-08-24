@@ -31,10 +31,11 @@ export const theme = {
   typography: {
     fontFamily: "'Cormorant Garamond', serif",
     h1: {
-      fontSize: '2.5rem',
+      // Increased sizes so H1 can be larger globally without local hard-coding
+      fontSize: '3rem',
       fontWeight: 600,
       lineHeight: 1.2,
-      mobile: { fontSize: '2rem' },
+      mobile: { fontSize: '2.4rem' },
     },
     h2: {
       fontSize: '2rem',

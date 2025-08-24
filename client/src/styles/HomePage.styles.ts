@@ -6,7 +6,7 @@ import { theme } from '../theme';
 // CSS Custom Properties
 // ============================================================================
 
-export const HEADER_IMAGE_HEIGHT = '40vh';
+export const HEADER_IMAGE_HEIGHT = '55vh';
 export const MOBILE_CARD_HEIGHT = '160px';
 
 // ============================================================================
@@ -17,12 +17,13 @@ export const MOBILE_CARD_HEIGHT = '160px';
  * Container for the header image section that spans full viewport width
  * and positions the MobileActionCard at its bottom edge
  */
-export const HeaderImageContainer = styled.div`
+export const HeaderImageContainer = styled.div<{ darkFade?: boolean }>`
   --header-image-height: ${HEADER_IMAGE_HEIGHT};
   position: relative;
   width: 100vw;
   height: var(--header-image-height);
-  z-index: 1;
+  /* Raise stacking to ensure fade overlay can sit above page content */
+  z-index: 1000;
   
   /* Full-width positioning to break out of container constraints */
   margin-left: calc(-50vw + 50%);
@@ -43,8 +44,12 @@ export const HeaderImageContainer = styled.div`
     left: 0;
     width: 100vw;
     height: 240px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent);
-  z-index: 2;
+    background: ${({ darkFade }) =>
+      darkFade
+        ? 'linear-gradient(to bottom, rgba(0, 0, 0, 0.95), transparent)'
+        : 'linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent)'};
+  /* Place fade above everything except the overlaid title */
+  z-index: 1001;
     pointer-events: none;
   }
 
@@ -119,6 +124,7 @@ export const PageTitle = styled.h1<{
   /* Remove stroke and heavy shadows for the overlaid white title so it appears solid */
   -webkit-text-stroke: 0;
   text-shadow: none;
+  z-index: 1002; /* Above the fade overlay */
     pointer-events: none;
     @media (max-width: 768px) { top: ${theme.spacing.lg}; }
   `
@@ -126,6 +132,37 @@ export const PageTitle = styled.h1<{
 
   ${theme.breakpoints.mobile} {
     margin-bottom: ${theme.spacing.lg};
+  }
+`;
+
+// ============================================================================
+// Floating Logo (mobile only)
+// ============================================================================
+
+export const FloatingLogo = styled.div<{ visible?: boolean }>`
+  position: fixed;
+  /* Position so the logo vertically centers with the MenuIcon (44px height).
+    We offset by half the difference between the icon height and the responsive font-size. */
+  top: calc(${theme.spacing.md} + (44px - clamp(22px, 10vw, 30px)) / 2);
+  left: ${theme.spacing.md};
+  z-index: 1100; /* Above fades and content */
+  color: #fff;
+  font-family: ${theme.typography.fontFamily};
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-size: clamp(22px, 10vw, 30px);
+  line-height: 1;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity ${theme.transitions.default};
+
+  ${theme.breakpoints.mobile} {
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
+  }
+
+  ${theme.breakpoints.desktop} {
+    display: none;
   }
 `;
 

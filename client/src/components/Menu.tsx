@@ -1,7 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { MenuIcon, MenuCard, NavLink } from '../styles/Menu.styles';
 
-export default function Menu() {
+type MenuProps = {
+  /** Optional override to control the visibility of the icon externally (e.g., Home scroll). */
+  visibleOverride?: boolean;
+};
+
+export default function Menu({ visibleOverride }: MenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuCardRef = useRef<HTMLDivElement>(null);
   const ANIMATION_DURATION = 400; // ms, matches CSS transition
@@ -36,16 +41,16 @@ export default function Menu() {
     };
   }, [isOpen]);
 
+  const shouldShowIcon = (visibleOverride ?? true) && iconVisible && !isOpen;
+
   return (
     <>
-      {iconVisible && !isOpen && (
-        <MenuIcon onClick={openMenu}>
-          <div />
-          <div />
-          <div />
-        </MenuIcon>
-      )}
-      <MenuCard isOpen={isOpen} ref={menuCardRef}>
+      <MenuIcon onClick={openMenu} visible={shouldShowIcon} aria-label="Open menu">
+        <div />
+        <div />
+        <div />
+      </MenuIcon>
+      <MenuCard isOpen={isOpen} ref={menuCardRef} visible={shouldShowIcon}>
         <NavLink to="/NuArtFilmClub/" onClick={closeMenu}>Home</NavLink>
         <NavLink to="/NuArtFilmClub/calendar" onClick={closeMenu}>Calendar</NavLink>
         <NavLink to="/NuArtFilmClub/films" onClick={closeMenu}>Films</NavLink>

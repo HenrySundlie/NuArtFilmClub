@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { theme } from '../theme';
 
-export const MenuIcon = styled.div`
+export const MenuIcon = styled.div<{ visible?: boolean }>`
   position: fixed;
   top: ${theme.spacing.md};
   right: ${theme.spacing.md};
@@ -17,6 +17,9 @@ export const MenuIcon = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
+  pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
+  transition: opacity ${theme.transitions.default};
 
   div {
     width: 20px;
@@ -27,7 +30,7 @@ export const MenuIcon = styled.div`
   }
 `;
 
-export const MenuCard = styled.div<{ isOpen: boolean }>`
+export const MenuCard = styled.div<{ isOpen: boolean; visible?: boolean }>`
   position: fixed;
   top: ${theme.spacing.md};
   right: ${theme.spacing.md};
@@ -51,6 +54,8 @@ export const MenuCard = styled.div<{ isOpen: boolean }>`
   gap: ${theme.spacing.md};
   overflow: hidden;
   transform-origin: top right;
+  opacity: ${({ isOpen, visible }) => (isOpen ? 1 : visible ? 1 : 0)};
+  pointer-events: ${({ isOpen, visible }) => (isOpen || visible ? 'auto' : 'none')};
 
   > * {
     opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};

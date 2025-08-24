@@ -199,7 +199,7 @@ const MobileActionCard: React.FC = () => {
           active={activeTab === 'upcoming'} 
           onClick={() => handleTabClick('upcoming')}
         >
-          Upcoming
+          Films
         </Tab>
         <Tab 
           active={activeTab === 'calendar'} 
