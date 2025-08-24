@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { BiCameraMovie } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 import { theme } from '../theme';
-import { HEADER_IMAGE_HEIGHT } from '../styles/HomePage.styles';
+import { HEADER_IMAGE_HEIGHT, MOBILE_CARD_HEIGHT } from '../styles/HomePage.styles';
 
 // ============================================================================
 // Styled Components
@@ -20,10 +21,13 @@ const CardContainer = styled.div`
   transform: translateX(-50%) translateY(-50%);
   width: 90%;
   max-width: 320px;
+  /* Use a variable for consumers to reference height */
+  --mobile-card-height: ${MOBILE_CARD_HEIGHT};
+  min-height: var(--mobile-card-height);
   background: black;
   border-radius: 20px;
-  padding: 16px;
-  z-index: 100;
+  padding: clamp(12px, 1.8vw, 16px);
+  z-index: 50;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   margin-top: 8px;
   border: 1px solid ${theme.colors.text.light};
@@ -53,9 +57,9 @@ const Tab = styled.button<{ active: boolean }>`
   background: ${({ active }) => active ? '#3C3C3C' : 'transparent'};
   color: ${({ active }) => active ? '#fff' : '#666'};
   border: none;
-  padding: 8px 16px;
+  padding: clamp(6px, 1.2vw, 8px) clamp(12px, 2vw, 16px);
   font-family: ${theme.typography.fontFamily};
-  font-size: 18px;
+  font-size: clamp(16px, 2.2vw, 18px);
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -77,14 +81,14 @@ const ContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80px;
+  min-height: clamp(72px, 10vw, 92px);
   position: relative;
   width: 100%;
 `;
 
 const IconContainer = styled.div<{ position: 'left' | 'right' }>`
-  width: 70px;
-  height: 70px;
+  width: clamp(60px, 9.2vw, 74px);
+  height: clamp(60px, 9.2vw, 74px);
   background: ${theme.colors.nuartBlue};
   border-radius: 18px;
   display: flex;
@@ -92,7 +96,7 @@ const IconContainer = styled.div<{ position: 'left' | 'right' }>`
   justify-content: center;
   flex-shrink: 0;
   position: absolute;
-  ${({ position }) => position === 'left' ? 'left: 35px;' : 'right: 35px;'}
+  ${({ position }) => position === 'left' ? 'left: clamp(24px, 5vw, 35px);' : 'right: clamp(24px, 5vw, 35px);'}
   top: 50%;
   transform: translateY(-50%);
 `;
@@ -100,17 +104,17 @@ const IconContainer = styled.div<{ position: 'left' | 'right' }>`
 const TextContent = styled.div<{ position: 'left' | 'right' }>`
   color: #fff;
   font-family: ${theme.typography.fontFamily};
-  font-size: 16px;
+  font-size: clamp(14px, 2.1vw, 16px);
   line-height: 1.4;
   flex: 1;
   text-align: center;
   padding: 0 20px;
-  min-height: 80px;
+  min-height: clamp(72px, 10vw, 92px);
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  ${({ position }) => position === 'left' ? 'left: 40px;' : 'right: 40px;'}
+  ${({ position }) => position === 'left' ? 'left: clamp(28px, 5.6vw, 40px);' : 'right: clamp(28px, 5.6vw, 40px);'}
   top: 50%;
   transform: translateY(-50%);
   width: 140px;
@@ -122,6 +126,7 @@ const TextContent = styled.div<{ position: 'left' | 'right' }>`
 
 const MobileActionCard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'upcoming' | 'calendar'>('upcoming');
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const handleTabClick = (tab: 'upcoming' | 'calendar') => {
     setActiveTab(tab);
@@ -135,25 +140,29 @@ const MobileActionCard: React.FC = () => {
     }
   }, [activeTab]);
 
+  // Note: Content positioning is now handled by CSS in HomePage.styles.ts
+  // This simplifies the layout and ensures reliable positioning
+
   // Touch/swipe functionality
   useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
     let startX = 0;
     let startY = 0;
     let isSwiping = false;
 
-    const handleTouchStart = (e: Event) => {
-      const touchEvent = e as TouchEvent;
-      startX = touchEvent.touches[0].clientX;
-      startY = touchEvent.touches[0].clientY;
+    const handleTouchStart = (e: TouchEvent) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
       isSwiping = true;
     };
 
-    const handleTouchMove = (e: Event) => {
+    const handleTouchMove = (e: TouchEvent) => {
       if (!isSwiping) return;
       
-      const touchEvent = e as TouchEvent;
-      const currentX = touchEvent.touches[0].clientX;
-      const currentY = touchEvent.touches[0].clientY;
+      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY;
       const diffX = startX - currentX;
       const diffY = startY - currentY;
       
@@ -172,24 +181,19 @@ const MobileActionCard: React.FC = () => {
       isSwiping = false;
     };
 
-    const card = document.querySelector('[data-mobile-card]');
-    if (card) {
-      card.addEventListener('touchstart', handleTouchStart);
-      card.addEventListener('touchmove', handleTouchMove);
-      card.addEventListener('touchend', handleTouchEnd);
-    }
+    card.addEventListener('touchstart', handleTouchStart);
+    card.addEventListener('touchmove', handleTouchMove);
+    card.addEventListener('touchend', handleTouchEnd);
 
     return () => {
-      if (card) {
-        card.removeEventListener('touchstart', handleTouchStart);
-        card.removeEventListener('touchmove', handleTouchMove);
-        card.removeEventListener('touchend', handleTouchEnd);
-      }
+      card.removeEventListener('touchstart', handleTouchStart);
+      card.removeEventListener('touchmove', handleTouchMove);
+      card.removeEventListener('touchend', handleTouchEnd);
     };
   }, [handleSwipe]);
 
   return (
-    <CardContainer data-mobile-card>
+    <CardContainer ref={cardRef}>
       <TabContainer>
         <Tab 
           active={activeTab === 'upcoming'} 
@@ -210,9 +214,11 @@ const MobileActionCard: React.FC = () => {
       <ContentContainer>
         {activeTab === 'upcoming' ? (
           <>
-            <IconContainer position="left">
-              <BiCameraMovie size={48} color="white" strokeWidth={0.25} />
-            </IconContainer>
+            <Link to="/NuArtFilmClub/films" aria-label="View films" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
+              <IconContainer position="left">
+                <BiCameraMovie style={{ width: '70%', height: '70%' }} color="white" strokeWidth={0.25} />
+              </IconContainer>
+            </Link>
             <TextContent position="right">
               Reserve seats for upcoming films
             </TextContent>
@@ -222,9 +228,11 @@ const MobileActionCard: React.FC = () => {
             <TextContent position="left">
               View all scheduled films
             </TextContent>
-            <IconContainer position="right">
-              <FaCalendarAlt size={48} color="white" strokeWidth={0.1} />
-            </IconContainer>
+            <Link to="/NuArtFilmClub/calendar" aria-label="View calendar" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
+              <IconContainer position="right">
+                <FaCalendarAlt style={{ width: '70%', height: '70%' }} color="white" strokeWidth={0.1} />
+              </IconContainer>
+            </Link>
           </>
         )}
       </ContentContainer>

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Calendar from './pages/Calendar';
 import FilmMenu from './pages/FilmMenu';
@@ -7,6 +7,7 @@ import Menu from './components/Menu';
 import styled from '@emotion/styled';
 import { theme } from './theme';
 import { Global } from '@emotion/react';
+import { useEffect, useMemo, useState } from 'react';
 
 const globalStyles = `
   html, body {
@@ -45,14 +46,41 @@ export default function App() {
     <Router>
       <Global styles={globalStyles} />
       <AppContainer>
-        <Menu />
+        <MenuVisibilityController />
         <Routes>
-                  <Route path="/NuArtFilmClub/" element={<Home />} />
-        <Route path="/NuArtFilmClub/calendar" element={<Calendar />} />
-        <Route path="/NuArtFilmClub/films" element={<FilmMenu />} />
-        <Route path="/NuArtFilmClub/film/:id" element={<FilmPage />} />
+          <Route path="/NuArtFilmClub/" element={<Home />} />
+          <Route path="/NuArtFilmClub/calendar" element={<Calendar />} />
+          <Route path="/NuArtFilmClub/films" element={<FilmMenu />} />
+          <Route path="/NuArtFilmClub/film/:id" element={<FilmPage />} />
         </Routes>
       </AppContainer>
     </Router>
   );
+}
+
+function MenuVisibilityController() {
+  const location = useLocation();
+  const [isMobile, setIsMobile] = useState<boolean>(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const listener = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    // For Safari support of older spec
+    if (mq.addEventListener) mq.addEventListener('change', listener);
+    else mq.addListener(listener);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener('change', listener);
+      else mq.removeListener(listener);
+    };
+  }, []);
+
+  const isHome = useMemo(() => {
+    const p = location.pathname.replace(/\/?$/, '/');
+    return p === '/NuArtFilmClub/';
+  }, [location.pathname]);
+
+  if (isHome && isMobile) return null;
+  return <Menu />;
 }

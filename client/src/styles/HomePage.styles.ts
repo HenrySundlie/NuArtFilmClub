@@ -7,6 +7,7 @@ import { theme } from '../theme';
 // ============================================================================
 
 export const HEADER_IMAGE_HEIGHT = '40vh';
+export const MOBILE_CARD_HEIGHT = '160px';
 
 // ============================================================================
 // Header Image Section
@@ -21,28 +22,29 @@ export const HeaderImageContainer = styled.div`
   position: relative;
   width: 100vw;
   height: var(--header-image-height);
-  z-index: 0;
+  z-index: 1;
   
   /* Full-width positioning to break out of container constraints */
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-  margin-top: calc(-1 * ${theme.spacing.sm});
+  /* Remove negative margin to prevent title from being pushed off-screen */
+  margin-top: 0;
   
   /* Center image content */
   display: flex;
   align-items: center;
   justify-content: center;
 
-  /* Top fade overlay for title legibility */
+  /* Top fade overlay for title legibility: fixed so it remains on scroll */
   &::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 300px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.88), transparent);
-    z-index: 1;
+    width: 100vw;
+    height: 240px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent);
+  z-index: 2;
     pointer-events: none;
   }
 
@@ -58,6 +60,14 @@ export const HeaderImageContainer = styled.div`
     height: var(--header-image-height);
     /* Ensure proper positioning context for MobileActionCard */
     position: relative;
+  }
+  
+  /* Ensure this container doesn't interfere with document flow */
+  &::after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
   }
 `;
 
@@ -83,36 +93,136 @@ export const PageTitle = styled.h1<{
     ${theme.typography.h1.mobile.fontSize},
     3.6vw,
     ${theme.typography.h1.fontSize}
-  );
+  );  
 
   color: transparent;
   background: linear-gradient(180deg, var(--fg1), var(--fg2));
   -webkit-background-clip: text;
   background-clip: text;
   text-wrap: balance;
-  z-index: 2;
+  z-index: 3;
 
   ${({ overlay }) =>
     overlay
       ? `
     position: absolute;
-    top: ${theme.spacing.md};
+    top: ${theme.spacing.lg};
     left: 50%;
-    transform: translateX(-50%) translateY(-.6em);
+    transform: translateX(-50%);
     width: min(100%, 96vw);
     margin-bottom: 0;
-    color: #fff;
-    background: none;
-    -webkit-text-stroke: 0.6px rgba(0,0,0,0.35);
-    text-shadow:
-      0 2px 16px rgba(0,0,0,0.7),
-      0 1px 2px rgba(0,0,0,0.8);
+  color: #fff;
+  background: none;
+  -webkit-text-fill-color: #fff; /* Ensure solid white on Safari */
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  /* Remove stroke and heavy shadows for the overlaid white title so it appears solid */
+  -webkit-text-stroke: 0;
+  text-shadow: none;
     pointer-events: none;
-    @media (max-width: 768px) { top: ${theme.spacing.md}; }
+    @media (max-width: 768px) { top: ${theme.spacing.lg}; }
   `
       : ''}
 
   ${theme.breakpoints.mobile} {
     margin-bottom: ${theme.spacing.lg};
+  }
+`;
+
+// ============================================================================
+// Content Section
+// ============================================================================
+
+/**
+ * Container for the main content below the header image section
+ * Provides proper spacing from the mobile action card and flows with page scroll
+ */
+export const ContentSection = styled.section`
+  padding: ${theme.spacing.xl} ${theme.spacing.md};
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  /* Default desktop spacing: sit just below the header image */
+  /* Previously we added HEADER_IMAGE_HEIGHT again which created a huge gap. */
+  margin-top: clamp(${theme.spacing.md}, 2.5vw, ${theme.spacing.xl});
+  
+  /* Ensure content appears above the header image section and flows properly */
+  position: relative;
+  z-index: 10;
+  
+  /* Clear any floating or positioning issues */
+  clear: both;
+  
+  /* Ensure content flows naturally after the header */
+  display: block;
+  
+  /* Typography using the theme's default font */
+  font-family: ${theme.typography.fontFamily};
+  font-size: clamp(15px, 0.6vw + 12px, 18px);
+  line-height: 1.6;
+  color: ${theme.colors.text.secondary};
+  
+  /* Remove scrollable container - let content flow with page */
+  /* overflow-y: auto; */
+  /* max-height: 60vh; */
+  
+  /* Responsive adjustments */
+  ${theme.breakpoints.mobile} {
+  /* Use shared mobile content padding so text doesn't hug the edges */
+  padding: ${theme.layout.contentPadding.mobile.y} ${theme.layout.contentPadding.mobile.x};
+  /* On mobile, offset by half the MobileActionCard height (it overhangs 50%) */
+  margin-top: calc((${MOBILE_CARD_HEIGHT} / 2) + ${theme.spacing.lg});
+  /* Use a comfortable default body size on mobile (about 16px) */
+  font-size: ${theme.typography.body.mobile?.fontSize ?? '16px'};
+    /* max-height: 50vh; */
+  }
+`;
+
+/**
+ * Container for the content text with proper spacing and readability
+ */
+export const ContentText = styled.div`
+  /* Sample text styling */
+  p {
+    margin-bottom: ${theme.spacing.md};
+  text-align: justify;
+    hyphens: auto;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  /* Headings within content */
+  h2, h3 {
+    color: ${theme.colors.text.primary};
+  margin: ${theme.spacing.lg} 0 ${theme.spacing.md} 0;
+    font-weight: 600;
+  }
+  
+  h2 {
+    font-size: 1.2em;
+  }
+  
+  h3 {
+    font-size: 1.1em;
+  }
+  
+  /* Lists */
+  ul, ol {
+    margin: ${theme.spacing.md} 0;
+    padding-left: ${theme.spacing.lg};
+  }
+  
+  li {
+    margin-bottom: ${theme.spacing.sm};
+  }
+
+  /* Improve readability on smaller screens */
+  ${theme.breakpoints.mobile} {
+  p { text-align: left; hyphens: auto; }
+  h2, h3 { margin-top: ${theme.spacing.md}; }
+  & > :first-of-type { margin-top: 0; }
+  ul, ol { margin: ${theme.spacing.sm} 0 ${theme.spacing.md}; }
   }
 `;

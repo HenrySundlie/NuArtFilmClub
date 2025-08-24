@@ -43,11 +43,28 @@ export const theme = {
       mobile: { fontSize: '1.75rem' },
     },
     body: {
-      fontSize: '1rem',
-      lineHeight: 1.5,
+  fontSize: '1rem',
+  lineHeight: 1.5,
+  // Mobile default body size ~16px for comfortable reading
+  mobile: { fontSize: '16px' },
     },
   },
   transitions: {
     default: '0.2s ease-in-out',
+  },
+  // Layout tokens for consistent page paddings across screens
+  layout: {
+    contentPadding: {
+      // Desktop/tablet default paddings
+      desktop: {
+        x: 'min(3vw, 24px)', // a little air on wide screens
+        y: '32px',
+      },
+      // Mobile paddings (more generous horizontal spacing)
+      mobile: {
+        x: 'clamp(16px, 5vw, 28px)', // keep text away from edges
+        y: '24px',
+      },
+    },
   },
 } as const;
