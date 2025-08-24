@@ -6,7 +6,7 @@ import { theme } from '../theme';
 // CSS Custom Properties
 // ============================================================================
 
-export const HEADER_IMAGE_HEIGHT = '55vh';
+export const HEADER_IMAGE_HEIGHT = '40vh';
 export const MOBILE_CARD_HEIGHT = '160px';
 
 // ============================================================================
@@ -207,8 +207,8 @@ export const ContentSection = styled.section`
   ${theme.breakpoints.mobile} {
   /* Use shared mobile content padding so text doesn't hug the edges */
   padding: ${theme.layout.contentPadding.mobile.y} ${theme.layout.contentPadding.mobile.x};
-  /* On mobile, offset by half the MobileActionCard height (it overhangs 50%) */
-  margin-top: calc((${MOBILE_CARD_HEIGHT} / 2) + ${theme.spacing.lg});
+  /* Card has its own bottom margin; start content immediately after and use padding for spacing */
+  margin-top: 0;
   /* Use a comfortable default body size on mobile (about 16px) */
   font-size: ${theme.typography.body.mobile?.fontSize ?? '16px'};
     /* max-height: 50vh; */

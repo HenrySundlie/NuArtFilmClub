@@ -1,10 +1,9 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
-import { FaCalendarAlt } from 'react-icons/fa';
-import { BiCameraMovie } from 'react-icons/bi';
+import { FiCalendar, FiFilm } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { theme } from '../theme';
-import { HEADER_IMAGE_HEIGHT, MOBILE_CARD_HEIGHT } from '../styles/HomePage.styles';
+import { MOBILE_CARD_HEIGHT } from '../styles/HomePage.styles';
 
 // ============================================================================
 // Styled Components
@@ -15,21 +14,18 @@ import { HEADER_IMAGE_HEIGHT, MOBILE_CARD_HEIGHT } from '../styles/HomePage.styl
  * Provides quick access to upcoming films and calendar views
  */
 const CardContainer = styled.div`
-  position: absolute;
-  top: ${HEADER_IMAGE_HEIGHT};
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  width: 90%;
-  max-width: 320px;
+  position: relative;
+  width: min(90vw, 420px);
+  margin: ${theme.spacing.md} auto 0; /* sits below the header image with spacing */
+  margin-bottom: 0; /* content section provides top padding */
   /* Use a variable for consumers to reference height */
   --mobile-card-height: ${MOBILE_CARD_HEIGHT};
   min-height: var(--mobile-card-height);
-  background: black;
+  background: ${theme.colors.surfaceDeep};
   border-radius: 20px;
   padding: clamp(12px, 1.8vw, 16px);
   z-index: 50;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  margin-top: 8px;
   border: 1px solid ${theme.colors.text.light};
   
   /* Mobile only - hidden on desktop */
@@ -38,11 +34,6 @@ const CardContainer = styled.div`
   /* Responsive adjustments */
   ${theme.breakpoints.mobile} {
     display: block;
-    
-    /* Ensure card doesn't get cut off on very small screens */
-    @media (max-height: 600px) {
-      top: calc(${HEADER_IMAGE_HEIGHT} - 20px);
-    }
   }
 `;
 
@@ -54,7 +45,7 @@ const TabContainer = styled.div`
 
 const Tab = styled.button<{ active: boolean }>`
   flex: 1;
-  background: ${({ active }) => active ? '#3C3C3C' : 'transparent'};
+  background: ${({ active }) => active ? theme.colors.highlight : 'transparent'};
   color: ${({ active }) => active ? '#fff' : '#666'};
   border: none;
   padding: clamp(6px, 1.2vw, 8px) clamp(12px, 2vw, 16px);
@@ -67,7 +58,7 @@ const Tab = styled.button<{ active: boolean }>`
   border-radius: 20px;
   
   &:hover {
-    background: ${({ active }) => active ? '#3C3C3C' : 'rgba(255, 255, 255, 0.05)'};
+    background: ${({ active }) => active ? theme.colors.highlight : 'rgba(255, 255, 255, 0.05)'};
   }
 `;
 
@@ -96,15 +87,18 @@ const IconContainer = styled.div<{ position: 'left' | 'right' }>`
   justify-content: center;
   flex-shrink: 0;
   position: absolute;
-  ${({ position }) => position === 'left' ? 'left: clamp(24px, 5vw, 35px);' : 'right: clamp(24px, 5vw, 35px);'}
+  /* Center the icons under their respective tabs by placing them at
+     the horizontal centers of the two equal-width tabs: 25% and 75% */
+  ${({ position }) => position === 'left' ? 'left: 25%;' : 'left: 75%;'}
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
 `;
 
 const TextContent = styled.div<{ position: 'left' | 'right' }>`
   color: #fff;
   font-family: ${theme.typography.fontFamily};
-  font-size: clamp(14px, 2.1vw, 16px);
+  /* Larger, more readable description text */
+  font-size: clamp(16px, 3.8vw, 20px);
   line-height: 1.4;
   flex: 1;
   text-align: center;
@@ -214,9 +208,9 @@ const MobileActionCard: React.FC = () => {
       <ContentContainer>
         {activeTab === 'upcoming' ? (
           <>
-            <Link to="/NuArtFilmClub/films" aria-label="View films" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
+      <Link to="/NuArtFilmClub/films" aria-label="View films" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
               <IconContainer position="left">
-                <BiCameraMovie style={{ width: '70%', height: '70%' }} color="white" strokeWidth={0.25} />
+        <FiFilm style={{ width: '62%', height: '62%' }} color="white" strokeWidth={1} />
               </IconContainer>
             </Link>
             <TextContent position="right">
@@ -228,9 +222,9 @@ const MobileActionCard: React.FC = () => {
             <TextContent position="left">
               View all scheduled films
             </TextContent>
-            <Link to="/NuArtFilmClub/calendar" aria-label="View calendar" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
+      <Link to="/NuArtFilmClub/calendar" aria-label="View calendar" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
               <IconContainer position="right">
-                <FaCalendarAlt style={{ width: '70%', height: '70%' }} color="white" strokeWidth={0.1} />
+        <FiCalendar style={{ width: '62%', height: '62%' }} color="white" strokeWidth={1} />
               </IconContainer>
             </Link>
           </>

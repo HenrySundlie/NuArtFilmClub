@@ -184,30 +184,21 @@ export const CardBody = styled.div`
 `;
 
 export const Button = styled.button`
-  --bg: ${theme.colors.primary ?? '#3b82f6'};
-  --bg2: ${theme.colors.primaryDark ?? '#1d4ed8'};
-  --fg: ${theme.colors.onPrimary ?? '#ffffff'};
   appearance: none;
-  border: 0;
-  border-radius: 12px;
-  padding: 0.85rem 1.1rem;
+  border: 1px solid ${theme.colors.border};
+  border-radius: ${theme.radii.sm};
+  padding: 0.7rem 1rem;
   font-weight: 600;
-  color: var(--fg);
-  background: linear-gradient(180deg, var(--bg), var(--bg2));
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  color: ${theme.colors.text.primary};
+  background: ${theme.colors.surface};
   cursor: pointer;
-  transition:
-    transform 180ms ease,
-    filter 180ms ease,
-    box-shadow 180ms ease;
+  transition: background ${theme.transitions.default}, color ${theme.transitions.default}, border-color ${theme.transitions.default};
 
   &:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.02);
+    background: ${theme.colors.highlight};
   }
   &:active {
-    transform: translateY(0);
-    filter: brightness(0.98);
+    background: ${theme.colors.surface};
   }
   &:focus-visible {
     outline: var(--ring);

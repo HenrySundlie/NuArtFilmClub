@@ -9,7 +9,7 @@ export const MenuIcon = styled.div<{ visible?: boolean }>`
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: black;
+  background: ${theme.colors.surfaceDeep};
   border: 1px solid ${theme.colors.text.light};
   cursor: pointer;
   z-index: 1002;
@@ -41,7 +41,7 @@ export const MenuCard = styled.div<{ isOpen: boolean; visible?: boolean }>`
   */
   width: ${({ isOpen }) => (isOpen ? '160px' : '44px')};
   height: ${({ isOpen }) => (isOpen ? '160px' : '44px')};
-  background-color: black;
+  background-color: ${theme.colors.surfaceDeep};
   border: 1px solid ${theme.colors.text.light};
   border-radius: ${({ isOpen }) => (isOpen ? '20px' : '50%')};
   box-shadow: -2px 0 5px rgba(0,0,0,0.5);

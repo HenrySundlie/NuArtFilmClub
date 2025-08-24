@@ -9,6 +9,7 @@ export const CalendarHeader = styled.div`
   justify-content: space-between;
   gap: ${theme.spacing.md};
   margin-bottom: clamp(${theme.spacing.md}, 2.5vw, ${theme.spacing.lg});
+  padding: 0 ${theme.spacing.sm};
 
   ${theme.breakpoints.mobile} {
     flex-wrap: wrap;
@@ -32,7 +33,7 @@ export const NavBtn = styled.button`
   --bd: ${theme.colors.border};
   appearance: none;
   border: 1px solid var(--bd);
-  border-radius: 12px;
+  border-radius: ${theme.radii.sm};
   padding: 0.6rem 0.9rem;
   background: ${theme.colors.surface};
   color: var(--fg);
@@ -40,17 +41,9 @@ export const NavBtn = styled.button`
   line-height: 1;
   cursor: pointer;
   min-width: 44px; /* touch target */
-  transition:
-    transform 140ms ease,
-    filter 140ms ease,
-    background 140ms ease;
-  &:hover {
-    transform: translateY(-1px);
-  }
-  &:active {
-    transform: translateY(0);
-    filter: brightness(0.95);
-  }
+  transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+  &:hover { background: ${theme.colors.highlight}; }
+  &:active { background: ${theme.colors.surface}; }
   &:focus-visible {
     outline: 2px solid ${theme.colors.accent};
     outline-offset: 2px;
@@ -64,7 +57,8 @@ export const MonthTitle = styled.h2`
     2.4vw,
     ${theme.typography.h2.fontSize}
   );
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
+  font-weight: 500;
   text-align: center;
   color: ${theme.colors.text.primary};
 
@@ -86,7 +80,7 @@ export const Grid = styled.div`
 
 export const Weekday = styled.div`
   text-align: center;
-  color: ${theme.colors.text.secondary};
+  color: ${theme.colors.text.primary};
   font-weight: 700;
   padding: ${theme.spacing.sm} 0;
   letter-spacing: 0.06em;
@@ -102,14 +96,9 @@ export const Weekday = styled.div`
 export const DayCell = styled.div<{ $other?: boolean; $today?: boolean }>`
   position: relative;
   min-height: 120px;
-  border: 1px solid ${theme.colors.border};
-  border-radius: 12px;
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.04),
-      rgba(255, 255, 255, 0.02)
-    ),
-    ${theme.colors.surface};
+  border: 1px solid ${theme.colors.text.light};
+  border-radius: ${theme.radii.sm};
+  background: ${theme.surfaces.subtleOverlay}, ${theme.colors.surfaceDeep};
   padding: ${theme.spacing.sm};
   display: grid;
   grid-template-rows: auto 1fr;
@@ -117,12 +106,12 @@ export const DayCell = styled.div<{ $other?: boolean; $today?: boolean }>`
   opacity: ${({ $other }) => ($other ? 0.55 : 1)};
 
   ${({ $today }) =>
-    $today ? `box-shadow: 0 0 0 2px ${theme.colors.accent} inset;` : ''}
+    $today ? `box-shadow: 0 0 0 2px ${theme.colors.accent} inset, ${theme.shadows.card};` : ''}
 
   ${theme.breakpoints.mobile} {
     min-height: 88px;
     padding: ${theme.spacing.xs};
-    border-radius: 10px;
+    border-radius: ${theme.radii.xs};
   }
 `;
 
@@ -132,7 +121,7 @@ export const DayNumber = styled.div`
   justify-content: center;
   width: 30px;
   height: 28px;
-  border-radius: 8px;
+  border-radius: ${theme.radii.xs};
   font-weight: 800;
   color: ${theme.colors.text.primary};
   background: rgba(255, 255, 255, 0.06);
@@ -164,28 +153,19 @@ export const EventChip = styled(Link)`
   align-items: center;
   gap: 0.4rem;
   padding: 0.35rem 0.5rem;
-  border-radius: 10px;
+  border-radius: ${theme.radii.sm};
   background: rgba(99, 102, 241, 0.15);
   color: ${theme.colors.text.primary};
   text-decoration: none;
   font-size: 0.88rem;
   border: 1px solid rgba(99, 102, 241, 0.35);
-  transition:
-    transform 120ms ease,
-    filter 120ms ease,
-    background 120ms ease;
-  &:hover {
-    transform: translateY(-1px);
-  }
+  transition: filter 120ms ease, background 120ms ease, border-color 120ms ease;
+  &:hover { filter: saturate(1.05); }
   &:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
-  & span.time {
-    color: ${theme.colors.text.secondary};
-    font-weight: 600;
-    font-size: 0.8rem;
-  }
+  & span.time { color: ${theme.colors.text.primary}; font-weight: 600; font-size: 0.8rem; }
 
   ${theme.breakpoints.mobile} {
     font-size: 0.78rem;
@@ -214,9 +194,9 @@ export const UpcomingItem = styled(Link)`
   gap: ${theme.spacing.sm};
   align-items: baseline;
   padding: 0.9rem 1rem;
-  border: 1px solid ${theme.colors.border};
-  border-radius: 12px;
-  background: ${theme.colors.surface};
+  border: 1px solid ${theme.colors.text.light};
+  border-radius: ${theme.radii.sm};
+  background: ${theme.surfaces.elevatedOverlay}, ${theme.colors.surfaceDeep};
   color: ${theme.colors.text.primary};
   text-decoration: none;
   transition:
@@ -229,9 +209,7 @@ export const UpcomingItem = styled(Link)`
     outline: 2px solid ${theme.colors.accent};
     outline-offset: 2px;
   }
-  small {
-    color: ${theme.colors.text.secondary};
-  }
+  small { color: ${theme.colors.text.primary}; }
 
   ${theme.breakpoints.mobile} {
     grid-template-columns: 1fr;

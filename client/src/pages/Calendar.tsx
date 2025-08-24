@@ -83,69 +83,19 @@ export default function Calendar() {
   return (
     <PageContainer>
       <Content>
-        <PageTitle>Calendar</PageTitle>
+  <PageTitle fontWeight={400}>Calendar</PageTitle>
 
         <CalendarHeader>
           <NavGroup>
-            <NavBtn
-              onClick={() => setMonth((m) => addMonths(m, -1))}
-              aria-label="Previous month"
-            >
-              ←
-            </NavBtn>
-            <NavBtn
-              onClick={() => setMonth(() => strip(new Date()))}
-              aria-label="Jump to today"
-            >
-              Today
-            </NavBtn>
-            <NavBtn
-              onClick={() => setMonth((m) => addMonths(m, 1))}
-              aria-label="Next month"
-            >
-              →
-            </NavBtn>
+            <NavBtn onClick={() => setMonth((m) => addMonths(m, -1))} aria-label="Previous month">←</NavBtn>
+            <NavBtn onClick={() => setMonth(() => strip(new Date()))} aria-label="Jump to today">Today</NavBtn>
+            <NavBtn onClick={() => setMonth((m) => addMonths(m, 1))} aria-label="Next month">→</NavBtn>
           </NavGroup>
           <MonthTitle>
-            {month.toLocaleDateString(undefined, {
-              month: 'long',
-              year: 'numeric',
-            })}
+            {month.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}
           </MonthTitle>
-          <div />
-          <NavGroup>
-            <NavBtn
-              onClick={() => setMonth((m) => addMonths(m, -1))}
-              aria-label="Previous month"
-            >
-              ←
-            </NavBtn>
-            <NavBtn
-              onClick={() => setMonth(() => strip(new Date()))}
-              aria-label="Jump to today"
-            >
-              Today
-            </NavBtn>
-            <NavBtn
-              onClick={() => setMonth((m) => addMonths(m, 1))}
-              aria-label="Next month"
-            >
-              →
-            </NavBtn>
-          </NavGroup>
-
-          <MonthTitle>
-            {month.toLocaleDateString(undefined, {
-              month: 'long',
-              year: 'numeric',
-            })}
-          </MonthTitle>
-
           <div>
-            {/* all events */}
             <AddAllToCalendarButton />
-            {/* or upcoming only */}
-            {/* <AddAllToCalendarButton includePast={false} fileName="nuart_upcoming.ics" /> */}
           </div>
         </CalendarHeader>
 

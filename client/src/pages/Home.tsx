@@ -66,11 +66,13 @@ const Home = () => {
           alt="Historic Main Street"
           loading="lazy"
         />
-        <MobileActionCard />
       </HeaderImageContainer>
 
   {/* Ensure the Menu icon appears in sync with the floating logo on mobile */}
   <Menu visibleOverride={showFloatingLogo} />
+      
+      {/* Mobile action card now sits entirely below the header image */}
+      <MobileActionCard />
       
       <ContentSection>
         <ContentText>

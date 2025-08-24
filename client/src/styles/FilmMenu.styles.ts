@@ -7,7 +7,7 @@ export const Container = styled.div`
   --radius: 16px;
   --border: 1px solid ${theme.colors.border ?? 'rgba(255,255,255,0.12)'};
   --ring: 2px solid ${theme.colors.accent ?? 'rgba(99,102,241,0.9)'};
-  --shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  --shadow: ${theme.shadows.lg};
 
   min-height: 100dvh;
   color: ${theme.colors.text.primary};
@@ -30,8 +30,9 @@ export const Container = styled.div`
 export const Title = styled.h1`
   margin: 0 0 clamp(${theme.spacing.lg}, 3vw, ${theme.spacing.xl});
   text-align: center;
-  letter-spacing: 0.01em;
-  line-height: 1.1;
+  letter-spacing: 0.06em;
+  line-height: 1.08;
+  font-weight: 400;
   font-size: clamp(
     ${theme.typography.h1.mobile.fontSize},
     4vw,
@@ -39,11 +40,7 @@ export const Title = styled.h1`
   );
 
   color: transparent;
-  background: linear-gradient(
-    180deg,
-    ${theme.colors.text.primary},
-    ${theme.colors.text.secondary}
-  );
+  background: ${theme.textStyles.gradientPrimary};
   -webkit-background-clip: text;
   background-clip: text;
   text-wrap: balance;
@@ -67,25 +64,18 @@ export const FilmCard = styled(Link)`
   display: grid;
   grid-template-rows: auto 1fr;
   text-decoration: none;
-  border-radius: var(--radius);
+  border-radius: ${theme.radii.md};
   overflow: clip;
-  border: var(--border);
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.05),
-      rgba(255, 255, 255, 0.02)
-    ),
-    ${theme.colors.surface ?? 'transparent'};
-  box-shadow: var(--shadow);
+  border: 1px solid ${theme.colors.text.light};
+  background: ${theme.surfaces.elevatedOverlay}, ${theme.colors.surfaceDeep};
+  box-shadow: none;
   transition:
-    transform 220ms ease,
-    box-shadow 220ms ease,
-    filter 220ms ease;
+    filter 220ms ease,
+    background 220ms ease;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
-    filter: saturate(1.03) contrast(1.02);
+    background: ${theme.surfaces.subtleOverlay}, ${theme.colors.surface};
+    filter: saturate(1.02) contrast(1.01);
   }
 
   &:focus-visible {
@@ -117,6 +107,7 @@ export const FilmInfo = styled.div`
   padding: clamp(${theme.spacing.md}, 2vw, ${theme.spacing.lg});
   display: grid;
   gap: calc(${theme.spacing.sm} * 0.75);
+  color: ${theme.colors.text.primary};
 `;
 
 export const FilmTitle = styled.h2`
@@ -137,7 +128,7 @@ export const FilmTitle = styled.h2`
 
 export const FilmDate = styled.p`
   margin: 0;
-  color: ${theme.colors.text.secondary};
+  color: ${theme.colors.text.primary};
   font-size: 0.95rem;
   line-height: 1.4;
 
@@ -150,7 +141,7 @@ export const FilmDate = styled.p`
 
 export const FilmTime = styled.p`
   margin: 0;
-  color: ${theme.colors.text.light ?? theme.colors.text.secondary};
+  color: ${theme.colors.text.primary};
   font-size: 0.95rem;
   line-height: 1.4;
 
