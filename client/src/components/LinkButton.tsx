@@ -36,9 +36,12 @@ interface LinkButtonProps
   to?: string;
 }
 
+function isExternal(href?: string) {
+  return !!href && /^(?:[a-z]+:)?\/\//i.test(href);
+}
+
 export function LinkButton({ to, ...props }: LinkButtonProps) {
-  if (to) {
-    return <StyledLink to={to} {...props} />;
-  }
-  return <StyledAnchor {...props} />;
+  if (!to) return <StyledAnchor {...props} />;
+  if (isExternal(to)) return <StyledAnchor href={to} {...props} />;
+  return <StyledLink to={to} {...props} />;
 }

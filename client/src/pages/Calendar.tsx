@@ -4,6 +4,7 @@ import { PageContainer, Content, PageTitle } from '../styles/Page.styles';
 import AddAllToCalendarButton from '../components/AddAllToCalendarButton';
 import { CalendarHeader, CalendarIframe } from '../styles/Calendar.styles';
 import { theme } from '../theme';
+import { isMobileViewport, onViewportChange } from '../utils/responsive';
 
 // ENTER YOUR GOOGLE CALENDAR ID BELOW (public calendar ID, e.g. "yourid@group.calendar.google.com")
 // You can also add multiple calendars in the embed if desired.
@@ -12,7 +13,7 @@ const TIME_ZONE = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
 
 type CalendarMode = 'MONTH' | 'WEEK' | 'AGENDA';
 
-function buildEmbedSrc(calendarId: string, timeZone: string, mode: CalendarMode) {
+function buildGoogleCalendarEmbedSrc(calendarId: string, timeZone: string, mode: CalendarMode) {
   const params = new URLSearchParams({
     src: calendarId,
     ctz: timeZone,
@@ -31,27 +32,21 @@ function buildEmbedSrc(calendarId: string, timeZone: string, mode: CalendarMode)
 }
 
 export default function Calendar() {
-  const getInitialMode = (): CalendarMode =>
-    typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
-      ? 'AGENDA'
-      : 'MONTH';
+  const getInitialMode = (): CalendarMode => (isMobileViewport() ? 'AGENDA' : 'MONTH');
   const [mode, setMode] = useState<CalendarMode>(getInitialMode);
 
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    const update = () => setMode(mq.matches ? 'AGENDA' : 'MONTH');
-    // Ensure correct on mount and on changes
-    update();
-    mq.addEventListener?.('change', update);
-    // Fallback for older browsers
-    window.addEventListener('resize', update);
+    const dispose = onViewportChange((isMobile) => setMode(isMobile ? 'AGENDA' : 'MONTH'));
+    // Also update on window resize as a coarse fallback
+    const onResize = () => setMode(isMobileViewport() ? 'AGENDA' : 'MONTH');
+    window.addEventListener('resize', onResize);
     return () => {
-      mq.removeEventListener?.('change', update);
-      window.removeEventListener('resize', update);
+      dispose();
+      window.removeEventListener('resize', onResize);
     };
   }, []);
 
-  const embedSrc = buildEmbedSrc(CALENDAR_ID, TIME_ZONE, mode);
+  const embedSrc = buildGoogleCalendarEmbedSrc(CALENDAR_ID, TIME_ZONE, mode);
 
   return (
     <PageContainer>

@@ -8,6 +8,7 @@ import {
   FloatingLogo,
 } from '../styles/HomePage.styles';
 import { useEffect, useRef, useState } from 'react';
+import { MOBILE_QUERY } from '../utils/responsive';
 import Menu from '../components/Menu';
 import SafeImg from '../components/SafeImg';
 import MobileActionCard from '../components/MobileActionCard';
@@ -21,7 +22,7 @@ const Home = () => {
 
   useEffect(() => {
     // Detect mobile viewport and keep updated
-    const mql = window.matchMedia('(max-width: 768px)');
+  const mql = window.matchMedia(MOBILE_QUERY);
     const updateIsMobile = () => {
       isMobileRef.current = mql.matches;
       // If we switch to desktop, hide the logo
@@ -40,8 +41,8 @@ const Home = () => {
       if (!title) return;
       const rect = title.getBoundingClientRect();
       // Show logo when title has moved up by threshold
-      const shouldShow = rect.top < -thresholdPx || rect.bottom <= 0;
-      // Simple hysteresis: if currently visible, keep until we pass back below threshold - hysteresis
+  const shouldShow = rect.top < -thresholdPx || rect.bottom <= 0;
+  // Simple hysteresis: if currently visible, keep until we pass back below threshold - hysteresis
   setShowFloatingLogo(shouldShow ? true : rect.top < -(thresholdPx - hysteresis) ? true : false);
     };
 

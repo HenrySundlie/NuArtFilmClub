@@ -8,6 +8,7 @@ import styled from '@emotion/styled';
 import { theme } from './theme';
 import { Global } from '@emotion/react';
 import { useEffect, useMemo, useState } from 'react';
+import { isMobileViewport, onViewportChange } from './utils/responsive';
 
 const globalStyles = `
   html, body {
@@ -61,19 +62,11 @@ export default function App() {
 function MenuVisibilityController() {
   const location = useLocation();
   const [isMobile, setIsMobile] = useState<boolean>(() =>
-    typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false
+  isMobileViewport()
   );
 
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    const listener = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    // For Safari support of older spec
-    if (mq.addEventListener) mq.addEventListener('change', listener);
-    else mq.addListener(listener);
-    return () => {
-      if (mq.removeEventListener) mq.removeEventListener('change', listener);
-      else mq.removeListener(listener);
-    };
+  return onViewportChange(setIsMobile);
   }, []);
 
   const isHome = useMemo(() => {

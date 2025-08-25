@@ -1,7 +1,7 @@
 // src/components/AddAllToCalendarButton.tsx
 import { LinkButton } from './LinkButton';
 
-export default function AddAllToGoogleSubscribeButton({
+export function AddAllToCalendarButton({
   feedUrl, // e.g. 'https://your.site/nuart_schedule.ics'
   calendarId, // e.g. 'yourid@group.calendar.google.com'
   label = 'Add all in Google Calendar',
@@ -19,3 +19,6 @@ export default function AddAllToGoogleSubscribeButton({
     </LinkButton>
   );
 }
+
+// Backward compatibility default export
+export default AddAllToCalendarButton;

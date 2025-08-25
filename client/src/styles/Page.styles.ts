@@ -35,48 +35,7 @@ export const PageContainer = styled.div`
 // Hero / Header Image Components
 // ============================================================================
 
-export const HeaderImageContainer = styled.figure`
-  position: relative;
-  width: 100%;
-  height: clamp(280px, 38vh, 560px);
-  margin: 0;
-  overflow: clip;
-  border-radius: 0;
-  isolation: isolate;
-  box-shadow: var(--shadow-lg);
-
-  /* Top fade for legible titles */
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0 0 60%;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.65),
-      transparent 70%
-    );
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* Bottom fade into page */
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 65% 0 0;
-    background: linear-gradient(
-      to top,
-      ${theme.colors.background},
-      transparent 55%
-    );
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  ${theme.breakpoints.mobile} {
-    height: clamp(220px, 32vh, 380px);
-  }
-`;
+// Header image container has a dedicated variant in HomePage.styles
 
 // ============================================================================
 // Content Area Components

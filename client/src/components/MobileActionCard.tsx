@@ -78,10 +78,10 @@ const ContentContainer = styled.div`
 `;
 
 const IconContainer = styled.div<{ position: 'left' | 'right' }>`
-  width: clamp(60px, 9.2vw, 74px);
-  height: clamp(60px, 9.2vw, 74px);
+  width: clamp(66px, 10.2vw, 82px);
+  height: clamp(66px, 10.2vw, 82px);
   background: ${theme.colors.nuartBlue};
-  border-radius: 18px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,8 +209,8 @@ const MobileActionCard: React.FC = () => {
         {activeTab === 'upcoming' ? (
           <>
       <Link to="/NuArtFilmClub/films" aria-label="View films" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
-              <IconContainer position="left">
-        <FiFilm style={{ width: '62%', height: '62%' }} color="white" strokeWidth={1} />
+      <IconContainer position="left">
+    <FiFilm style={{ width: '70%', height: '70%' }} color="white" strokeWidth={1} />
               </IconContainer>
             </Link>
             <TextContent position="right">
@@ -223,8 +223,8 @@ const MobileActionCard: React.FC = () => {
               View all scheduled films
             </TextContent>
       <Link to="/NuArtFilmClub/calendar" aria-label="View calendar" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
-              <IconContainer position="right">
-        <FiCalendar style={{ width: '62%', height: '62%' }} color="white" strokeWidth={1} />
+      <IconContainer position="right">
+    <FiCalendar style={{ width: '70%', height: '70%' }} color="white" strokeWidth={1} />
               </IconContainer>
             </Link>
           </>
