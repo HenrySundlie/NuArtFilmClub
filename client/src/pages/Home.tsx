@@ -13,11 +13,13 @@ import Menu from '../components/Menu';
 import SafeImg from '../components/SafeImg';
 import MobileActionCard from '../components/MobileActionCard';
 import MainStreetImage from '/images/Main Street east side_0001 cropped.jpg';
+import NuartOnMainStreet from '/images/NuartonMainStreetCropped.jpg';
 import homeMd from '../content/home.md?raw';
 
 const Home = () => {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
   const [showFloatingLogo, setShowFloatingLogo] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const isMobileRef = useRef<boolean>(false);
 
   useEffect(() => {
@@ -25,6 +27,7 @@ const Home = () => {
   const mql = window.matchMedia(MOBILE_QUERY);
     const updateIsMobile = () => {
       isMobileRef.current = mql.matches;
+      setIsMobile(mql.matches);
       // If we switch to desktop, hide the logo
       if (!isMobileRef.current) {
         setShowFloatingLogo(false);
@@ -63,7 +66,7 @@ const Home = () => {
           NU ART FILM CLUB
         </PageTitle>
         <SafeImg
-          src={MainStreetImage}
+          src={isMobile ? NuartOnMainStreet : MainStreetImage}
           alt="Historic Main Street"
           loading="lazy"
         />

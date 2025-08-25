@@ -11,7 +11,7 @@ export const theme = {
     background: '#1C1C1C',
     surface: '#282828',
   // Extra-deep surface for controls like menu icon and mobile action card
-  surfaceDeep: '#121212',
+  surfaceDeep: '#0B0B0B',
     highlight: '#3C3C3C',
     text: {
       primary: '#F5F5F5',

@@ -6,7 +6,7 @@ import { theme } from '../theme';
 // CSS Custom Properties
 // ============================================================================
 
-export const HEADER_IMAGE_HEIGHT = '40vh';
+export const HEADER_IMAGE_HEIGHT = '50vh';
 export const MOBILE_CARD_HEIGHT = '160px';
 
 // ============================================================================

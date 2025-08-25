@@ -45,7 +45,8 @@ export const Title = styled.h1`
   -webkit-background-clip: initial;
   background-clip: initial;
   position: relative;
-  z-index: 2000;
+  /* Ensure the title does not sit above global UI like the floating menu icon */
+  z-index: 0;
   text-wrap: balance;
 `;
 
@@ -54,8 +55,12 @@ export const FilmGrid = styled.div`
   margin: 0 auto;
   display: grid;
   gap: clamp(${theme.spacing.md}, 2.5vw, ${theme.spacing.lg});
-  /* Horizontal cards typically look best in a single-column list */
+  /* Two columns on desktop for smaller horizontal cards; single column on mobile */
   grid-template-columns: 1fr;
+
+  ${theme.breakpoints.desktop} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
   ${theme.breakpoints.mobile} {
     gap: ${theme.spacing.md};
@@ -65,7 +70,8 @@ export const FilmGrid = styled.div`
 export const FilmCard = styled(Link)`
   position: relative;
   display: grid;
-  grid-template-columns: clamp(140px, 28%, 280px) 1fr;
+  /* Make desktop cards closer to mobile sizing */
+  grid-template-columns: clamp(110px, 22%, 180px) 1fr;
   align-items: stretch;
   text-decoration: none;
   border-radius: ${theme.radii.md};
@@ -76,7 +82,7 @@ export const FilmCard = styled(Link)`
   transition:
     filter 220ms ease,
     background 220ms ease;
-  min-height: clamp(180px, 22vw, 260px);
+  min-height: clamp(150px, 18vw, 180px);
 
   &:hover {
     background: ${theme.surfaces.subtleOverlay}, ${theme.colors.surface};
