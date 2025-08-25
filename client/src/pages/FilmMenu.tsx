@@ -23,24 +23,38 @@ const FilmMenu = observer(() => {
     <Container>
       <Title>Upcoming Films</Title>
       <FilmGrid>
-        {filmStore.films.map((film) => (
-          <FilmCard to={`/NuArtFilmClub/film/${film.id}`} key={film.id}>
-            <FilmImage src={film.img} alt={film.title} />
-            <FilmInfo>
-              <FilmTitle>{film.title}</FilmTitle>
-              <FilmDate>{new Date(film.runDate).toLocaleDateString()}</FilmDate>
-              <FilmTime>{film.runTime}</FilmTime>
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(film.ticketLink, '_blank', 'noopener,noreferrer');
-                }}
-              >
-                Buy Tickets
-              </Button>
-            </FilmInfo>
-          </FilmCard>
-        ))}
+        {[...filmStore.films]
+          .sort(
+            (a, b) =>
+              new Date(a.runDate).getTime() - new Date(b.runDate).getTime()
+          )
+          .map((film) => (
+            <FilmCard to={`/NuArtFilmClub/film/${film.id}`} key={film.id}>
+              <FilmImage src={film.img} alt={film.title} loading="lazy" />
+              <FilmInfo>
+                <FilmTitle>{film.title}</FilmTitle>
+                <FilmDate>
+                  {new Date(film.runDate).toLocaleDateString()}
+                </FilmDate>
+                <FilmTime>{film.runTime}</FilmTime>
+                <Button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (film.ticketLink) {
+                      window.open(
+                        film.ticketLink,
+                        '_blank',
+                        'noopener,noreferrer'
+                      );
+                    }
+                  }}
+                >
+                  Buy Tickets
+                </Button>
+              </FilmInfo>
+            </FilmCard>
+          ))}
       </FilmGrid>
     </Container>
   );

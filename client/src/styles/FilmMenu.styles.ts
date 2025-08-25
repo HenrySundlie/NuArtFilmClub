@@ -29,8 +29,8 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   margin: 0 0 clamp(${theme.spacing.lg}, 3vw, ${theme.spacing.xl});
-  text-align: center;
-  letter-spacing: 0.06em;
+  text-align: left;
+  letter-spacing: 0.04em;
   line-height: 1.08;
   font-weight: 400;
   font-size: clamp(
@@ -39,22 +39,25 @@ export const Title = styled.h1`
     ${theme.typography.h1.fontSize}
   );
 
-  color: transparent;
-  background: ${theme.textStyles.gradientPrimary};
-  -webkit-background-clip: text;
-  background-clip: text;
+  /* Solid white title, above overlays */
+  color: #ffffff;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  position: relative;
+  z-index: 2000;
   text-wrap: balance;
 `;
 
 export const FilmGrid = styled.div`
-  max-width: 1300px;
+  max-width: 1100px;
   margin: 0 auto;
   display: grid;
   gap: clamp(${theme.spacing.md}, 2.5vw, ${theme.spacing.lg});
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  /* Horizontal cards typically look best in a single-column list */
+  grid-template-columns: 1fr;
 
   ${theme.breakpoints.mobile} {
-    grid-template-columns: 1fr;
     gap: ${theme.spacing.md};
   }
 `;
@@ -62,7 +65,8 @@ export const FilmGrid = styled.div`
 export const FilmCard = styled(Link)`
   position: relative;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: clamp(140px, 28%, 280px) 1fr;
+  align-items: stretch;
   text-decoration: none;
   border-radius: ${theme.radii.md};
   overflow: clip;
@@ -72,6 +76,7 @@ export const FilmCard = styled(Link)`
   transition:
     filter 220ms ease,
     background 220ms ease;
+  min-height: clamp(180px, 22vw, 260px);
 
   &:hover {
     background: ${theme.surfaces.subtleOverlay}, ${theme.colors.surface};
@@ -82,11 +87,16 @@ export const FilmCard = styled(Link)`
     outline: var(--ring);
     outline-offset: 3px;
   }
+
+  ${theme.breakpoints.mobile} {
+    grid-template-columns: clamp(110px, 40%, 180px) 1fr;
+    min-height: 160px;
+  }
 `;
 
 export const FilmImage = styled.img`
   width: 100%;
-  aspect-ratio: 2 / 3;
+  height: 100%;
   object-fit: cover;
   display: block;
   filter: saturate(1.03) contrast(1.02);
@@ -98,16 +108,17 @@ export const FilmImage = styled.img`
   }
 
   ${theme.breakpoints.mobile} {
-    aspect-ratio: auto;
-    height: auto;
+    height: 100%;
   }
 `;
 
 export const FilmInfo = styled.div`
   padding: clamp(${theme.spacing.md}, 2vw, ${theme.spacing.lg});
   display: grid;
+  align-content: center;
   gap: calc(${theme.spacing.sm} * 0.75);
   color: ${theme.colors.text.primary};
+  min-width: 0; /* allow text truncation/clamping */
 `;
 
 export const FilmTitle = styled.h2`

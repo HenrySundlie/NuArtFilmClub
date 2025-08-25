@@ -12,18 +12,5 @@
     "runDate": "2025-08-17",
     "runTime": "19:00",
     "ticketLink": "https://example.com/tickets/1"
-  },
-  {
-    "id": 2,
-    "title": "Another Film",
-    "year": 2024,
-    "description": "A second placeholder film entry.",
-    "director": "Jane Doe",
-    "actors": ["Alice Johnson", "Bob Smith"],
-    "duration": 90,
-    "img": "/NuArtFilmClub/images/Main Street east side.jpg",
-    "runDate": "2024-05-01",
-    "runTime": "21:00",
-    "ticketLink": "https://example.com/tickets/2"
   }
 ]
