@@ -17,6 +17,14 @@ export const CalendarHeader = styled.div`
   }
 `;
 
+// Utility wrappers for responsive-only content
+export const MobileOnly = styled.div`
+  display: none;
+  ${theme.breakpoints.mobile} {
+    display: inline-flex;
+  }
+`;
+
 export const NavGroup = styled.div`
   display: inline-flex;
   gap: ${theme.spacing.sm};
@@ -215,5 +223,16 @@ export const UpcomingItem = styled(Link)`
     grid-template-columns: 1fr;
     gap: ${theme.spacing.xs};
     padding: 0.8rem 0.9rem;
+  }
+`;
+
+// Responsive iframe that fits within the screen on mobile
+export const CalendarIframe = styled.iframe`
+  border: 0;
+  width: 100%;
+  height: min(800px, 80dvh);
+  ${theme.breakpoints.mobile} {
+  /* Make the window more square on mobile by reducing height */
+  height: min(560px, 60dvh);
   }
 `;

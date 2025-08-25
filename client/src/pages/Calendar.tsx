@@ -1,137 +1,83 @@
 // src/pages/Calendar.tsx
-import { useEffect, useMemo, useState } from 'react';
-import { filmStore } from '../stores/FilmStore';
+import { useEffect, useState } from 'react';
 import { PageContainer, Content, PageTitle } from '../styles/Page.styles';
-import {
-  CalendarHeader,
-  NavGroup,
-  NavBtn,
-  MonthTitle,
-  Grid,
-  Weekday,
-  DayCell,
-  DayNumber,
-  EventList,
-  EventChip,
-} from '../styles/Calendar.styles';
 import AddAllToCalendarButton from '../components/AddAllToCalendarButton';
+import { CalendarHeader, CalendarIframe } from '../styles/Calendar.styles';
+import { theme } from '../theme';
 
-type Film = {
-  id: number;
-  title: string;
-  runDate?: string; // YYYY-MM-DD
-  runTime?: string; // HH:MM
-};
+// ENTER YOUR GOOGLE CALENDAR ID BELOW (public calendar ID, e.g. "yourid@group.calendar.google.com")
+// You can also add multiple calendars in the embed if desired.
+const CALENDAR_ID = 'c_34821a5cf523c9ad8cecec2ea2278e3228e4b9c5da9e1851b5883c13b82bf07e@group.calendar.google.com';
+const TIME_ZONE = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
 
-const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+type CalendarMode = 'MONTH' | 'WEEK' | 'AGENDA';
 
-// ---- date utils
-const strip = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
-const ymd = (d: Date) =>
-  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-const startOfMonth = (d: Date) => new Date(d.getFullYear(), d.getMonth(), 1);
-const addMonths = (d: Date, m: number) =>
-  new Date(d.getFullYear(), d.getMonth() + m, 1);
-const addDays = (d: Date, n: number) =>
-  new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
-const startOfGrid = (d: Date) => {
-  const s = startOfMonth(d);
-  const day = s.getDay(); // 0 = Sun
-  return addDays(s, -day); // grid starts on Sunday
-};
-
-function fmtLong(iso?: string) {
-  if (!iso) return '';
-  const d = new Date(`${iso}T00:00:00`);
-  return d.toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+function buildEmbedSrc(calendarId: string, timeZone: string, mode: CalendarMode) {
+  const params = new URLSearchParams({
+    src: calendarId,
+    ctz: timeZone,
+    mode,
+    showPrint: '0',
+    showTz: '0',
+    showCalendars: '0',
+    showTabs: '1',
+    height: '600',
+    wkst: '1',
+    // Use a dark background to better blend with the site theme. Note: Google Calendar's
+    // internal light/dark theme can't be forced via URL params; this just sets the page bg.
+    bgcolor: theme.colors.background,
   });
+  return `https://calendar.google.com/calendar/embed?${params.toString()}`;
 }
 
 export default function Calendar() {
-  const [month, setMonth] = useState(() => strip(new Date()));
-  const todayStr = ymd(new Date());
+  const getInitialMode = (): CalendarMode =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+      ? 'AGENDA'
+      : 'MONTH';
+  const [mode, setMode] = useState<CalendarMode>(getInitialMode);
 
   useEffect(() => {
-    if (filmStore.films.length === 0) filmStore.fetchFilms();
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => setMode(mq.matches ? 'AGENDA' : 'MONTH');
+    // Ensure correct on mount and on changes
+    update();
+    mq.addEventListener?.('change', update);
+    // Fallback for older browsers
+    window.addEventListener('resize', update);
+    return () => {
+      mq.removeEventListener?.('change', update);
+      window.removeEventListener('resize', update);
+    };
   }, []);
 
-  // Map events by date string
-  const eventsByDate = useMemo(() => {
-    const map = new Map<string, Film[]>();
-    for (const f of filmStore.films as Film[]) {
-      if (!f.runDate) continue;
-      const key = f.runDate.includes('T') ? f.runDate.slice(0, 10) : f.runDate;
-      map.set(key, [...(map.get(key) ?? []), f]);
-    }
-    // sort events by time if present
-    for (const [k, arr] of map) {
-      arr.sort((a, b) => ((a.runTime ?? '') < (b.runTime ?? '') ? -1 : 1));
-      map.set(k, arr);
-    }
-    return map;
-  }, []);
-
-  // Build 6-week grid
-  const gridDays = useMemo(() => {
-    const start = startOfGrid(month);
-    return Array.from({ length: 42 }, (_, i) => addDays(start, i));
-  }, [month]);
+  const embedSrc = buildEmbedSrc(CALENDAR_ID, TIME_ZONE, mode);
 
   return (
     <PageContainer>
       <Content>
-  <PageTitle fontWeight={400}>Calendar</PageTitle>
-
         <CalendarHeader>
-          <NavGroup>
-            <NavBtn onClick={() => setMonth((m) => addMonths(m, -1))} aria-label="Previous month">←</NavBtn>
-            <NavBtn onClick={() => setMonth(() => strip(new Date()))} aria-label="Jump to today">Today</NavBtn>
-            <NavBtn onClick={() => setMonth((m) => addMonths(m, 1))} aria-label="Next month">→</NavBtn>
-          </NavGroup>
-          <MonthTitle>
-            {month.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}
-          </MonthTitle>
-          <div>
-            <AddAllToCalendarButton />
+          <PageTitle fontWeight={500} style={{ marginBottom: 0, textAlign: 'left' }}>Calendar</PageTitle>
+          <div style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <AddAllToCalendarButton
+              calendarId={CALENDAR_ID}
+              label="Add to Google Calendar"
+            />
           </div>
         </CalendarHeader>
 
-        <Grid role="table" aria-label="Monthly calendar">
-          {WEEKDAYS.map((d) => (
-            <Weekday role="columnheader" key={d}>
-              {d}
-            </Weekday>
-          ))}
-
-          {gridDays.map((d) => {
-            const key = ymd(d);
-            const inMonth = d.getMonth() === month.getMonth();
-            const isToday = key === todayStr;
-            const items = eventsByDate.get(key) ?? [];
-            return (
-              <DayCell
-                key={key}
-                $other={!inMonth}
-                $today={isToday}
-                role="cell"
-                aria-selected={isToday}
-              >
-                <DayNumber aria-label={fmtLong(key)}>{d.getDate()}</DayNumber>
-                <EventList>
-                  {items.map((ev) => (
-                    <EventChip to={`/NuArtFilmClub/film/${ev.id}`} key={ev.id}>
-                      <span className="time">{ev.runTime ?? ''}</span>
-                      <span>{ev.title}</span>
-                    </EventChip>
-                  ))}
-                </EventList>
-              </DayCell>
-            );
-          })}
-        </Grid>
+        {/* Embedded Google Calendar. Users can click events to view and add single events. */}
+        <div style={{ position: 'relative', paddingBottom: '0', height: 'auto' }}>
+          <CalendarIframe
+            title="NuArt Film Society Calendar"
+            src={embedSrc}
+            frameBorder={0}
+            scrolling="no"
+          />
+        </div>
+        <p style={{ marginTop: '0.5rem', opacity: 0.8 }}>
+          Tip: Click an event to view details and add it to your personal calendar.
+        </p>
       </Content>
     </PageContainer>
   );
