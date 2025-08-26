@@ -15,6 +15,7 @@ import MobileActionCard from '../components/MobileActionCard';
 import MainStreetImage from '/images/Main Street east side_0001 cropped.jpg';
 import NuartOnMainStreet from '/images/NuartonMainStreetCropped.jpg';
 import homeMd from '../content/home.md?raw';
+import TEST from '../components/TEST';
 
 const Home = () => {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -83,6 +84,7 @@ const Home = () => {
           <ReactMarkdown>{homeMd}</ReactMarkdown>
         </ContentText>
       </ContentSection>
+      <TEST />
     </>
   );
 };
