@@ -159,7 +159,6 @@ const MobileActionCard: React.FC = () => {
       const currentY = e.touches[0].clientY;
       const diffX = startX - currentX;
       const diffY = startY - currentY;
-      
       // Only trigger if horizontal swipe is more significant than vertical
       if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
         if (diffX > 0) {
