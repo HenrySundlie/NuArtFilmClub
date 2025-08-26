@@ -11,5 +11,6 @@ export default defineConfig({
       },
     }),
   ],
-  base: '/NuArtFilmClub/',
+  // Deploy at domain root
+  base: '/',
 });

@@ -7,8 +7,8 @@
     "director": "Peter Weir",
     "actors": ["Russell Crowe", "Paul Bettany", "James D'Arcy", "Billy Boyd"],
     "duration": 138,
-    "img": "/NuArtFilmClub/images/Master_and_Commander-The_Far_Side_of_the_World_poster.png",
-    "background": "/NuArtFilmClub/images/master-and-commander-backdrop.png",
+  "img": "/images/Master_and_Commander-The_Far_Side_of_the_World_poster.png",
+  "background": "/images/master-and-commander-backdrop.png",
     "runDate": "2025-08-17",
     "runTime": "19:00",
     "ticketLink": "https://example.com/tickets/1"

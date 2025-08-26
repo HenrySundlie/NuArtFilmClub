@@ -207,7 +207,7 @@ const MobileActionCard: React.FC = () => {
       <ContentContainer>
         {activeTab === 'upcoming' ? (
           <>
-      <Link to="/NuArtFilmClub/films" aria-label="View films" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
+  <Link to="/films" aria-label="View films" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
       <IconContainer position="left">
     <FiFilm style={{ width: '70%', height: '70%' }} color="white" strokeWidth={1} />
               </IconContainer>
@@ -221,7 +221,7 @@ const MobileActionCard: React.FC = () => {
             <TextContent position="left">
               View all scheduled films
             </TextContent>
-      <Link to="/NuArtFilmClub/calendar" aria-label="View calendar" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
+  <Link to="/calendar" aria-label="View calendar" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
       <IconContainer position="right">
     <FiCalendar style={{ width: '70%', height: '70%' }} color="white" strokeWidth={1} />
               </IconContainer>

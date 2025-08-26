@@ -49,10 +49,10 @@ export default function App() {
       <AppContainer>
         <MenuVisibilityController />
         <Routes>
-          <Route path="/NuArtFilmClub/" element={<Home />} />
-          <Route path="/NuArtFilmClub/calendar" element={<Calendar />} />
-          <Route path="/NuArtFilmClub/films" element={<FilmMenu />} />
-          <Route path="/NuArtFilmClub/film/:id" element={<FilmPage />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/films" element={<FilmMenu />} />
+          <Route path="/film/:id" element={<FilmPage />} />
         </Routes>
       </AppContainer>
     </Router>
@@ -71,7 +71,7 @@ function MenuVisibilityController() {
 
   const isHome = useMemo(() => {
     const p = location.pathname.replace(/\/?$/, '/');
-    return p === '/NuArtFilmClub/';
+  return p === '/';
   }, [location.pathname]);
 
   if (isHome && isMobile) return null;

@@ -29,7 +29,7 @@ const FilmMenu = observer(() => {
               new Date(a.runDate).getTime() - new Date(b.runDate).getTime()
           )
           .map((film) => (
-            <FilmCard to={`/NuArtFilmClub/film/${film.id}`} key={film.id}>
+            <FilmCard to={`/film/${film.id}`} key={film.id}>
               <FilmImage src={film.img} alt={film.title} loading="lazy" />
               <FilmInfo>
                 <FilmTitle>{film.title}</FilmTitle>

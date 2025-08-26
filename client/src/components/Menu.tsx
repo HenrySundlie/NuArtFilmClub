@@ -51,9 +51,9 @@ export default function Menu({ visibleOverride }: MenuProps) {
         <div />
       </MenuIcon>
       <MenuCard isOpen={isOpen} ref={menuCardRef} visible={shouldShowIcon}>
-        <NavLink to="/NuArtFilmClub/" onClick={closeMenu}>Home</NavLink>
-        <NavLink to="/NuArtFilmClub/calendar" onClick={closeMenu}>Calendar</NavLink>
-        <NavLink to="/NuArtFilmClub/films" onClick={closeMenu}>Films</NavLink>
+  <NavLink to="/" onClick={closeMenu}>Home</NavLink>
+  <NavLink to="/calendar" onClick={closeMenu}>Calendar</NavLink>
+  <NavLink to="/films" onClick={closeMenu}>Films</NavLink>
       </MenuCard>
     </>
   );
