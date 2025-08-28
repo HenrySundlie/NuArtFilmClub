@@ -1,36 +1,27 @@
-# Welcome to Nu Art Film Society
-
-Founded in the heart of historic Main Street, Nu Art Film Society has been a cornerstone of cinematic culture in our community for over two decades. Our mission is to bring the finest independent, foreign, and classic films to audiences who appreciate the art of storytelling through moving images.
-
 ## Our Mission
 
-We believe that cinema is more than entertainment—it's a window into different cultures, perspectives, and human experiences. Through carefully curated film selections, we aim to challenge, inspire, and connect our community through the shared experience of watching great films together.
+Founded in 2025, the Nu Art Film Club seeks to revive the Nuart theatre’s historic role in entertaining the local community with that great American art form: cinema. Our mission is to educate our viewers in discernment regarding the art of motion pictures, to interpret cultural narratives and iconography with thoughtfulness, testing the ways of the world against the culture of Christ.
 
 ## What We Offer
 
-- **Monthly Film Screenings:** Carefully selected films from around the world, ranging from contemporary masterpieces to timeless classics
-- **Discussion Groups:** Post-screening conversations led by film scholars and enthusiasts
-- **Special Events:** Film festivals, director retrospectives, and themed programming
-- **Community Outreach:** Educational programs and partnerships with local schools
+**Monthly Screenings**: carefully selected films, whether contemporary or timeless classics, Christian or secular.
 
-## Our Venue
+**Discussion Groups**: Post-screening conversations led by scholars and enthusiasts
 
-Located in the historic district of Main Street, our screening room combines modern projection technology with the intimate atmosphere of a classic movie house. The space accommodates up to 80 guests, ensuring an intimate and engaging viewing experience for every screening.
+**Community Outreach**: Educational programs and partnerships with local schools
 
-## Membership Benefits
+## The Venue
 
-As a member of Nu Art Film Society, you'll receive priority access to all screenings, exclusive member-only events, and a quarterly newsletter featuring film recommendations and behind-the-scenes content. Membership also includes discounts on special events and merchandise.
+The Nuart Theatre was built in 1935 on main street in Moscow, Idaho, by Milburn Kenworthy, a figure noted in the community for his contributions to local entertainment. Over the decades the Nuart building has hosted a variety of community services: everything from a vegan juice bar, a Christian bookstore, several churches, and New Saint Andrews college. In 2019 Nate Wilson and Aaron Rench, working with Harby + Points Design, received the local Orchid Award for renovating the building while preserving some of its original Art Deco spirit. The theatre has around 360 seats.
 
-## Join Our Community
+## Join Us
 
-Whether you're a lifelong cinephile or just beginning your journey into the world of independent cinema, there's a place for you at Nu Art Film Society. Our diverse membership includes film students, industry professionals, and passionate movie lovers of all backgrounds.
+The Nu Art Film Club is seeking support to bring great cinematic experiences to Moscow. Please reach out to us if you see an opportunity for an advertising sponsorship, financial contribution, or other forms of partnership.
 
 ## Upcoming Events
 
-Check our calendar for the latest screening schedule, special events, and community gatherings. We regularly update our programming to reflect current events, seasonal themes, and member requests. Follow us on social media for real-time updates and behind-the-scenes content.
+Check our calendar for the latest screening schedule and our social media for special events and discussion groups.
 
 ## Contact Information
 
-For questions about membership, upcoming screenings, or general inquiries, please don't hesitate to reach out. Our dedicated team of volunteers is always happy to help you discover your next favorite film and become part of our growing cinematic community.
-
-_**Nu Art Film Society—where every screening is an adventure, every discussion is an opportunity, and every member is part of our story.**_
+You can reach out to us through [Facebook](https://www.facebook.com/nuarttheatermoscow) or [Instagram](https://www.instagram.com/nuartfilmclub).

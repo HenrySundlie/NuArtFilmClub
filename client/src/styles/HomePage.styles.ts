@@ -255,6 +255,13 @@ export const ContentText = styled.div`
     margin-bottom: ${theme.spacing.sm};
   }
 
+  /* Ensure links are visibly underlined within content */
+  a {
+    color: ${theme.colors.link};
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
   /* Improve readability on smaller screens */
   ${theme.breakpoints.mobile} {
   p { text-align: left; hyphens: auto; }
