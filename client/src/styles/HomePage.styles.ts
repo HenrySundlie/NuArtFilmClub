@@ -22,8 +22,6 @@ export const HeaderImageContainer = styled.div<{ darkFade?: boolean }>`
   position: relative;
   width: 100vw;
   height: var(--header-image-height);
-  /* Raise stacking to ensure fade overlay can sit above page content */
-  z-index: 1000;
   
   /* Full-width positioning to break out of container constraints */
   margin-left: calc(-50vw + 50%);
@@ -53,6 +51,26 @@ export const HeaderImageContainer = styled.div<{ darkFade?: boolean }>`
     pointer-events: none;
   }
 
+  /* Bottom fade overlay to ease the image into the background (desktop only) */
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  height: clamp(160px, 24vh, 300px);
+    background: linear-gradient(
+      to bottom,
+  rgba(28, 28, 28, 0) 0%,
+  rgba(28, 28, 28, 0.75) 50%,
+  rgba(28, 28, 28, 0.9) 85%,
+  ${theme.colors.background} 100%
+    );
+  z-index: 8; /* Below content so text is readable in the overlap */
+    pointer-events: none;
+    opacity: 0; /* hidden by default; enabled on desktop */
+  }
+
   /* Soft vignette effect for better image integration */
   &:has(img) {
     box-shadow:
@@ -67,12 +85,10 @@ export const HeaderImageContainer = styled.div<{ darkFade?: boolean }>`
     position: relative;
   }
   
-  /* Ensure this container doesn't interfere with document flow */
-  &::after {
-    content: '';
-    display: block;
-    height: 0;
-    clear: both;
+  /* Desktop-specific adjustments */
+  ${theme.breakpoints.desktop} {
+  height: 72vh; /* image goes further down on desktop */
+    &::after { opacity: 1; }
   }
 `;
 
@@ -106,6 +122,15 @@ export const PageTitle = styled.h1<{
   background-clip: text;
   text-wrap: balance;
   z-index: 3;
+
+  /* Desktop-only: make the Home title a little bigger */
+  ${theme.breakpoints.desktop} {
+    font-size: clamp(
+      ${theme.typography.h1.mobile.fontSize},
+      4vw,
+      3.25rem
+    );
+  }
 
   ${({ overlay }) =>
     overlay
@@ -167,6 +192,59 @@ export const FloatingLogo = styled.div<{ visible?: boolean }>`
 `;
 
 // ============================================================================
+// Title Actions (Desktop-only navigation under the title)
+// ============================================================================
+
+export const TitleActions = styled.nav`
+  position: absolute;
+  /* Align with the title's top position, offset slightly for baseline alignment */
+  top: calc(${theme.spacing.lg} + 6px);
+  right: clamp(40px, 6vw, 120px);
+  z-index: 1002; /* above fade overlays */
+  display: none; /* hidden by default */
+
+  /* Inline group of text links */
+  display: none;
+  gap: ${theme.spacing.lg};
+  padding: 0;
+  background: transparent;
+  border: 0;
+
+  ${theme.breakpoints.mobile} {
+    display: none;
+  }
+
+  ${theme.breakpoints.desktop} {
+    display: flex;
+  }
+`;
+
+export const TitleActionButton = styled('a')`
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  font-weight: 600;
+  color: ${theme.colors.text.primary};
+  transition: ${theme.transitions.default};
+  /* Larger text and hit area */
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
+  padding: 6px 10px;
+  line-height: 1.2;
+
+  &:hover {
+    color: ${theme.colors.secondary};
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  &:focus-visible {
+    outline: ${theme.shadows.focus};
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+`;
+
+// ============================================================================
 // Content Section
 // ============================================================================
 
@@ -175,7 +253,7 @@ export const FloatingLogo = styled.div<{ visible?: boolean }>`
  * Provides proper spacing from the mobile action card and flows with page scroll
  */
 export const ContentSection = styled.section`
-  padding: ${theme.spacing.xl} ${theme.spacing.md};
+  padding: ${theme.spacing.md} ${theme.spacing.md} ${theme.spacing.xl};
   max-width: 1200px;
   margin: 0 auto;
   
@@ -185,7 +263,7 @@ export const ContentSection = styled.section`
   
   /* Ensure content appears above the header image section and flows properly */
   position: relative;
-  z-index: 10;
+  z-index: 20; /* allow overlap above the image on desktop */
   
   /* Clear any floating or positioning issues */
   clear: both;
@@ -212,6 +290,14 @@ export const ContentSection = styled.section`
   /* Use a comfortable default body size on mobile (about 16px) */
   font-size: ${theme.typography.body.mobile?.fontSize ?? '16px'};
     /* max-height: 50vh; */
+  }
+
+  /* Desktop: bring text closer to the image */
+  ${theme.breakpoints.desktop} {
+  /* Pull content upwards even further; keep it responsive and bounded */
+  margin-top: clamp(-192px, -15vh, -96px);
+  /* Keep a little breathing room from the image edge, responsive */
+  padding-top: clamp(8px, 1.2vh, 16px);
   }
 `;
 
@@ -268,5 +354,13 @@ export const ContentText = styled.div`
   h2, h3 { margin-top: ${theme.spacing.md}; }
   & > :first-of-type { margin-top: 0; }
   ul, ol { margin: ${theme.spacing.sm} 0 ${theme.spacing.md}; }
+  }
+
+  /* Desktop measure: limit to ~70 characters per line for readability */
+  ${theme.breakpoints.desktop} {
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
+    p { text-align: left; text-wrap: pretty; }
   }
 `;

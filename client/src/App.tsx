@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 import Home from './pages/Home';
 const Calendar = lazy(() => import('./pages/Calendar'));
 const FilmMenu = lazy(() => import('./pages/FilmMenu'));
@@ -8,7 +8,7 @@ import Menu from './components/Menu';
 import styled from '@emotion/styled';
 import { theme } from './theme';
 import { Global } from '@emotion/react';
-import { isMobileViewport, onViewportChange } from './utils/responsive';
+// import { isMobileViewport, onViewportChange } from './utils/responsive';
 
 const globalStyles = `
   html, body {
@@ -63,19 +63,14 @@ export default function App() {
 
 function MenuVisibilityController() {
   const location = useLocation();
-  const [isMobile, setIsMobile] = useState<boolean>(() =>
-  isMobileViewport()
-  );
-
-  useEffect(() => {
-  return onViewportChange(setIsMobile);
-  }, []);
+  // No need to track viewport here since we never show Menu on Home regardless of viewport.
 
   const isHome = useMemo(() => {
     const p = location.pathname.replace(/\/?$/, '/');
-  return p === '/';
+    return p === '/';
   }, [location.pathname]);
 
-  if (isHome && isMobile) return null;
+  // Never show global Menu on the Home route. Home page manages its own mobile menu.
+  if (isHome) return null;
   return <Menu />;
 }

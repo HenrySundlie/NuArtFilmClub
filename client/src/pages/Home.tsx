@@ -7,6 +7,8 @@ import {
   ContentSection,
   ContentText,
   FloatingLogo,
+  TitleActions,
+  TitleActionButton,
 } from '../styles/HomePage.styles';
 import { useEffect, useRef, useState } from 'react';
 import { MOBILE_QUERY } from '../utils/responsive';
@@ -66,6 +68,13 @@ const Home = () => {
         <PageTitle ref={titleRef} fontWeight={400} letterSpacing="0.5rem" as="h1" overlay>
           NU ART FILM CLUB
         </PageTitle>
+        {/* Desktop-only quick navigation under the title */}
+        {!isMobile && (
+          <TitleActions aria-label="Primary navigation">
+            <TitleActionButton href="/calendar">Calendar</TitleActionButton>
+            <TitleActionButton href="/films">Films</TitleActionButton>
+          </TitleActions>
+        )}
         <SafeImg
           src={isMobile ? NuartOnMainStreet : MainStreetImage}
           alt="Historic Main Street"
@@ -74,9 +83,11 @@ const Home = () => {
       </HeaderImageContainer>
 
   {/* Ensure the Menu icon appears in sync with the floating logo on mobile */}
-  <Suspense fallback={null}>
-        <Menu visibleOverride={showFloatingLogo} />
-      </Suspense>
+  {isMobile && (
+        <Suspense fallback={null}>
+          <Menu visibleOverride={showFloatingLogo} />
+        </Suspense>
+      )}
       
       {/* Mobile action card now sits entirely below the header image */}
       <MobileActionCard />
