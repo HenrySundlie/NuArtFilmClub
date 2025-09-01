@@ -68,6 +68,7 @@ export default function Calendar() {
             src={embedSrc}
             frameBorder={0}
             scrolling="no"
+            loading="lazy"
           />
         </div>
         <p style={{ marginTop: '0.5rem', opacity: 0.8 }}>

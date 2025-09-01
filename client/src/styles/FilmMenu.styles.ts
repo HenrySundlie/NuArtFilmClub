@@ -150,7 +150,6 @@ export const FilmDate = styled.p`
   line-height: 1.4;
 
   &::before {
-    content: '📅';
     margin-right: 0.5ch;
     opacity: 0.9;
   }
@@ -163,7 +162,6 @@ export const FilmTime = styled.p`
   line-height: 1.4;
 
   &::before {
-    content: '⏰';
     margin-right: 0.5ch;
     opacity: 0.9;
   }

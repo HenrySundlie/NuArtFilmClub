@@ -1,4 +1,3 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 
@@ -10,8 +9,15 @@ if (savedPath) {
   history.replaceState(null, '', savedPath);
 }
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+const root = createRoot(document.getElementById('root')!);
+// Avoid StrictMode double-invocations in production for tiny perf win
+if (import.meta.env.DEV) {
+  const { StrictMode } = await import('react');
+  root.render(
+    <StrictMode>
+      <App />
+    </StrictMode>
+  );
+} else {
+  root.render(<App />);
+}

@@ -10,7 +10,7 @@ export interface Film {
   actors: string[];
   duration: number;
   img: string;
-  runDate: string;
+  runDates: string[]; // ISO dates (YYYY-MM-DD)
   runTime: string;
   ticketLink?: string;
 }
@@ -23,7 +23,17 @@ class FilmStore {
   }
 
   fetchFilms() {
-    this.films = filmsData as Film[];
+    // Migrate legacy `runDate` to `runDates` on load
+    const raw = filmsData as unknown as Array<Record<string, any>>;
+    this.films = raw.map((f) => {
+      const runDates: string[] = Array.isArray(f.runDates)
+        ? f.runDates
+        : f.runDate
+          ? [String(f.runDate)]
+          : [];
+      const { runDate: _legacy, ...rest } = f;
+      return { ...rest, runDates } as Film;
+    });
   }
 }
 

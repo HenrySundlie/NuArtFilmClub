@@ -27,6 +27,18 @@ const fmtDate = (iso?: string) => {
   });
 };
 
+function nextUpcomingDate(dates?: string[]): string | undefined {
+  if (!dates || dates.length === 0) return undefined;
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const sorted = dates
+    .filter(Boolean)
+    .map((d) => new Date(d).getTime())
+    .sort((a, b) => a - b);
+  const next = sorted.find((t) => t >= now.getTime()) ?? sorted[sorted.length - 1];
+  return next ? new Date(next).toISOString().slice(0, 10) : undefined;
+}
+
 const FilmPage = observer(() => {
   const { id } = useParams<{ id: string }>();
 
@@ -63,7 +75,16 @@ const FilmPage = observer(() => {
             <Label>Duration:</Label> {film.duration} minutes
           </InfoItem>
           <InfoItem>
-            <Label>Showing:</Label> {fmtDate(film.runDate)}
+            <Label>Showings:</Label>{' '}
+            {film.runDates && film.runDates.length > 1
+              ? film.runDates
+                  .slice()
+                  .sort(
+                    (a, b) => new Date(a).getTime() - new Date(b).getTime()
+                  )
+                  .map(fmtDate)
+                  .join(' · ')
+              : fmtDate(film.runDates?.[0])}
           </InfoItem>
           {film.runTime && (
             <InfoItem>
@@ -80,7 +101,7 @@ const FilmPage = observer(() => {
           </Button>
           <AddToGoogleCalendar
             title={film.title}
-            startDate={film.runDate}
+            startDate={nextUpcomingDate(film.runDates) ?? film.runDates?.[0]}
             startTime={film.runTime}
             durationMinutes={film.duration}
             location="Moscow, ID"

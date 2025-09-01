@@ -13,4 +13,17 @@ export default defineConfig({
   ],
   // Deploy at domain root
   base: '/',
+  build: {
+    sourcemap: false,
+    cssCodeSplit: true,
+    target: 'es2020',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom', 'react-router-dom'],
+          emotion: ['@emotion/react', '@emotion/styled'],
+        },
+      },
+    },
+  },
 });

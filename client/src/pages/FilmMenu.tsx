@@ -19,22 +19,53 @@ const FilmMenu = observer(() => {
     filmStore.fetchFilms();
   }, []);
 
+  const nextUpcomingDate = (dates?: string[]): string | undefined => {
+    if (!dates || dates.length === 0) return undefined;
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    const stamps = dates
+      .filter(Boolean)
+      .map((d) => new Date(d).getTime())
+      .sort((a, b) => a - b);
+    const next = stamps.find((t) => t >= now.getTime()) ?? stamps[0];
+    return next ? new Date(next).toISOString().slice(0, 10) : undefined;
+  };
+
+  const fmtDate = (iso?: string) => {
+    if (!iso) return '';
+    const s = typeof iso === 'string' ? iso : String(iso);
+    const d = s.includes('T') ? new Date(s) : new Date(`${s}T00:00:00`);
+    return d.toLocaleDateString();
+  };
+
   return (
     <Container>
       <Title>Upcoming Films</Title>
       <FilmGrid>
         {[...filmStore.films]
-          .sort(
-            (a, b) =>
-              new Date(a.runDate).getTime() - new Date(b.runDate).getTime()
-          )
+          .sort((a, b) => {
+            const aDate = nextUpcomingDate(a.runDates);
+            const bDate = nextUpcomingDate(b.runDates);
+            const aTs = aDate ? new Date(aDate).getTime() : Number.POSITIVE_INFINITY;
+            const bTs = bDate ? new Date(bDate).getTime() : Number.POSITIVE_INFINITY;
+            return aTs - bTs;
+          })
           .map((film) => (
             <FilmCard to={`/film/${film.id}`} key={film.id}>
               <FilmImage src={film.img} alt={film.title} loading="lazy" />
               <FilmInfo>
                 <FilmTitle>{film.title}</FilmTitle>
                 <FilmDate>
-                  {new Date(film.runDate).toLocaleDateString()}
+                  {film.runDates && film.runDates.length > 0
+                    ? film.runDates
+                        .slice()
+                        .sort(
+                          (a, b) =>
+                            new Date(a).getTime() - new Date(b).getTime()
+                        )
+                        .map(fmtDate)
+                        .join(' · ')
+                    : 'TBA'}
                 </FilmDate>
                 <FilmTime>{film.runTime}</FilmTime>
                 <Button

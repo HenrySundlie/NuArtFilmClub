@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
-import { FiCalendar, FiFilm } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { theme } from '../theme';
 import { MOBILE_CARD_HEIGHT } from '../styles/HomePage.styles';
@@ -209,7 +208,17 @@ const MobileActionCard: React.FC = () => {
           <>
   <Link to="/films" aria-label="View films" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
       <IconContainer position="left">
-    <FiFilm style={{ width: '70%', height: '70%' }} color="white" strokeWidth={1} />
+            {/* Inline SVG for film icon (feather film) */}
+            <svg viewBox="0 0 24 24" width="70%" height="70%" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+              <line x1="7" y1="2" x2="7" y2="22"></line>
+              <line x1="17" y1="2" x2="17" y2="22"></line>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <line x1="2" y1="7" x2="7" y2="7"></line>
+              <line x1="2" y1="17" x2="7" y2="17"></line>
+              <line x1="17" y1="7" x2="22" y2="7"></line>
+              <line x1="17" y1="17" x2="22" y2="17"></line>
+            </svg>
               </IconContainer>
             </Link>
             <TextContent position="right">
@@ -223,7 +232,13 @@ const MobileActionCard: React.FC = () => {
             </TextContent>
   <Link to="/calendar" aria-label="View calendar" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
       <IconContainer position="right">
-    <FiCalendar style={{ width: '70%', height: '70%' }} color="white" strokeWidth={1} />
+            {/* Inline SVG for calendar icon (feather calendar) */}
+            <svg viewBox="0 0 24 24" width="70%" height="70%" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
               </IconContainer>
             </Link>
           </>

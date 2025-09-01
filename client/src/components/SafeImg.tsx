@@ -34,7 +34,7 @@ type Props = React.ComponentProps<'img'> & { fallbackSrc?: string };
 // Main Component
 // ============================================================================
 
-export default function SafeImg({ src, fallbackSrc, ...rest }: Props) {
+export default function SafeImg({ src, fallbackSrc, loading = 'lazy', decoding = 'async', ...rest }: Props) {
   const [err, setErr] = React.useState(false);
   const finalSrc =
     !err && typeof src === 'string' && src.length > 0
@@ -43,5 +43,13 @@ export default function SafeImg({ src, fallbackSrc, ...rest }: Props) {
 
   if (!finalSrc) return null; // nothing valid to render
   
-  return <StyledImg src={finalSrc} onError={() => setErr(true)} {...rest} />;
+  return (
+    <StyledImg
+      src={finalSrc}
+      onError={() => setErr(true)}
+      loading={loading}
+      decoding={decoding as any}
+      {...rest}
+    />
+  );
 }

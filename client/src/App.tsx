@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import Home from './pages/Home';
-import Calendar from './pages/Calendar';
-import FilmMenu from './pages/FilmMenu';
-import FilmPage from './pages/FilmPage';
+const Calendar = lazy(() => import('./pages/Calendar'));
+const FilmMenu = lazy(() => import('./pages/FilmMenu'));
+const FilmPage = lazy(() => import('./pages/FilmPage'));
 import Menu from './components/Menu';
 import styled from '@emotion/styled';
 import { theme } from './theme';
 import { Global } from '@emotion/react';
-import { useEffect, useMemo, useState } from 'react';
 import { isMobileViewport, onViewportChange } from './utils/responsive';
 
 const globalStyles = `
@@ -48,12 +48,14 @@ export default function App() {
       <Global styles={globalStyles} />
       <AppContainer>
         <MenuVisibilityController />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/films" element={<FilmMenu />} />
-          <Route path="/film/:id" element={<FilmPage />} />
-        </Routes>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/films" element={<FilmMenu />} />
+            <Route path="/film/:id" element={<FilmPage />} />
+          </Routes>
+        </Suspense>
       </AppContainer>
     </Router>
   );

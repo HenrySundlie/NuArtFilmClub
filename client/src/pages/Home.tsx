@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import ReactMarkdown from 'react-markdown';
+import { lazy, Suspense } from 'react';
+const ReactMarkdown = lazy(() => import('react-markdown'));
 import {
   HeaderImageContainer,
   PageTitle,
@@ -9,13 +10,12 @@ import {
 } from '../styles/HomePage.styles';
 import { useEffect, useRef, useState } from 'react';
 import { MOBILE_QUERY } from '../utils/responsive';
-import Menu from '../components/Menu';
+const Menu = lazy(() => import('../components/Menu'));
 import SafeImg from '../components/SafeImg';
 import MobileActionCard from '../components/MobileActionCard';
 import MainStreetImage from '/images/Main Street east side_0001 cropped.jpg';
 import NuartOnMainStreet from '/images/NuartonMainStreetCropped.jpg';
 import homeMd from '../content/home.md?raw';
-import TEST from '../components/TEST';
 
 const Home = () => {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -69,22 +69,25 @@ const Home = () => {
         <SafeImg
           src={isMobile ? NuartOnMainStreet : MainStreetImage}
           alt="Historic Main Street"
-          loading="lazy"
+          loading="eager"
         />
       </HeaderImageContainer>
 
   {/* Ensure the Menu icon appears in sync with the floating logo on mobile */}
-  <Menu visibleOverride={showFloatingLogo} />
+  <Suspense fallback={null}>
+        <Menu visibleOverride={showFloatingLogo} />
+      </Suspense>
       
       {/* Mobile action card now sits entirely below the header image */}
       <MobileActionCard />
       
       <ContentSection>
         <ContentText>
-          <ReactMarkdown>{homeMd}</ReactMarkdown>
+          <Suspense fallback={null}>
+            <ReactMarkdown>{homeMd}</ReactMarkdown>
+          </Suspense>
         </ContentText>
       </ContentSection>
-      <TEST />
     </>
   );
 };
