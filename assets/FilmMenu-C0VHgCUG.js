@@ -1,4 +1,4 @@
-import{t,b as h,a as c,j as a}from"./index-DKpCS1JF.js";import{L as b,r as u}from"./react-Afj6T7yh.js";import{f as g}from"./FilmStore-BjbXTEa1.js";import{a as r}from"./emotion-CuswJqH_.js";import{B as f}from"./Page.styles-X6uEZevg.js";const x=r("div",{target:"elutsbk8"})("--radius:16px;--border:1px solid ",t.colors.border,";--ring:2px solid ",t.colors.accent,";--shadow:",t.shadows.lg,";min-height:100dvh;color:",t.colors.text.primary,`;background:radial-gradient(
+import{t,b as h,a as c,j as a}from"./index-CAjOlpIp.js";import{L as b,r as u}from"./react-Afj6T7yh.js";import{f as g}from"./FilmStore-CAeA_Vww.js";import{a as r}from"./emotion-CuswJqH_.js";import{B as f}from"./Page.styles-D9TzmL5Q.js";const x=r("div",{target:"elutsbk8"})("--radius:16px;--border:1px solid ",t.colors.border,";--ring:2px solid ",t.colors.accent,";--shadow:",t.shadows.lg,";min-height:100dvh;color:",t.colors.text.primary,`;background:radial-gradient(
       1200px 500px at 50% -10%,
       rgba(255, 255, 255, 0.06),
       transparent
