@@ -1,19 +1,5 @@
-import { TopNavBar, NavList, TopNavLink } from '../styles/MenuBar.styles';
-
+// Deprecated: Top navigation replaced by the floating Menu component.
+// Keeping a minimal placeholder to avoid broken references while removing unused styles.
 export default function TopNav() {
-  return (
-    <TopNavBar>
-      <NavList>
-        <li>
-          <TopNavLink to="/">Home</TopNavLink>
-        </li>
-        <li>
-          <TopNavLink to="/calendar">Calendar</TopNavLink>
-        </li>
-        <li>
-          <TopNavLink to="/films">Films</TopNavLink>
-        </li>
-      </NavList>
-    </TopNavBar>
-  );
+  return null;
 }

@@ -17,11 +17,3 @@ The Nuart Theatre was built in 1935 on main street in Moscow, Idaho, by Milburn 
 ## Join Us
 
 The Nu Art Film Club is seeking support to bring great cinematic experiences to Moscow. Please reach out to us if you see an opportunity for an advertising sponsorship, financial contribution, or other forms of partnership.
-
-## Upcoming Events
-
-Check our calendar for the latest screening schedule and our social media for special events and discussion groups.
-
-## Contact Information
-
-You can reach out to us through [Facebook](https://www.facebook.com/nuarttheatermoscow) or [Instagram](https://www.instagram.com/nuartfilmclub).

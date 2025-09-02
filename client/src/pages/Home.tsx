@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 const ReactMarkdown = lazy(() => import('react-markdown'));
 import {
   HeaderImageContainer,
@@ -9,10 +9,15 @@ import {
   FloatingLogo,
   TitleActions,
   TitleActionButton,
+  HomeFooter,
+  FooterGrid,
+  FooterHeading,
+  FooterText,
+  FooterFinePrint,
+  FooterCard,
 } from '../styles/HomePage.styles';
-import { useEffect, useRef, useState } from 'react';
 import { MOBILE_QUERY } from '../utils/responsive';
-const Menu = lazy(() => import('../components/Menu'));
+import Menu from '../components/Menu';
 import SafeImg from '../components/SafeImg';
 import MobileActionCard from '../components/MobileActionCard';
 import MainStreetImage from '/images/Main Street east side_0001 cropped.jpg';
@@ -84,9 +89,7 @@ const Home = () => {
 
   {/* Ensure the Menu icon appears in sync with the floating logo on mobile */}
   {isMobile && (
-        <Suspense fallback={null}>
           <Menu visibleOverride={showFloatingLogo} />
-        </Suspense>
       )}
       
       {/* Mobile action card now sits entirely below the header image */}
@@ -98,6 +101,47 @@ const Home = () => {
             <ReactMarkdown>{homeMd}</ReactMarkdown>
           </Suspense>
         </ContentText>
+
+        {/* Footer: Contact + Credits */}
+        <HomeFooter aria-labelledby="home-footer-heading">
+          <FooterGrid>
+            <FooterCard>
+              <FooterHeading id="home-footer-heading">Contact Us</FooterHeading>
+              <FooterText>
+                <p>
+                  Reach out to us on social or send us an email.
+                </p>
+                <ul>
+                  <li>
+                    <a href="https://www.facebook.com/nuarttheatermoscow" target="_blank" rel="noreferrer noopener">
+                      Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.instagram.com/nuartfilmclub" target="_blank" rel="noreferrer noopener">
+                      Instagram
+                    </a>
+                  </li>
+                  <li>
+                    <a href="mailto:hsundlie24@nsa.edu">hsundlie24@nsa.edu</a>
+                  </li>
+                </ul>
+              </FooterText>
+            </FooterCard>
+
+            <FooterCard aria-labelledby="home-credits-heading">
+              <FooterHeading id="home-credits-heading">Credits</FooterHeading>
+              <FooterText>
+                <p>Photography courtesy of Latah County Historical Society Photograph Collection.</p>
+                <p>Website design and development by Henry Sundlie and Clive Miller.</p>
+              </FooterText>
+            </FooterCard>
+          </FooterGrid>
+
+          <FooterFinePrint>
+            <span>516 S Main Street, Moscow, Idaho</span>
+          </FooterFinePrint>
+        </HomeFooter>
       </ContentSection>
     </>
   );

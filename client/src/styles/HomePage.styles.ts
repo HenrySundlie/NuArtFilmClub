@@ -364,3 +364,59 @@ export const ContentText = styled.div`
     p { text-align: left; text-wrap: pretty; }
   }
 `;
+
+// ============================================================================
+// Home Footer Section (Contact + Credits)
+// ============================================================================
+
+export const HomeFooter = styled.footer`
+  margin-top: clamp(${theme.spacing.xl}, 6vh, 96px);
+  color: ${theme.colors.text.secondary};
+`;
+
+export const FooterGrid = styled.div`
+  display: grid;
+  gap: clamp(${theme.spacing.md}, 2vw, ${theme.spacing.lg});
+  grid-template-columns: 1fr;
+
+  ${theme.breakpoints.desktop} {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+`;
+
+export const FooterCard = styled.section`
+  border-radius: ${theme.radii.md};
+  border: 1px solid ${theme.colors.border};
+  background: ${theme.colors.surface};
+  box-shadow: ${theme.shadows.card};
+  padding: clamp(${theme.spacing.lg}, 2.5vw, ${theme.spacing.xl});
+`;
+
+export const FooterHeading = styled.h2`
+  margin: 0 0 ${theme.spacing.md};
+  font-size: clamp(1.1rem, 1.2vw, 1.25rem);
+  font-weight: 600;
+  color: ${theme.colors.text.primary};
+`;
+
+export const FooterText = styled.div`
+  font-size: 0.95rem;
+  line-height: 1.65;
+  a { color: ${theme.colors.link}; text-decoration: underline; text-underline-offset: 2px; }
+  ul { margin: ${theme.spacing.sm} 0 0; padding-left: ${theme.spacing.lg}; }
+  li { margin: 0 0 ${theme.spacing.xs}; }
+  address { font-style: normal; }
+`;
+
+export const FooterFinePrint = styled.div`
+  margin-top: clamp(${theme.spacing.lg}, 2.5vw, ${theme.spacing.xl});
+  padding-top: ${theme.spacing.md};
+  border-top: 1px dashed ${theme.colors.border};
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${theme.spacing.md};
+  align-items: center;
+  justify-content: space-between;
+  color: ${theme.colors.text.light};
+  font-size: 0.875rem;
+`;
