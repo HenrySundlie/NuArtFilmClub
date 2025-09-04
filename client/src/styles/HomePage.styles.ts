@@ -378,9 +378,14 @@ export const FooterGrid = styled.div`
   display: grid;
   gap: clamp(${theme.spacing.md}, 2vw, ${theme.spacing.lg});
   grid-template-columns: 1fr;
+  /* Center the content and match the main text measure */
+  max-width: 70ch; /* same as ContentText desktop measure */
+  margin-left: auto;
+  margin-right: auto;
 
   ${theme.breakpoints.desktop} {
-    grid-template-columns: 1.1fr 0.9fr;
+    /* Keep single column on desktop to center the Contact card */
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -413,10 +418,10 @@ export const FooterFinePrint = styled.div`
   padding-top: ${theme.spacing.md};
   border-top: 1px dashed ${theme.colors.border};
   display: flex;
-  flex-wrap: wrap;
-  gap: ${theme.spacing.md};
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column; /* stack items on separate lines */
+  gap: ${theme.spacing.xs};
+  align-items: flex-start;
+  justify-content: flex-start;
   color: ${theme.colors.text.light};
   font-size: 0.875rem;
 `;
