@@ -1,4 +1,4 @@
-import{a as t}from"./emotion-CuswJqH_.js";import{t as a}from"./index-COhauVxU.js";const r=t("div",{target:"e1ssk6ck11"})("--radius:18px;--ring:2px solid ",a.colors?.accent,`;--shadow-lg:0 18px 60px rgba(0, 0, 0, 0.25);background:radial-gradient(
+import{a as t}from"./emotion-CuswJqH_.js";import{t as a}from"./index-Cb4PfBy5.js";const r=t("div",{target:"e1ssk6ck11"})("--radius:18px;--ring:2px solid ",a.colors?.accent,`;--shadow-lg:0 18px 60px rgba(0, 0, 0, 0.25);background:radial-gradient(
       1200px 500px at 50% -10%,
       rgba(255, 255, 255, 0.06),
       transparent
