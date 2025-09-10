@@ -8,9 +8,21 @@
     "actors": ["Russell Crowe", "Paul Bettany", "James D'Arcy", "Billy Boyd"],
     "duration": 138,
   "img": "/images/M-and-C-thumbnail.jpg",
-  "background": "/images/master-and-commander-backdrop.png",
   "runDates": ["2025-09-12", "2025-09-13"],
     "runTime": "7:00 - 9:00 PM",
     "ticketLink": "https://nuart-master-and-commander.eventbrite.com#tickets"
+  },
+  {
+    "id": 2,
+    "title": "The Secret Life of Walter Mitty",
+    "year": 2013,
+    "description": "A chronic day-dreamer chases an elusive photographer across the globe.",
+    "director": "Ben Stiller",
+    "actors": ["Ben Stiller", "Kristen Wiig", "Sean Penn", "Shirley MacLaine"],
+    "duration": 114,
+  "img": "/images/WM-still-2.jpg",
+  "runDates": ["2025-09-26", "2025-09-27"],
+    "runTime": "7:00 - 9:30 PM",
+    "ticketLink": "https://nuart-walter-mitty.eventbrite.com#tickets"
   }
 ]

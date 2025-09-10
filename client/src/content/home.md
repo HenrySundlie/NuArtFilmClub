@@ -1,6 +1,6 @@
 ## Our Mission
 
-Founded in 2025, the Nu Art Film Club seeks to revive the Nuart theatre’s historic role in entertaining the local community with that great American art form: cinema. Our mission is to educate our viewers in discernment regarding the art of motion pictures, to interpret cultural narratives and iconography with thoughtfulness, testing the ways of the world against the culture of Christ.
+Founded in 2025, the Nu Art Film Club seeks to revive the Nuart Theatre’s historic role in entertaining the local community with that great American art form: cinema. Our mission is to educate our viewers in discernment regarding the art of motion pictures, to interpret cultural narratives and iconography with thoughtfulness, testing the ways of the world against the culture of Christ.
 
 ## What We Offer
 

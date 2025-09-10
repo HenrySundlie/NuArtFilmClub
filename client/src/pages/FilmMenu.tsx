@@ -13,6 +13,15 @@ import {
   FilmTime,
 } from '../styles/FilmMenu.styles';
 import { Button } from '../styles/Page.styles';
+import { useAutoFitText } from '../hooks/useAutoFitText';
+
+const AutoFitTitle = ({ text }: { text: string }) => {
+  // Slightly larger min on small screens to keep readability
+  const isNarrow = typeof window !== 'undefined' ? window.matchMedia('(max-width: 420px)').matches : false;
+  const minPx = isNarrow ? 14 : 12;
+  const setRef = useAutoFitText<HTMLHeadingElement>({ maxLines: 2, minFontSizePx: minPx, deps: [text, isNarrow] });
+  return <FilmTitle ref={setRef}>{text}</FilmTitle>;
+};
 
 const FilmMenu = observer(() => {
   useEffect(() => {
@@ -54,7 +63,7 @@ const FilmMenu = observer(() => {
             <FilmCard to={`/film/${film.id}`} key={film.id}>
               <FilmImage src={film.img} alt={film.title} loading="lazy" />
               <FilmInfo>
-                <FilmTitle>{film.title}</FilmTitle>
+                <AutoFitTitle text={film.title} />
                 <FilmDate>
                   {film.runDates && film.runDates.length > 0
                     ? film.runDates
