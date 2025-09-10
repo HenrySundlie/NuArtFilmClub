@@ -6,14 +6,12 @@ import {
   Container,
   Content,
   Title,
-  Image as Poster,
   InfoSection,
   InfoItem,
   Label,
   Description,
 } from '../styles/FilmPage.styles';
 import { Button } from '../styles/Page.styles';
-import SafeImg from '../components/SafeImg';
 import AddToGoogleCalendar from '../components/AddToGoogleCalendar';
 
 const fmtDate = (iso?: string) => {
@@ -58,10 +56,7 @@ const FilmPage = observer(() => {
       <Content>
         <Title>{film.title}</Title>
 
-        {/* styled.img with SafeImg internals */}
-        <Poster as={SafeImg} src={film.img} alt={film.title} loading="lazy" />
-
-        <InfoSection>
+  <InfoSection>
           <InfoItem>
             <Label>Year:</Label> {film.year}
           </InfoItem>

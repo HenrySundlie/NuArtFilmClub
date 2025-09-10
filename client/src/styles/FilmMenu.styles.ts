@@ -1,4 +1,3 @@
-// src/styles/FilmMenu.styles.ts
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { theme } from '../theme';
@@ -39,17 +38,14 @@ export const Title = styled.h1`
     ${theme.typography.h1.fontSize}
   );
 
-  /* Solid white title, above overlays */
   color: #ffffff;
   background: none;
   -webkit-background-clip: initial;
   background-clip: initial;
   position: relative;
-  /* Ensure the title does not sit above global UI like the floating menu icon */
   z-index: 0;
   text-wrap: balance;
 
-  /* On narrow screens, keep layout from flowing under the fixed menu icon (44px + spacing). */
   ${theme.breakpoints.mobile} {
     max-width: calc(100% - 64px);
     display: block;
@@ -61,7 +57,6 @@ export const FilmGrid = styled.div`
   margin: 0 auto;
   display: grid;
   gap: clamp(${theme.spacing.md}, 2.5vw, ${theme.spacing.lg});
-  /* Two columns on desktop for smaller horizontal cards; single column on mobile */
   grid-template-columns: 1fr;
 
   ${theme.breakpoints.desktop} {

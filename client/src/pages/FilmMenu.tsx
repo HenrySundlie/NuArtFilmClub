@@ -16,7 +16,6 @@ import { Button } from '../styles/Page.styles';
 import { useAutoFitText } from '../hooks/useAutoFitText';
 
 const AutoFitTitle = ({ text }: { text: string }) => {
-  // Slightly larger min on small screens to keep readability
   const isNarrow = typeof window !== 'undefined' ? window.matchMedia('(max-width: 420px)').matches : false;
   const minPx = isNarrow ? 14 : 12;
   const setRef = useAutoFitText<HTMLHeadingElement>({ maxLines: 2, minFontSizePx: minPx, deps: [text, isNarrow] });

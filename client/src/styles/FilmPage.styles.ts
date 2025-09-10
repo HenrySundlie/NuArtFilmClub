@@ -25,14 +25,9 @@ export const Content = styled.div`
   max-width: min(1200px, 92vw);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) minmax(0, 1.8fr);
+  grid-template-columns: 1fr;
   gap: clamp(${theme.spacing.lg}, 3vw, ${theme.spacing.xl});
   align-items: start;
-
-  ${theme.breakpoints.mobile} {
-    grid-template-columns: 1fr;
-    gap: ${theme.spacing.lg};
-  }
 `;
 
 export const Title = styled.h1`
@@ -55,33 +50,7 @@ export const Title = styled.h1`
   text-wrap: balance;
 `;
 
-export const Image = styled.img`
-  width: 100%;
-  aspect-ratio: 2 / 3; /* poster-friendly; auto on mobile */
-  object-fit: cover;
-  border-radius: ${theme.radii.md};
-  border: 1px solid ${theme.colors.text.light};
-  box-shadow: none;
-  transform: translateZ(0);
-  transition:
-    transform 450ms cubic-bezier(0.2, 0.7, 0, 1),
-    filter 250ms ease;
-
-  position: sticky;
-  top: clamp(12px, 6vh, 48px);
-
-  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-    &:hover {
-      filter: saturate(1.03) contrast(1.01);
-    }
-  }
-
-  ${theme.breakpoints.mobile} {
-    position: static;
-    aspect-ratio: auto;
-    height: auto;
-  }
-`;
+/* Poster image removed from FilmPage */
 
 export const InfoSection = styled.div`
   position: relative;
