@@ -1,4 +1,4 @@
-import{t,b as f,a as m,j as o}from"./index-Cb4PfBy5.js";import{L as b,r as x}from"./react-Afj6T7yh.js";import{f as d}from"./FilmStore-CXsdSN8l.js";import{a as n}from"./emotion-CuswJqH_.js";import{B as w}from"./Page.styles-jswAiOT2.js";import{u as h}from"./useAutoFitText-BgAafCc6.js";const k=n("div",{target:"elutsbk8"})("--radius:16px;--border:1px solid ",t.colors.border,";--ring:2px solid ",t.colors.accent,";--shadow:",t.shadows.lg,";min-height:100dvh;color:",t.colors.text.primary,`;background:radial-gradient(
+import{t,b as f,a as m,j as o}from"./index-DKIWK8Zb.js";import{L as b,r as x}from"./react-Afj6T7yh.js";import{f as d}from"./FilmStore-DV1KL900.js";import{a as n}from"./emotion-CuswJqH_.js";import{B as w}from"./Page.styles-gWNpKC-G.js";import{u as h}from"./useAutoFitText-BgAafCc6.js";const k=n("div",{target:"elutsbk8"})("--radius:16px;--border:1px solid ",t.colors.border,";--ring:2px solid ",t.colors.accent,";--shadow:",t.shadows.lg,";min-height:100dvh;color:",t.colors.text.primary,`;background:radial-gradient(
       1200px 500px at 50% -10%,
       rgba(255, 255, 255, 0.06),
       transparent
