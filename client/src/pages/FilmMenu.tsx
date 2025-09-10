@@ -47,9 +47,11 @@ const FilmMenu = observer(() => {
     return d.toLocaleDateString();
   };
 
+  const pageTitleRef = useAutoFitText<HTMLHeadingElement>({ maxLines: 1, minFontSizePx: 18 });
+
   return (
     <Container>
-      <Title>Upcoming Films</Title>
+      <Title ref={pageTitleRef}>Upcoming Films</Title>
       <FilmGrid>
         {[...filmStore.films]
           .sort((a, b) => {

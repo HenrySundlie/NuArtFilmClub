@@ -48,6 +48,12 @@ export const Title = styled.h1`
   /* Ensure the title does not sit above global UI like the floating menu icon */
   z-index: 0;
   text-wrap: balance;
+
+  /* On narrow screens, keep layout from flowing under the fixed menu icon (44px + spacing). */
+  ${theme.breakpoints.mobile} {
+    max-width: calc(100% - 64px);
+    display: block;
+  }
 `;
 
 export const FilmGrid = styled.div`

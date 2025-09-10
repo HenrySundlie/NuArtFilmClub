@@ -13,6 +13,8 @@ export const CalendarHeader = styled.div`
   ${theme.breakpoints.mobile} {
     flex-wrap: wrap;
     gap: ${theme.spacing.sm};
+  /* Leave space on the right for the fixed menu icon (approx 64px) */
+  padding-right: 64px;
   }
 `;
 

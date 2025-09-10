@@ -5,6 +5,7 @@ import AddAllToCalendarButton from '../components/AddAllToCalendarButton';
 import { CalendarHeader, CalendarIframe } from '../styles/Calendar.styles';
 import { theme } from '../theme';
 import { isMobileViewport, onViewportChange } from '../utils/responsive';
+import { useAutoFitText } from '../hooks/useAutoFitText';
 
 // ENTER YOUR GOOGLE CALENDAR ID BELOW (public calendar ID, e.g. "yourid@group.calendar.google.com")
 // You can also add multiple calendars in the embed if desired.
@@ -47,12 +48,23 @@ export default function Calendar() {
   }, []);
 
   const embedSrc = buildGoogleCalendarEmbedSrc(CALENDAR_ID, TIME_ZONE, mode);
+  const titleRef = useAutoFitText<HTMLHeadingElement>({
+    maxLines: 1,
+    minFontSizePx: 16,
+    deps: [mode],
+  });
 
   return (
     <PageContainer>
       <Content>
         <CalendarHeader>
-          <PageTitle fontWeight={500} style={{ marginBottom: 0, textAlign: 'left' }}>Calendar</PageTitle>
+          <PageTitle
+            ref={titleRef}
+            fontWeight={500}
+            style={{ marginBottom: 0, textAlign: 'left' }}
+          >
+            Calendar
+          </PageTitle>
           <div style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
             <AddAllToCalendarButton
               calendarId={CALENDAR_ID}
