@@ -212,7 +212,7 @@ const Home = () => {
             <address>516 S Main Street, Moscow, Idaho</address>
             <span>Photography courtesy of Latah County Historical Society Photograph Collection.</span>
             <span>Website design and development by Henry Sundlie and Clive Miller.</span>
-            <span>© {currentYear} Nu Art Film Club</span>
+            <span>© {currentYear} NU ART Film Club</span>
           </FooterFinePrint>
         </HomeFooter>
       </ContentSection>

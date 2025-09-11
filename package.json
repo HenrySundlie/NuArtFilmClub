@@ -1,4 +1,7 @@
 {
   "name": "nuart-film-society-workspace",
-  "private": true
+  "private": true,
+  "workspaces": [
+    "client"
+  ]
 }
