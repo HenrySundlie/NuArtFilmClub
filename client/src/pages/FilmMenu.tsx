@@ -27,18 +27,6 @@ const FilmMenu = observer(() => {
     filmStore.fetchFilms();
   }, []);
 
-  const nextUpcomingDate = (dates?: string[]): string | undefined => {
-    if (!dates || dates.length === 0) return undefined;
-    const now = new Date();
-    now.setHours(0, 0, 0, 0);
-    const stamps = dates
-      .filter(Boolean)
-      .map((d) => new Date(d).getTime())
-      .sort((a, b) => a - b);
-    const next = stamps.find((t) => t >= now.getTime()) ?? stamps[0];
-    return next ? new Date(next).toISOString().slice(0, 10) : undefined;
-  };
-
   const fmtDate = (iso?: string) => {
     if (!iso) return '';
     const s = typeof iso === 'string' ? iso : String(iso);
@@ -54,11 +42,41 @@ const FilmMenu = observer(() => {
       <FilmGrid>
         {[...filmStore.films]
           .sort((a, b) => {
-            const aDate = nextUpcomingDate(a.runDates);
-            const bDate = nextUpcomingDate(b.runDates);
-            const aTs = aDate ? new Date(aDate).getTime() : Number.POSITIVE_INFINITY;
-            const bTs = bDate ? new Date(bDate).getTime() : Number.POSITIVE_INFINITY;
-            return aTs - bTs;
+            const now = new Date();
+            now.setHours(0, 0, 0, 0);
+
+            const norm = (dates?: string[]) =>
+              (dates || [])
+                .filter(Boolean)
+                .map((d) => new Date(d + (d.includes('T') ? '' : 'T00:00:00')).getTime())
+                .sort((x, y) => x - y);
+
+            const aDates = norm(a.runDates);
+            const bDates = norm(b.runDates);
+
+            const firstUpcoming = (ts: number[]) => ts.find((t) => t >= now.getTime());
+
+            const aUpcoming = firstUpcoming(aDates);
+            const bUpcoming = firstUpcoming(bDates);
+
+            const aAllPast = !aUpcoming && aDates.length > 0;
+            const bAllPast = !bUpcoming && bDates.length > 0;
+
+            // Films with at least one upcoming date come before films whose showings are all past.
+            if (aAllPast && !bAllPast) return 1;
+            if (bAllPast && !aAllPast) return -1;
+
+            // If both have upcoming showings compare the next upcoming date
+            if (!aAllPast && !bAllPast) {
+              const aNext = aUpcoming ?? aDates[0] ?? Number.POSITIVE_INFINITY;
+              const bNext = bUpcoming ?? bDates[0] ?? Number.POSITIVE_INFINITY;
+              return aNext - bNext;
+            }
+
+            // Both are past-only: order by most recent (latest) showing first or keep original? We'll use most recent past first.
+            const aLast = aDates[aDates.length - 1] ?? Number.NEGATIVE_INFINITY;
+            const bLast = bDates[bDates.length - 1] ?? Number.NEGATIVE_INFINITY;
+            return bLast - aLast; // more recent (larger timestamp) first
           })
           .map((film) => (
             <FilmCard to={`/film/${film.id}`} key={film.id}>

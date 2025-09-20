@@ -1,4 +1,4 @@
-// src/styles/FilmPage.styles.ts
+// Film detail page styles
 import styled from '@emotion/styled';
 import { theme } from '../theme';
 

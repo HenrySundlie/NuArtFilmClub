@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { filmStore } from '../stores/FilmStore';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import {
   Container,
@@ -44,19 +44,16 @@ const FilmPage = observer(() => {
     if (filmStore.films.length === 0) filmStore.fetchFilms();
   }, []);
 
-  const film = useMemo(
-    () => filmStore.films.find((f) => f.id === Number(id)),
-    [id]
-  );
+  // Lookup directly so it updates when the store populates after initial fetch
+  const film = filmStore.films.find((f) => f.id === Number(id));
 
   if (!film) return <Container>Film not found</Container>;
 
   return (
     <Container>
       <Content>
-        <Title>{film.title}</Title>
-
-  <InfoSection>
+    <Title>{film.title}</Title>
+    <InfoSection>
           <InfoItem>
             <Label>Year:</Label> {film.year}
           </InfoItem>
