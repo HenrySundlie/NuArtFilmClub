@@ -22,13 +22,21 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: Ensure latest npm
+        run: npm i -g npm@latest
+
       - name: Install Dependencies
-        working-directory: ./client
+        # Run at workspace root so npm correctly installs optional platform-specific
+        # Rollup binaries for all workspaces (fixes missing @rollup/rollup-linux-x64-gnu).
         run: npm ci
 
+      - name: Verify workspace install
+        run: |
+          npm ls rollup || true
+          ls -1 client/node_modules/@rollup | head -n 20 || true
+
       - name: Build
-        working-directory: ./client
-        run: npm run build
+        run: npm run -w client build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
