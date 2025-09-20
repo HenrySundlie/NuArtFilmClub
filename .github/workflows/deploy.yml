@@ -12,6 +12,10 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      # Workaround for npm optional dependency resolution bug causing missing @rollup/* platform package
+      # See: https://github.com/npm/cli/issues/4828
+      ROLLUP_SKIP_NODEJS_NATIVE: '1'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,10 +24,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+
+      - name: Ensure fresh install (remove potentially stale artifacts)
+        run: |
+          rm -rf node_modules package-lock.json
+          cd client && rm -rf node_modules package-lock.json && cd ..
+
+      - name: Upgrade npm (mitigate optional dependency bug)
+        run: npm i -g npm@latest
 
       - name: Install Dependencies
         working-directory: ./client
-        run: npm ci
+        run: npm ci --ignore-scripts
+
+      - name: Rebuild native deps (if any)
+        working-directory: ./client
+        run: npm rebuild --no-bin-links || true
 
       - name: Build
         working-directory: ./client
