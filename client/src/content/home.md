@@ -8,8 +8,6 @@ Founded in 2025, the Nu Art Film Club seeks to revive the Nuart Theatre’s hist
 
 **Discussion Groups**: Post-screening conversations led by scholars and enthusiasts
 
-**Community Outreach**: Educational programs and partnerships with local schools
-
 ## The Venue
 
 The Nuart Theatre was built in 1935 on main street in Moscow, Idaho, by Milburn Kenworthy, a figure noted in the community for his contributions to local entertainment. Over the decades the Nuart building has hosted a variety of community services: everything from a vegan juice bar, a Christian bookstore, several churches, and New Saint Andrews college. In 2019 Nate Wilson and Aaron Rench, working with Harby + Points Design, received the local Orchid Award for renovating the building while preserving some of its original Art Deco spirit. The theatre has around 360 seats.
