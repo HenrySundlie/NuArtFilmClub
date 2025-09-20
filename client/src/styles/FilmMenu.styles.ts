@@ -156,6 +156,39 @@ export const FilmDate = styled.p`
   }
 `;
 
+export const SectionHeading = styled.h2`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin: 0 0 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-align: center;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: ${theme.colors.text.primary};
+  text-wrap: balance;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1 1 auto;
+    height: 1px;
+    background: ${theme.colors.text.primary};
+    max-width: 420px; /* prevents overly long lines on ultra-wide */
+    opacity: 0.8;
+  }
+
+  &::before { margin-left: clamp(0.5rem, 2vw, 2rem); }
+  &::after { margin-right: clamp(0.5rem, 2vw, 2rem); }
+
+  ${theme.breakpoints.mobile} {
+    gap: 0.85rem;
+    font-size: clamp(1.4rem, 5.5vw, 1.75rem);
+  }
+`;
+
 export const FilmTime = styled.p`
   margin: 0;
   color: ${theme.colors.text.primary};
