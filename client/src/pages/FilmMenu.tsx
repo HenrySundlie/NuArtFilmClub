@@ -76,7 +76,7 @@ const FilmMenu = observer(() => {
     };
   }, [filmStore.films]);
 
-  const renderFilmCard = (film: (typeof filmStore.films)[number]) => (
+  const renderUpcomingFilmCard = (film: (typeof filmStore.films)[number]) => (
     <FilmCard to={`/film/${film.id}`} key={film.id}>
       <FilmImage src={film.img} alt={film.title} loading="lazy" />
       <FilmInfo>
@@ -106,6 +106,16 @@ const FilmMenu = observer(() => {
     </FilmCard>
   );
 
+  // Previous films: only show title (no dates, runtime, tickets)
+  const renderPreviousFilmCard = (film: (typeof filmStore.films)[number]) => (
+    <FilmCard to={`/film/${film.id}`} key={film.id} className="compact">
+      <FilmImage src={film.img} alt={film.title} loading="lazy" />
+      <FilmInfo style={{ gap: '0' }}>
+        <AutoFitTitle text={film.title} />
+      </FilmInfo>
+    </FilmCard>
+  );
+
   const hasUpcoming = upcomingFilms.length > 0;
   const hasPrevious = previousFilms.length > 0;
 
@@ -115,14 +125,14 @@ const FilmMenu = observer(() => {
       {hasUpcoming && (
         <section aria-labelledby="upcoming-heading" style={{ marginBottom: hasPrevious ? '3rem' : 0 }}>
           <SectionHeading id="upcoming-heading">Upcoming</SectionHeading>
-          <FilmGrid>{upcomingFilms.map(renderFilmCard)}</FilmGrid>
+          <FilmGrid>{upcomingFilms.map(renderUpcomingFilmCard)}</FilmGrid>
           {!upcomingFilms.length && <p style={{ opacity: 0.8 }}>No upcoming films scheduled.</p>}
         </section>
       )}
       {hasPrevious && (
         <section aria-labelledby="previous-heading" style={{ marginTop: '3.5rem' }}>
           <SectionHeading id="previous-heading">Previous</SectionHeading>
-          <FilmGrid>{previousFilms.map(renderFilmCard)}</FilmGrid>
+          <FilmGrid>{previousFilms.map(renderPreviousFilmCard)}</FilmGrid>
           {!previousFilms.length && <p style={{ opacity: 0.8 }}>No past films yet.</p>}
         </section>
       )}

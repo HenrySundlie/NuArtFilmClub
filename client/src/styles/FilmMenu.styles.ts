@@ -71,8 +71,8 @@ export const FilmGrid = styled.div`
 export const FilmCard = styled(Link)`
   position: relative;
   display: grid;
-  /* Make desktop cards closer to mobile sizing */
-  grid-template-columns: clamp(110px, 22%, 180px) 1fr;
+  /* Increase poster/image share of horizontal space */
+  grid-template-columns: clamp(120px, 30%, 210px) 1fr;
   align-items: stretch;
   text-decoration: none;
   border-radius: ${theme.radii.md};
@@ -95,9 +95,23 @@ export const FilmCard = styled(Link)`
     outline-offset: 3px;
   }
 
+  /* Compact variant for Previous films (title only) */
+  &.compact {
+    /* Even smaller minimum height for previous films */
+    min-height: clamp(85px, 11vw, 118px);
+    /* Slightly narrower image column so text area doesn't force extra height */
+    grid-template-columns: clamp(100px, 25%, 170px) 1fr;
+  }
+
   ${theme.breakpoints.mobile} {
-    grid-template-columns: clamp(110px, 40%, 180px) 1fr;
+    /* Slightly more image width on small screens as well */
+    grid-template-columns: clamp(110px, 48%, 200px) 1fr;
     min-height: 160px;
+
+    &.compact {
+      min-height: 100px;
+      grid-template-columns: clamp(95px, 44%, 150px) 1fr;
+    }
   }
 `;
 
@@ -117,6 +131,13 @@ export const FilmImage = styled.img`
   ${theme.breakpoints.mobile} {
     height: 100%;
   }
+
+  /* Compact variant: limit the intrinsic height pressure by constraining aspect ratio */
+  ${FilmCard}.compact & {
+    aspect-ratio: 2 / 3;
+    /* Allow the container's min-height to dominate instead of natural image expansion */
+    height: 100%;
+  }
 `;
 
 export const FilmInfo = styled.div`
@@ -126,6 +147,15 @@ export const FilmInfo = styled.div`
   gap: calc(${theme.spacing.sm} * 0.75);
   color: ${theme.colors.text.primary};
   min-width: 0; /* allow text truncation/clamping */
+
+  ${FilmCard}.compact & {
+    /* Balanced horizontal padding; center content */
+    padding: calc(${theme.spacing.xs} + 4px) clamp(${theme.spacing.md}, 4vw, ${theme.spacing.lg});
+    gap: ${theme.spacing.xs};
+    justify-items: center;
+    text-align: center;
+    align-content: center;
+  }
 `;
 
 export const FilmTitle = styled.h2`
@@ -136,6 +166,8 @@ export const FilmTitle = styled.h2`
     2.2vw,
     ${theme.typography.h2.fontSize}
   );
+  /* Drop the heavier default h2 weight; make card titles lighter */
+  font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0.01em;
   display: -webkit-box;
