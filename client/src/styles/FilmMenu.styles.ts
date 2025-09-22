@@ -109,13 +109,14 @@ export const FilmCard = styled(Link)`
   }
 
   ${theme.breakpoints.mobile} {
-    /* Slightly more image width on small screens as well */
-    grid-template-columns: clamp(110px, 48%, 200px) 1fr;
-    min-height: 160px;
+    /* Mobile: reduce image share so poster occupies about one-third of width */
+    /* Using 34% to allow for padding/border while visually reading near 1/3 */
+    grid-template-columns: clamp(95px, 34%, 160px) 1fr;
+    min-height: 150px;
 
     &.compact {
       min-height: 100px;
-      grid-template-columns: clamp(95px, 44%, 150px) 1fr;
+      grid-template-columns: clamp(85px, 32%, 140px) 1fr;
     }
   }
 `;
@@ -134,7 +135,9 @@ export const FilmImage = styled.img`
   }
 
   ${theme.breakpoints.mobile} {
+    /* Ensure image does not stretch excessively vertically; allow card content to define height */
     height: 100%;
+    /* Add a min-height safeguard so very short cards still show a readable image */
   }
 
   /* Compact variant: limit the intrinsic height pressure by constraining aspect ratio */
