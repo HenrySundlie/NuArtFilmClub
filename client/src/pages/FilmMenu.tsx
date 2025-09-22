@@ -95,13 +95,14 @@ const FilmMenu = observer(() => {
           </FilmDate>
           <FilmTime>{film.runTime}</FilmTime>
         </div>
-        {film.ticketLink && (
+        {/* Only show ticket button if link is a non-empty (after trim) string */}
+        {film.ticketLink?.trim() && (
           <Button
             className="ticket-btn"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              window.open(film.ticketLink, '_blank', 'noopener,noreferrer');
+              window.open(film.ticketLink!.trim(), '_blank', 'noopener,noreferrer');
             }}
           >
             Tickets
