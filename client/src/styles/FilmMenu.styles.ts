@@ -27,7 +27,10 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  margin: 0 0 clamp(${theme.spacing.lg}, 3vw, ${theme.spacing.xl});
+  /* Center within the same max-width as the film grid so left edges align */
+  margin: 0 auto clamp(${theme.spacing.lg}, 3vw, ${theme.spacing.xl});
+  max-width: 1100px;
+  padding-inline: 0;
   text-align: left;
   letter-spacing: 0.04em;
   line-height: 1.08;
@@ -47,7 +50,9 @@ export const Title = styled.h1`
   text-wrap: balance;
 
   ${theme.breakpoints.mobile} {
-    max-width: calc(100% - 64px);
+    /* On mobile we keep it full width inside container padding */
+    max-width: 100%;
+    padding-inline: 0;
     display: block;
   }
 `;
