@@ -10,7 +10,8 @@
   "img": "/images/M-and-C-thumbnail.jpg",
   "runDates": ["2025-09-12", "2025-09-13"],
     "runTime": "7 PM",
-    "ticketLink": "https://nuart-master-and-commander.eventbrite.com#tickets"
+    "ticketLink": "https://nuart-master-and-commander.eventbrite.com#tickets",
+    "article": "film-1"
   },
   {
     "id": 2,

@@ -92,3 +92,54 @@ export const Description = styled.p`
   hanging-punctuation: first allow-end;
   hyphens: auto;
 `;
+
+// Rich article section for a film's extended notes / essay.
+export const FilmArticle = styled.article`
+  grid-column: 1 / -1;
+  margin: clamp(${theme.spacing.lg}, 4vw, ${theme.spacing.xl}) 0 0;
+  padding: clamp(${theme.spacing.lg}, 2.5vw, ${theme.spacing.xl});
+  background: ${theme.surfaces.elevatedOverlay}, ${theme.colors.surfaceDeep};
+  border: 1px solid ${theme.colors.border};
+  border-radius: ${theme.radii.lg};
+  backdrop-filter: saturate(1.1) blur(6px);
+  box-shadow: ${theme.shadows.card};
+  line-height: 1.75;
+  font-size: clamp(1rem, 1.05vw, 1.1rem);
+  color: ${theme.colors.text.primary};
+
+  h2, h3, h4 {
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+    margin: 2.2em 0 0.9em;
+    color: ${theme.colors.text.primary};
+  }
+
+  p + p {
+    margin-top: 1em;
+  }
+
+  a {
+    color: ${theme.colors.link};
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    &:focus-visible {
+      outline: ${theme.shadows.focus};
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+  }
+
+  ul, ol {
+    margin: 1em 0 1.25em;
+    padding-left: 1.25em;
+  }
+
+  blockquote {
+    margin: 1.5em 0;
+    padding: 0.75em 1em;
+    border-left: 4px solid ${theme.colors.text.light};
+    background: rgba(255,255,255,0.04);
+    font-style: italic;
+  }
+`;

@@ -184,7 +184,8 @@ export const FilmInfo = styled.div`
     font-size: clamp(0.95rem, 0.8rem + 0.5vw, 1.15rem);
     line-height: 1.15;
     font-weight: 600;
-    font-family: 'EB Garamond', serif;
+    /* Use global brand font */
+    font-family: ${theme.typography.fontFamily};
     white-space: normal;
     margin-right: 0;
     align-self: stretch; /* occupy full height of its grid cell */

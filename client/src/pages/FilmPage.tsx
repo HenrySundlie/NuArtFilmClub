@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { filmStore } from '../stores/FilmStore';
-import { useEffect } from 'react';
+import { useEffect, Suspense, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import {
   Container,
@@ -10,8 +10,12 @@ import {
   InfoItem,
   Label,
   Description,
+  FilmArticle,
 } from '../styles/FilmPage.styles';
-import { Button } from '../styles/Page.styles';
+import { lazy } from 'react';
+const ReactMarkdown = lazy(() => import('react-markdown'));
+// Removed Button import; using LinkButton for consistent sizing
+import { LinkButton } from '../components/LinkButton';
 import AddToGoogleCalendar from '../components/AddToGoogleCalendar';
 
 const fmtDate = (iso?: string) => {
@@ -39,6 +43,7 @@ function nextUpcomingDate(dates?: string[]): string | undefined {
 
 const FilmPage = observer(() => {
   const { id } = useParams<{ id: string }>();
+  const [articleMd, setArticleMd] = useState<string | null>(null);
 
   useEffect(() => {
     if (filmStore.films.length === 0) filmStore.fetchFilms();
@@ -48,6 +53,25 @@ const FilmPage = observer(() => {
   const film = filmStore.films.find((f) => f.id === Number(id));
 
   if (!film) return <Container>Film not found</Container>;
+
+  // Determine potential article slug: explicit film.article or fallback film-<id>
+  useEffect(() => {
+    let isMounted = true;
+    const slug = film.article || `film-${film.id}`;
+    // Dynamic import – rely on Vite's handling; if not found, silently ignore
+    import(`../content/films/${slug}.md?raw`)
+      .then((mod) => {
+        if (isMounted) setArticleMd(mod.default || String(mod));
+      })
+      .catch(() => {
+        if (isMounted) {
+          setArticleMd(null); // Not found is fine – keep empty
+        }
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [film.id, film.article]);
 
   return (
     <Container>
@@ -83,14 +107,14 @@ const FilmPage = observer(() => {
               <Label>Time:</Label> {film.runTime}
             </InfoItem>
           )}
-          <Button
-            onClick={(e) => {
-              e.stopPropagation();
-              window.open(film.ticketLink, '_blank', 'noopener,noreferrer');
-            }}
+          <LinkButton
+            to={film.ticketLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
           >
             Buy Tickets
-          </Button>
+          </LinkButton>
           <AddToGoogleCalendar
             title={film.title}
             startDate={nextUpcomingDate(film.runDates) ?? film.runDates?.[0]}
@@ -102,6 +126,13 @@ const FilmPage = observer(() => {
         </InfoSection>
 
         <Description>{film.description}</Description>
+        {articleMd && (
+          <FilmArticle>
+            <Suspense fallback={null}>
+              <ReactMarkdown>{articleMd}</ReactMarkdown>
+            </Suspense>
+          </FilmArticle>
+        )}
       </Content>
     </Container>
   );

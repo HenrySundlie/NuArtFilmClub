@@ -13,6 +13,12 @@ export interface Film {
   runDates: string[]; // ISO dates (YYYY-MM-DD)
   runTime: string;
   ticketLink?: string;
+  /**
+   * Optional slug (without extension) of a markdown article located under `src/content/films/`.
+   * If provided and the corresponding file `<slug>.md` exists, it will be rendered
+   * beneath the film info box on the film detail page. Kept optional for backward compatibility.
+   */
+  article?: string;
 }
 
 class FilmStore {

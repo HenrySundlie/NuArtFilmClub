@@ -148,6 +148,8 @@ export const Button = styled.button`
   border-radius: ${theme.radii.sm};
   padding: 0.7rem 1rem;
   font-weight: 600;
+  /* Ensure buttons use global typography font */
+  font-family: ${theme.typography.fontFamily};
   color: ${theme.colors.text.primary};
   background: ${theme.colors.surface};
   cursor: pointer;

@@ -114,7 +114,7 @@ const FilmMenu = observer(() => {
           </div>
           {ticketUrl && (
             <Button className="ticket-btn" onClick={(e) => handleTicketClick(e, ticketUrl)}>
-              Tickets
+              Buy Tickets
             </Button>
           )}
         </FilmInfo>
