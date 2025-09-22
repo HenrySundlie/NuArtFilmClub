@@ -80,26 +80,31 @@ const FilmMenu = observer(() => {
     <FilmCard to={`/film/${film.id}`} key={film.id}>
       <FilmImage src={film.img} alt={film.title} loading="lazy" />
       <FilmInfo>
-        <AutoFitTitle text={film.title} />
-        <FilmDate>
-          {film.runDates && film.runDates.length > 0
-            ? film.runDates
-                .slice()
-                .sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
-                .map(fmtDate)
-                .join(' · ')
-            : 'TBA'}
-        </FilmDate>
-        <FilmTime>{film.runTime}</FilmTime>
+        <div className="film-title-row">
+          <AutoFitTitle text={film.title} />
+        </div>
+        <div className="details">
+          <FilmDate>
+            {film.runDates && film.runDates.length > 0
+              ? film.runDates
+                  .slice()
+                  .sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
+                  .map(fmtDate)
+                  .join(' · ')
+              : 'TBA'}
+          </FilmDate>
+          <FilmTime>{film.runTime}</FilmTime>
+        </div>
         {film.ticketLink && (
           <Button
+            className="ticket-btn"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               window.open(film.ticketLink, '_blank', 'noopener,noreferrer');
             }}
           >
-            Buy Tickets
+            Tickets
           </Button>
         )}
       </FilmInfo>

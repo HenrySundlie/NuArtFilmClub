@@ -148,10 +148,68 @@ export const FilmImage = styled.img`
 export const FilmInfo = styled.div`
   padding: clamp(${theme.spacing.md}, 2vw, ${theme.spacing.lg});
   display: grid;
-  align-content: center;
-  gap: calc(${theme.spacing.sm} * 0.75);
+  /* Layout: title on its own row; below it two columns (details left, button right) without changing overall card size */
+  grid-template-areas:
+    'title title'
+    'details ticket';
+  /* Two flexible columns so ticket button can stretch */
+  grid-template-columns: 1fr 1fr;
+  /* Make second row fill available height so button can stretch */
+  grid-auto-rows: auto 1fr;
+  align-content: start;
+  align-items: start;
+  gap: calc(${theme.spacing.sm} * 0.75) ${theme.spacing.md};
   color: ${theme.colors.text.primary};
   min-width: 0; /* allow text truncation/clamping */
+
+  .film-title-row { grid-area: title; align-self: start; }
+  .details { 
+    grid-area: details; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 2px; 
+    align-items: flex-start; 
+  }
+  .ticket-btn {
+    grid-area: ticket;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    width: 100%;
+    /* Increased font size for better prominence */
+    font-size: clamp(0.95rem, 0.8rem + 0.5vw, 1.15rem);
+    line-height: 1.15;
+    font-weight: 600;
+    font-family: 'EB Garamond', serif;
+    white-space: normal;
+    margin-right: 0;
+    align-self: stretch; /* occupy full height of its grid cell */
+  }
+
+  /* Ensure long titles don't push layout oddly */
+  .film-title-row > * { margin-bottom: 2px; }
+
+  /* Mobile: revert to previous vertical flow with full-width ticket button at bottom */
+  ${theme.breakpoints.mobile} {
+    grid-template-areas: 'title' 'details' 'ticket';
+    grid-template-columns: 1fr;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    gap: calc(${theme.spacing.sm} * 0.6);
+
+    .film-title-row { align-self: center; }
+    .details { align-items: center; }
+    .ticket-btn {
+      width: 100%;
+      aspect-ratio: auto; /* allow natural height */
+      padding: 0.7rem 1rem; /* revert to normal button padding */
+      /* Keep it slightly larger on mobile too */
+      font-size: clamp(0.98rem, 0.92rem + 0.6vw, 1.2rem);
+      margin-right: 0; /* reset desktop margin */
+    }
+  }
 
   ${FilmCard}.compact & {
     /* Balanced horizontal padding; center content */
@@ -160,6 +218,9 @@ export const FilmInfo = styled.div`
     justify-items: center;
     text-align: center;
     align-content: center;
+    /* Compact variant keeps original simple stack */
+    grid-template-areas: 'title';
+    grid-template-columns: 1fr;
   }
 `;
 
