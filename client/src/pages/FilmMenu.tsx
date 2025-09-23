@@ -36,12 +36,6 @@ const normalizeDates = (dates?: string[]) =>
     .map((d) => d.getTime())
     .sort((a, b) => a - b);
 
-const formatDate = (iso?: string) => {
-  if (!iso) return '';
-  const d = toDate(iso);
-  if (!d) return '';
-  return d.toLocaleDateString();
-};
 
 const AutoFitTitle = ({ text }: { text: string }) => {
   const isNarrow = typeof window !== 'undefined' ? window.matchMedia('(max-width: 420px)').matches : false;
@@ -54,6 +48,8 @@ const FilmMenu = observer(() => {
   useEffect(() => {
     filmStore.fetchFilms();
   }, []);
+
+  // Date formatting unified: always show short month + day (no year) per request
 
   const pageTitleRef = useAutoFitText<HTMLHeadingElement>({ maxLines: 1, minFontSizePx: 18 });
   const { upcomingFilms, previousFilms } = useMemo(() => {
@@ -86,10 +82,15 @@ const FilmMenu = observer(() => {
   // Memoized helpers for card rendering
   const buildDatesLabel = useCallback((film: Film) => {
     if (!film.runDates?.length) return 'TBA';
+    const opts: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
     return film.runDates
       .slice()
       .sort((a, b) => (toDate(a)?.getTime() ?? 0) - (toDate(b)?.getTime() ?? 0))
-      .map(formatDate)
+      .map((d) => {
+        const dateObj = toDate(d);
+        return dateObj ? dateObj.toLocaleDateString(undefined, opts) : '';
+      })
+      .filter(Boolean)
       .join(' · ');
   }, []);
 

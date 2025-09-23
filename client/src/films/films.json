@@ -7,8 +7,8 @@
     "director": "Peter Weir",
     "actors": ["Russell Crowe", "Paul Bettany", "James D'Arcy", "Billy Boyd"],
     "duration": 138,
-  "img": "/images/M-and-C-thumbnail.jpg",
-  "runDates": ["2025-09-12", "2025-09-13"],
+    "img": "/images/M-and-C-thumbnail.jpg",
+    "runDates": ["2025-09-12", "2025-09-13"],
     "runTime": "7 PM",
     "ticketLink": "https://nuart-master-and-commander.eventbrite.com#tickets",
     "article": "film-1"
@@ -21,9 +21,22 @@
     "director": "Ben Stiller",
     "actors": ["Ben Stiller", "Kristen Wiig", "Sean Penn", "Shirley MacLaine"],
     "duration": 114,
-  "img": "/images/WM-still-2.jpg",
-  "runDates": ["2025-09-26", "2025-09-27"],
+    "img": "/images/WM-still-2.jpg",
+    "runDates": ["2025-09-26", "2025-09-27"],
     "runTime": "7PM",
     "ticketLink": "https://www.zeffy.com/en-US/ticketing/the-secret-life-of-walter-mitty-screening-the-nuart-theatre"
-  }
+  },
+  {
+    "id": 3,
+    "title": "A Quiet Place",
+    "year": 2018,
+    "description": "A family is forced to live without a sound, hiding from monsters who are all ears.",
+    "director": "John Krasinski",
+    "actors": ["Emily Blunt", "John Krasinski", "Millicent Simmonds", "Noah Jupe"],
+    "duration": 90,
+    "img": "/images/QP-still-2.jpg",
+    "runDates": ["2025-10-03", "2025-10-04"],
+    "runTime": "7PM",
+    "ticketLink": ""
+}
 ]

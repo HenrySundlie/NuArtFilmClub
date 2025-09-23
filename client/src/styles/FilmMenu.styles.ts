@@ -171,7 +171,7 @@ export const FilmInfo = styled.div`
     grid-area: details; 
     display: flex; 
     flex-direction: column; 
-    gap: 2px; 
+    gap: 1px; 
     align-items: flex-start; 
   }
   .ticket-btn {
@@ -275,8 +275,10 @@ export const FilmTitle = styled.h2`
 export const FilmDate = styled.p`
   margin: 0;
   color: ${theme.colors.text.primary};
-  font-size: 0.95rem;
-  line-height: 1.4;
+  /* Larger on desktop; keep mobile near current size */
+  font-size: clamp(0.95rem, 0.7rem + 0.55vw, 1.2rem);
+  /* Slightly tighter line-height so card height does not expand */
+  line-height: 1.25;
 
   &::before {
     margin-right: 0.5ch;
@@ -320,8 +322,8 @@ export const SectionHeading = styled.h2`
 export const FilmTime = styled.p`
   margin: 0;
   color: ${theme.colors.text.primary};
-  font-size: 0.95rem;
-  line-height: 1.4;
+  font-size: clamp(0.95rem, 0.7rem + 0.55vw, 1.2rem);
+  line-height: 1.25;
 
   &::before {
     margin-right: 0.5ch;
