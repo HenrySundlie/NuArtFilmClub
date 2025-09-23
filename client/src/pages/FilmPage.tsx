@@ -11,6 +11,7 @@ import {
   Label,
   Description,
   FilmArticle,
+  BackLink,
 } from '../styles/FilmPage.styles';
 import { lazy } from 'react';
 const ReactMarkdown = lazy(() => import('react-markdown'));
@@ -76,6 +77,7 @@ const FilmPage = observer(() => {
   return (
     <Container>
       <Content>
+  <BackLink to="/films" aria-label="Back to film list" />
     <Title>{film.title}</Title>
     <InfoSection>
           <InfoItem>

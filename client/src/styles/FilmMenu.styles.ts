@@ -10,12 +10,9 @@ export const Container = styled.div`
 
   min-height: 100dvh;
   color: ${theme.colors.text.primary};
-  background: radial-gradient(
-      1200px 500px at 50% -10%,
-      rgba(255, 255, 255, 0.06),
-      transparent
-    ),
-    ${theme.colors.background};
+  /* Match Home page: remove lighter radial gradient so all screens share
+     identical dark background */
+  background: ${theme.colors.background};
   padding: clamp(${theme.spacing.lg}, 3vw, ${theme.spacing.xl});
 
   -webkit-font-smoothing: antialiased;
@@ -82,16 +79,20 @@ export const FilmCard = styled(Link)`
   text-decoration: none;
   border-radius: ${theme.radii.md};
   overflow: clip;
-  border: 1px solid ${theme.colors.text.light};
-  background: ${theme.surfaces.elevatedOverlay}, ${theme.colors.surfaceDeep};
+  /* Updated to use same visual treatment as Home page Contact (FooterCard) */
+  border: 1px solid ${theme.colors.border};
+  background: ${theme.colors.surface};
   box-shadow: none;
   transition:
     filter 220ms ease,
-    background 220ms ease;
+    background 220ms ease,
+    box-shadow 220ms ease;
   min-height: clamp(150px, 18vw, 180px);
 
   &:hover {
-    background: ${theme.surfaces.subtleOverlay}, ${theme.colors.surface};
+    /* Lightly elevate on hover while keeping consistent palette */
+    background: ${theme.colors.surface};
+    box-shadow: ${theme.shadows.card};
     filter: saturate(1.02) contrast(1.01);
   }
 
@@ -189,6 +190,31 @@ export const FilmInfo = styled.div`
     white-space: normal;
     margin-right: 0;
     align-self: stretch; /* occupy full height of its grid cell */
+    /* Match MenuIcon styling */
+    background: ${theme.colors.surfaceDeep};
+    border: 1px solid ${theme.colors.text.light};
+    color: #ffffff; /* Force white text for Buy Tickets button */
+  border-radius: ${theme.radii.md}; /* match global card radius for consistency */
+    transition: background ${theme.transitions.default}, color ${theme.transitions.default}, border-color ${theme.transitions.default}, box-shadow ${theme.transitions.default};
+
+    &:hover {
+      background: ${theme.colors.surfaceDeep};
+      filter: brightness(1.1);
+    }
+    &:active {
+      filter: brightness(0.95);
+    }
+    &:focus-visible {
+      outline: var(--ring);
+      outline-offset: 3px;
+    }
+
+    /* Desktop-only: slightly lighter charcoal background for better prominence */
+    ${theme.breakpoints.desktop} {
+      background: #141414; /* between surfaceDeep (#0B0B0B) and surface (#282828) */
+      &:hover { background: #181818; }
+      &:active { background: #101010; }
+    }
   }
 
   /* Ensure long titles don't push layout oddly */

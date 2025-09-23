@@ -11,12 +11,9 @@ export const PageContainer = styled.div`
   --ring: 2px solid ${theme.colors?.accent ?? 'rgba(99, 102, 241, 0.9)'};
   --shadow-lg: 0 18px 60px rgba(0, 0, 0, 0.25);
 
-  background: radial-gradient(
-      1200px 500px at 50% -10%,
-      rgba(255, 255, 255, 0.06),
-      transparent
-    ),
-    ${theme.colors.background};
+  /* Unified plain dark background (removed previous subtle radial highlight
+     to match Home page's solid appearance) */
+  background: ${theme.colors.background};
   color: ${theme.colors.text.primary};
   min-height: 100dvh;
   display: grid;

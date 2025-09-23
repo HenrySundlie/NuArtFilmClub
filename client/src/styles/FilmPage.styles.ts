@@ -1,5 +1,6 @@
 // Film detail page styles
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 import { theme } from '../theme';
 
 export const Container = styled.div`
@@ -9,12 +10,8 @@ export const Container = styled.div`
 
   min-height: 100dvh;
   color: ${theme.colors.text.primary};
-  background: radial-gradient(
-      1200px 500px at 50% -10%,
-      rgba(255, 255, 255, 0.06),
-      transparent
-    ),
-    ${theme.colors.background};
+  /* Unified background to match Home page (removed radial highlight) */
+  background: ${theme.colors.background};
   padding: clamp(${theme.spacing.lg}, 3vw, ${theme.spacing.xl});
 
   -webkit-font-smoothing: antialiased;
@@ -28,6 +25,37 @@ export const Content = styled.div`
   grid-template-columns: 1fr;
   gap: clamp(${theme.spacing.lg}, 3vw, ${theme.spacing.xl});
   align-items: start;
+`;
+
+export const BackLink = styled(Link)`
+  justify-self: start;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 50%;
+  border: 1px solid ${theme.colors.text.light};
+  background: ${theme.colors.surfaceDeep};
+  color: ${theme.colors.text.light};
+  position: relative;
+  transition: background ${theme.transitions.default}, color ${theme.transitions.default}, border-color ${theme.transitions.default}, filter ${theme.transitions.default};
+
+  /* Chevron (no stem) pointing left created with borders */
+  &::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid currentColor;
+    border-left: 2px solid currentColor;
+    transform: rotate(-45deg) translateX(2px); /* visually center */
+    margin-left: 2px;
+  }
+
+  &:hover { filter: brightness(1.15); }
+  &:active { filter: brightness(0.9); }
+  &:focus-visible { outline: var(--ring); outline-offset: 3px; }
 `;
 
 export const Title = styled.h1`
@@ -54,14 +82,16 @@ export const Title = styled.h1`
 
 export const InfoSection = styled.div`
   position: relative;
-  border: 1px solid ${theme.colors.text.light};
+  /* Match FilmMenu card styling */
+  border: 1px solid ${theme.colors.border};
   border-radius: ${theme.radii.md};
-  background: ${theme.surfaces.elevatedOverlay}, ${theme.colors.surfaceDeep};
+  background: ${theme.colors.surface};
   padding: clamp(${theme.spacing.lg}, 2.5vw, ${theme.spacing.xl});
-  box-shadow: none;
+  box-shadow: none; /* FilmMenu cards have no shadow by default */
   display: grid;
   gap: ${theme.spacing.md};
-  backdrop-filter: saturate(1.2) blur(8px);
+  /* Remove heavy blur overlay to match crisper FilmMenu card */
+  backdrop-filter: none;
   color: ${theme.colors.text.primary};
 `;
 

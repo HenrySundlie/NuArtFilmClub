@@ -5,22 +5,32 @@ import { theme } from '../theme';
 const linkButtonStyles = `
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   text-decoration: none;
-  color: ${theme.colors.text.primary};
   font-weight: 600;
-  padding: 0.6rem 0.8rem;
-  border-radius: ${theme.radii.sm};
-  border: 1px solid ${theme.colors.border};
-  background: ${theme.colors.surface};
-  transition: background ${theme.transitions.default}, color ${theme.transitions.default}, border-color ${theme.transitions.default};
+  padding: 0.65rem 1rem;
+  border-radius: ${theme.radii.md};
+  border: 1px solid ${theme.colors.text.light};
+  background: ${theme.colors.surfaceDeep};
+  color: #ffffff; /* Match FilmMenu ticket button */
+  font-family: ${theme.typography.fontFamily};
+  transition: background ${theme.transitions.default}, color ${theme.transitions.default}, border-color ${theme.transitions.default}, filter ${theme.transitions.default};
 
   &:focus-visible {
     outline: var(--ring);
     outline-offset: 3px;
   }
   @media (hover: hover) {
-    &:hover { background: ${theme.colors.highlight}; }
+    &:hover { filter: brightness(1.1); }
+  }
+  &:active { filter: brightness(0.95); }
+
+  /* Desktop-only: slightly lighter charcoal background */
+  ${theme.breakpoints.desktop} {
+    background: #141414; /* mid charcoal */
+    @media (hover: hover) { &:hover { background: #181818; } }
+    &:active { background: #101010; }
   }
 `;
 
