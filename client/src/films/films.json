@@ -38,5 +38,18 @@
     "runDates": ["2025-10-03", "2025-10-04"],
     "runTime": "7PM",
     "ticketLink": "https://www.zeffy.com/en-US/ticketing/a-quiet-place-screening-the-nuart-theatre"
+},
+{
+    "id": 4,
+    "title": "The Sixth Sense",
+    "year": 1999,
+    "description": "'I see dead people'",
+    "director": "M. Night Shyamalan",
+    "actors": ["Bruce Willis", "Haley Joel Osment", "Toni Collette", "Olivia Williams"],
+    "duration": 107,
+    "img": "/images/SS-thumbnail.jpg",
+    "runDates": ["2025-10-17", "2025-10-18"],
+    "runTime": "7PM",
+    "ticketLink": ""
 }
 ]
