@@ -64,5 +64,18 @@
   "runDates": ["2025-11-14", "2025-11-15"],
   "runTime": "7PM",
   "ticketLink": ""
+},
+{
+    "id": 6,
+    "title": "White Christmas",
+    "year": 1954,
+    "description": "",
+    "director": "Michael Curtiz",
+    "actors": ["Bing Crosby", "Danny Kaye", "Rosemary Clooney", "Vera-Ellen"],
+    "duration": 120,
+    "img": "",
+    "runDates": ["2025-12-05", "2025-12-06"],
+    "runTime": "7PM",
+    "ticketLink": ""
 }
 ]
