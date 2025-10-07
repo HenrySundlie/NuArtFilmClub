@@ -51,5 +51,18 @@
     "runDates": ["2025-10-17", "2025-10-18"],
     "runTime": "7PM",
     "ticketLink": "https://www.zeffy.com/en-US/ticketing/the-sixth-sense-screening-the-nuart-theatre"
+},
+{
+  "id": 5,
+  "title": "Babette's Feast",
+  "year": 1987,
+  "description": "",
+  "director": "Gabriel Axel",
+  "actors": ["Stéphane Audran", "Bodil Kjer", "Birgitte Federspiel"],
+  "duration": 102,
+  "img": "/images/babette-thumbnail.jpg",
+  "runDates": ["2025-11-14", "2025-11-15"],
+  "runTime": "7PM",
+  "ticketLink": ""
 }
 ]
