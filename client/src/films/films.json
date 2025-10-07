@@ -73,7 +73,7 @@
     "director": "Michael Curtiz",
     "actors": ["Bing Crosby", "Danny Kaye", "Rosemary Clooney", "Vera-Ellen"],
     "duration": 120,
-    "img": "",
+    "img": "/images/WC-thumbnail.jpg",
     "runDates": ["2025-12-05", "2025-12-06"],
     "runTime": "7PM",
     "ticketLink": ""
