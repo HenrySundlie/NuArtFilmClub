@@ -330,3 +330,20 @@ export const FilmTime = styled.p`
     opacity: 0.9;
   }
 `;
+
+export const FilmNote = styled.p`
+  margin: 0.45rem 0 0; /* small gap below time */
+  color: ${theme.colors.text.secondary ?? 'rgba(255,255,255,0.78)'};
+  font-size: clamp(0.85rem, 0.75rem + 0.6vw, 1rem);
+  line-height: 1.35;
+  max-width: 68ch;
+  /* Allow the note to wrap naturally and not cause overflow */
+  word-break: break-word;
+
+  ${theme.breakpoints.mobile} {
+    /* Slightly more compact on narrow screens */
+    margin-top: 0.4rem;
+    font-size: clamp(0.82rem, 1.6vw, 0.98rem);
+    text-align: center;
+  }
+`;

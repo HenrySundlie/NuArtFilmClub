@@ -11,6 +11,7 @@ import {
   FilmTitle,
   FilmDate,
   FilmTime,
+  FilmNote,
   SectionHeading,
 } from '../styles/FilmMenu.styles';
 import { Button } from '../styles/Page.styles';
@@ -112,6 +113,12 @@ const FilmMenu = observer(() => {
           <div className="details">
             <FilmDate>{buildDatesLabel(film)}</FilmDate>
             <FilmTime>{film.runTime}</FilmTime>
+            {/* Short descriptive paragraph only for Babette's Feast (case-insensitive match) */}
+            {film.title && film.title.toLowerCase().includes('babette') && (
+              <FilmNote>
+                Blinis Demidoff & Babette’s Feast: Only 50 seats available (balcony club) Friday night only! An unforgettable evening of flavor, film, and French elegance. General admission tickets available per usual.
+              </FilmNote>
+            )}
           </div>
           {ticketUrl && (
             <Button className="ticket-btn" onClick={(e) => handleTicketClick(e, ticketUrl)}>
