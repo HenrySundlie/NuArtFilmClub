@@ -86,9 +86,9 @@
     "director": "David Anspaugh",
     "actors": ["Gene Hackman", "Barbara Hershey", "Dennis Hopper", "Sheb Wooley"],
     "duration": 115,
-    "img": "hoosiers-thumbnail.jpg",
+    "img": "/images/hoosiers-thumbnail.jpg",
     "runDates": ["2026-01-23", "2026-01-24"],
     "runTime": "7PM",
-    "ticketLink": ""
+    "ticketLink": "https://www.zeffy.com/en-US/ticketing/hoosiers-screening-the-nuart-theatre"
   }
 ]
