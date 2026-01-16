@@ -35,12 +35,12 @@ export const MenuCard = styled.div<{ isOpen: boolean; visible?: boolean }>`
   top: ${theme.spacing.md};
   right: ${theme.spacing.md};
   /*
-    Hardcoded size to make MenuCard square and fit 3 items.
+    Size to make MenuCard square and fit 4 items.
     Ideally, height would be based on content and width would match height automatically,
     but CSS cannot set width = height when height is dynamic. JS workaround needed for auto.
   */
-  width: ${({ isOpen }) => (isOpen ? '160px' : '44px')};
-  height: ${({ isOpen }) => (isOpen ? '160px' : '44px')};
+  width: ${({ isOpen }) => (isOpen ? '180px' : '44px')};
+  height: ${({ isOpen }) => (isOpen ? '200px' : '44px')};
   background-color: ${theme.colors.surfaceDeep};
   border: 1px solid ${theme.colors.text.light};
   border-radius: ${({ isOpen }) => (isOpen ? '20px' : '50%')};

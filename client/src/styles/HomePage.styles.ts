@@ -197,18 +197,23 @@ export const FloatingLogo = styled.div<{ visible?: boolean }>`
 
 export const TitleActions = styled.nav`
   position: absolute;
-  /* Align with the title's top position, offset slightly for baseline alignment */
-  top: calc(${theme.spacing.lg} + 6px);
-  right: clamp(40px, 6vw, 120px);
+  /* Position directly below the title, following the title's centering */
+  top: calc(${theme.spacing.lg} + clamp(
+    ${theme.typography.h1.mobile.fontSize},
+    4vw,
+    3.25rem
+  ) + 1.5rem);
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1002; /* above fade overlays */
   display: none; /* hidden by default */
 
   /* Inline group of text links */
-  display: none;
   gap: ${theme.spacing.lg};
   padding: 0;
   background: transparent;
   border: 0;
+  white-space: nowrap;
 
   ${theme.breakpoints.mobile} {
     display: none;
@@ -216,6 +221,7 @@ export const TitleActions = styled.nav`
 
   ${theme.breakpoints.desktop} {
     display: flex;
+    justify-content: center;
   }
 `;
 
@@ -227,8 +233,8 @@ export const TitleActionButton = styled('a')`
   color: ${theme.colors.text.primary};
   transition: ${theme.transitions.default};
   /* Larger text and hit area */
-  font-size: clamp(1rem, 1.1vw, 1.2rem);
-  padding: 6px 10px;
+  font-size: clamp(1.1rem, 1.3vw, 1.4rem);
+  padding: 8px 14px;
   line-height: 1.2;
 
   &:hover {
