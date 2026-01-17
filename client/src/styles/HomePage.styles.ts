@@ -311,6 +311,9 @@ export const ContentSection = styled.section`
  * Container for the content text with proper spacing and readability
  */
 export const ContentText = styled.div`
+  /* Add padding at top for proper spacing of first elements like back buttons */
+  padding-top: ${theme.spacing.lg};
+  
   /* Sample text styling */
   p {
     margin-bottom: ${theme.spacing.md};
