@@ -41,6 +41,13 @@ export default function Menu({ visibleOverride }: MenuProps) {
     };
   }, [isOpen]);
 
+  // Close menu if visibleOverride becomes false while menu is open
+  useEffect(() => {
+    if (isOpen && visibleOverride === false) {
+      closeMenu();
+    }
+  }, [visibleOverride, isOpen]);
+
   const shouldShowIcon = (visibleOverride ?? true) && iconVisible && !isOpen;
 
   return (
