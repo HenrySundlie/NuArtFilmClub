@@ -19,6 +19,7 @@ const CardContainer = styled.div`
   margin-bottom: 0; /* content section provides top padding */
   /* Use a variable for consumers to reference height */
   --mobile-card-height: ${MOBILE_CARD_HEIGHT};
+  --card-width: min(90vw, 420px);
   min-height: var(--mobile-card-height);
   background: ${theme.colors.surfaceDeep};
   border-radius: 20px;
@@ -26,6 +27,7 @@ const CardContainer = styled.div`
   z-index: 50;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   border: 1px solid ${theme.colors.text.light};
+  overflow: hidden;
   
   /* Mobile only - hidden on desktop */
   display: none;
@@ -40,6 +42,12 @@ const TabContainer = styled.div`
   display: flex;
   margin-bottom: 16px;
   position: relative;
+  gap: 0;
+  margin-left: -12px;
+  margin-right: -12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: calc(100% + 24px);
 `;
 
 const Tab = styled.button<{ active: boolean }>`
@@ -47,7 +55,7 @@ const Tab = styled.button<{ active: boolean }>`
   background: ${({ active }) => active ? theme.colors.highlight : 'transparent'};
   color: ${({ active }) => active ? '#fff' : '#666'};
   border: none;
-  padding: clamp(6px, 1.2vw, 8px) clamp(12px, 2vw, 16px);
+  padding: clamp(6px, 1.2vw, 8px) clamp(8px, 1.2vw, 12px);
   font-family: ${theme.typography.fontFamily};
   font-size: clamp(16px, 2.2vw, 18px);
   font-weight: 500;
@@ -55,6 +63,7 @@ const Tab = styled.button<{ active: boolean }>`
   transition: all 0.2s ease;
   position: relative;
   border-radius: 20px;
+  white-space: nowrap;
   
   &:hover {
     background: ${({ active }) => active ? theme.colors.highlight : 'rgba(255, 255, 255, 0.05)'};
@@ -118,18 +127,26 @@ const TextContent = styled.div<{ position: 'left' | 'right' }>`
 // ============================================================================
 
 const MobileActionCard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'upcoming' | 'calendar'>('upcoming');
+  const [activeTab, setActiveTab] = useState<'upcoming' | 'calendar' | 'articles'>('upcoming');
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const handleTabClick = (tab: 'upcoming' | 'calendar') => {
+  const handleTabClick = (tab: 'upcoming' | 'calendar' | 'articles') => {
     setActiveTab(tab);
   };
 
   const handleSwipe = useCallback((direction: 'left' | 'right') => {
-    if (direction === 'left' && activeTab === 'upcoming') {
-      setActiveTab('calendar');
-    } else if (direction === 'right' && activeTab === 'calendar') {
-      setActiveTab('upcoming');
+    if (direction === 'left') {
+      if (activeTab === 'upcoming') {
+        setActiveTab('calendar');
+      } else if (activeTab === 'calendar') {
+        setActiveTab('articles');
+      }
+    } else if (direction === 'right') {
+      if (activeTab === 'calendar') {
+        setActiveTab('upcoming');
+      } else if (activeTab === 'articles') {
+        setActiveTab('calendar');
+      }
     }
   }, [activeTab]);
 
@@ -199,6 +216,12 @@ const MobileActionCard: React.FC = () => {
         >
           Calendar
         </Tab>
+        <Tab 
+          active={activeTab === 'articles'} 
+          onClick={() => handleTabClick('articles')}
+        >
+          Articles
+        </Tab>
       </TabContainer>
       
       <DividerLine />
@@ -225,7 +248,7 @@ const MobileActionCard: React.FC = () => {
               Reserve seats for upcoming films
             </TextContent>
           </>
-        ) : (
+        ) : activeTab === 'calendar' ? (
           <>
             <TextContent position="left">
               View all scheduled films
@@ -241,6 +264,21 @@ const MobileActionCard: React.FC = () => {
             </svg>
               </IconContainer>
             </Link>
+          </>
+        ) : (
+          <>
+  <Link to="/articles" aria-label="View articles" style={{ display: 'inline-flex', borderRadius: 'inherit' }}>
+      <IconContainer position="left">
+            {/* Inline SVG for articles icon (feather book) */}
+            <svg viewBox="0 0 24 24" width="70%" height="70%" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+              </IconContainer>
+            </Link>
+            <TextContent position="right">
+              Read our latest articles and reviews
+            </TextContent>
           </>
         )}
       </ContentContainer>
