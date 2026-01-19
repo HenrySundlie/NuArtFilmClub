@@ -145,6 +145,7 @@ const Home = () => {
           <TitleActions aria-label="Primary navigation">
             <TitleActionButton href="/calendar">Calendar</TitleActionButton>
             <TitleActionButton href="/films">Films</TitleActionButton>
+            <TitleActionButton href="/articles">Articles & Reviews</TitleActionButton>
           </TitleActions>
         )}
         <SafeImg
