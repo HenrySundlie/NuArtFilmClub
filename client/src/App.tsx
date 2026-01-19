@@ -4,6 +4,8 @@ import Home from './pages/Home';
 const Calendar = lazy(() => import('./pages/Calendar'));
 const FilmMenu = lazy(() => import('./pages/FilmMenu'));
 const FilmPage = lazy(() => import('./pages/FilmPage'));
+const ArticleMenu = lazy(() => import('./pages/ArticleMenu'));
+const ArticlePage = lazy(() => import('./pages/ArticlePage'));
 import Menu from './components/Menu';
 import styled from '@emotion/styled';
 import { theme } from './theme';
@@ -54,6 +56,8 @@ export default function App() {
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/films" element={<FilmMenu />} />
             <Route path="/film/:id" element={<FilmPage />} />
+            <Route path="/articles" element={<ArticleMenu />} />
+            <Route path="/article/:id" element={<ArticlePage />} />
           </Routes>
         </Suspense>
       </AppContainer>
