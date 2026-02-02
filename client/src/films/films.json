@@ -103,5 +103,18 @@
   "runDates": ["2026-02-06", "2026-02-07"],
   "runTime": "7PM",
   "ticketLink": "https://www.zeffy.com/en-US/ticketing/groundhog-day-screening-the-nuart-theatre"
+},
+  {
+  "id": 9,
+  "title": "True Grit",
+  "year": 2010,
+  "description": "A tough, determined 14-year-old girl hires a hard-drinking, trigger-happy U.S. Marshal to help her track down her father's killer.",
+  "director": "Joel Coen, Ethan Coen",
+  "actors": ["Jeff Bridges", "Matt Damon", "Hailee Steinfeld", "Josh Brolin"],
+  "duration": 110,
+  "img": "/images/true-grit-still-1.jpg",
+  "runDates": ["2026-03-06", "2026-03-07"],
+  "runTime": "7PM",
+  "ticketLink": ""
 }
 ]
