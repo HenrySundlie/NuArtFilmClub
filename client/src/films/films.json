@@ -90,5 +90,18 @@
     "runDates": ["2026-01-23", "2026-01-24"],
     "runTime": "7PM",
     "ticketLink": "https://www.zeffy.com/en-US/ticketing/hoosiers-screening-the-nuart-theatre"
-  }
+  },
+{
+  "id": 8,
+  "title": "Groundhog Day",
+  "year": 1993,
+  "description": "A cynical weatherman finds himself trapped in a time loop, reliving Groundhog Day over and over until he becomes a better person.",
+  "director": "Harold Ramis",
+  "actors": ["Bill Murray", "Andie MacDowell", "Chris Elliott", "Stephen Tobolowsky"],
+  "duration": 101,
+  "img": "/images/groundhog-still-1.jpg",
+  "runDates": ["2026-02-06", "2026-02-07"],
+  "runTime": "7PM",
+  "ticketLink": "https://www.zeffy.com/en-US/ticketing/groundhog-day-screening-the-nuart-theatre"
+}
 ]
