@@ -116,5 +116,18 @@
   "runDates": ["2026-03-06", "2026-03-07"],
   "runTime": "7PM",
   "ticketLink": ""
+},
+  {
+  "id": 10,
+  "title": "A Hidden Life",
+  "year": 2019,
+  "description": "An Austrian farmer refuses to fight for the Nazis during World War II and faces imprisonment and execution for his conscientious objection.",
+  "director": "Terrence Malick",
+  "actors": ["August Diehl", "Valerie Pachner", "Michael Nyqvist", "Matthias Schoenaerts"],
+  "duration": 174,
+  "img": "/images/hidden-life-still-1.jpg",
+  "runDates": ["2026-04-02"],
+  "runTime": "7PM",
+  "ticketLink": ""
 }
 ]
