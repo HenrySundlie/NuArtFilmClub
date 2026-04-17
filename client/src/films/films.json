@@ -129,5 +129,18 @@
   "runDates": ["2026-04-02"],
   "runTime": "7PM",
   "ticketLink": "https://www.zeffy.com/en-US/ticketing/a-hidden-life-screening-the-nuart-theatre"
+},
+  {
+  "id": 11,
+  "title": "Chariots of Fire",
+  "year": 1981,
+  "description": "Two British track athletes, a Jew and a devout Christian, compete in the 1924 Olympics, each driven by different motivations and convictions.",
+  "director": "Hugh Hudson",
+  "actors": ["Ben Cross", "Ian Charleson", "Nigel Havers", "Ian Holm"],
+  "duration": 125,
+  "img": "/images/chariots-of-fire-still-1.jpg",
+  "runDates": ["2026-05-01"],
+  "runTime": "7PM",
+  "ticketLink": ""
 }
 ]
